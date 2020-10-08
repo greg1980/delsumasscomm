@@ -55,9 +55,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/admin/students/', 'StudentController@index')->name('admin.students');
     Route::get('users/course','AdminUsersController@course')->name('users.course');
     Route::post('/storeCourse','AdminUsersController@storeCourse')->name('storeCourse');
-    Route::PATCH('/register/{register}','StudentController@update')->name('register.update');
-    Route::GET('register/create','StudentController@create')->name('register.create');
-    Route::POST('register','StudentController@store')->name('register.store');
+    Route::PATCH('/course/{course}','StudentController@update')->name('register.update');
+    Route::GET('enrollment/create','StudentController@create')->name('enrollment.create');
+    Route::POST('enrollment','StudentController@store')->name('enrollment.store');
     //Route::resource('register','studentController');
 
 });

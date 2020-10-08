@@ -21,8 +21,14 @@ class StudentController extends Controller
     public function index()
     {
         $users = User::all();
-        $courses = Course::all()->count();
-        return view('admin.students.index',compact('users','courses'));
+        $courses = Course::all();
+        $enrollments = Enrollment::all();
+        foreach ($enrollments as $enrollment){
+            if(auth()->user()->id === $enrollment->user_id){
+              return   view('admin.students.index',compact('users','courses','enrollment'));
+            }
+        }
+        return view('admin.students.index',compact('users','courses','enrollment'));
     }
 
     /**
@@ -47,23 +53,20 @@ class StudentController extends Controller
     {
 
         $users = User::all();
-        foreach($users as $user){
-          foreach($user->courses as $course){
-             if (Auth::user()->level_id === $course->level_id){
-                 if ( $enrollment->enrolled !== 1){
-                     $enrollment->course_id = $course->id ;
-                     $enrollment->user_id = auth()->user()->id;
-                     $enrollment->level_id = $course->level_id;
-                     $enrollment->semesters =  $course->semesters ;
-                     $enrollment->enrolled = 1;
-                     $enrollment->year = date("Y-m-d");
-                     $enrollment->save();
-                 }
-
-                }
+        $courses = Course::all();
+          foreach($courses  as $course){
+              if (auth()->user()->level_id === $course->level_id){
+                   $enrollment = new Enrollment();
+                      $enrollment->course_id = $course->id ;
+                      $enrollment->user_id = auth()->user()->id;
+                      $enrollment->level_id = $course->level_id;
+                      $enrollment->semesters =  $course->semesters ;
+                      $enrollment->enrolled = 1;
+                      $enrollment->year = date("Y-m-d");
+                      $enrollment->save();
+               }
             }
 
-        }
         return back();
 
 

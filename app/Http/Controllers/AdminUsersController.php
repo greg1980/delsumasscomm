@@ -29,8 +29,7 @@ class AdminUsersController extends Controller
             abort(403);
         }
         $users = User::all();
-        $enrollments = Enrollment::all();
-        return view('admin.users.index',compact('users','enrollments'));
+        return view('admin.users.index',compact('users'));
     }
 
     /**
