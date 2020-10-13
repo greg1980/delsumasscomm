@@ -52,10 +52,13 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/upload','AdminUsersController@upload')->name('upload');
     Route::get('/admin/users/{user}/editprofile','AdminUsersController@edit')->name('admin.users.editprofile');
     Route::PATCH('/admin/users/{user}','AdminUsersController@update')->name('users.update ');
+    Route::PATCH('/admin/courses/{courses}','AdminUsersController@updateCourses')->name('admin.courses.updateCourses ');
     Route::get('/admin/students/', 'StudentController@index')->name('admin.students');
+    Route::get('/admin/courses','AdminUsersController@courses')->name('admin.courses');
     Route::get('users/course','AdminUsersController@course')->name('users.course');
     Route::post('/storeCourse','AdminUsersController@storeCourse')->name('storeCourse');
     Route::PATCH('/course/{course}','StudentController@update')->name('register.update');
+    Route::get('/admin/users/{course}/editcourses','AdminUsersController@editcourses')->name('admin.users.editcourses');
     Route::GET('enrollment/create','StudentController@create')->name('enrollment.create');
     Route::POST('enrollment','StudentController@store')->name('enrollment.store');
     //Route::resource('register','studentController');

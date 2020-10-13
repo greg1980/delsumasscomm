@@ -169,6 +169,14 @@ class AdminUsersController extends Controller
         return back();
     }
 
+
+    /**
+     * Show list of course assignee to admin.
+     *
+     * @param
+     * @param
+     * @return
+     */
     public function course() {
 
         if (auth()->user()->role_id !== 1){
@@ -179,6 +187,24 @@ class AdminUsersController extends Controller
         return view('admin.users.course',compact('levels','users'));
 
      }
+
+    /**
+     * Show list of created users course for admin.
+     *
+     * @param
+     * @param
+     * @return
+     */
+    public function courses() {
+
+        if (auth()->user()->role_id !== 1){
+            abort(403);
+        }
+        $courses = DB::table('courses')->orderByDesc('Level_id')->get();
+        $users = User::all();
+        return view('admin.users.courses',compact('users','courses'));
+
+    }
 
     /**
      * Store a newly created resource in storage.
@@ -215,7 +241,45 @@ class AdminUsersController extends Controller
             }
         }
 
-        Session::flash('message','The course  '.$course['name'].' was  successful created');
+        Session::flash('message','The course  '.$course['course_name'].' was  successful created');
+        return back();
+    }
+    public function editcourses($id){
+
+        if(auth()->user()->role_id !== 1){
+            abort(403);
+        }
+        $courses = Course::findOrFail($id);
+        $levels = Level::pluck('name','id');
+        $users = DB::select('select * from users where role_id = 2', [2]);
+        return view('admin.users.editcourses', compact('courses','users','levels'));
+
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param Course $courses
+     * @param User $user
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function updatecourses(Course $courses, User $user)
+    {
+        if (auth()->user()->role_id !== 1){
+            abort(403);
+        }
+
+        $courses->update(request()->validate([
+            'course_name'=>'required',
+            'level_id'=>'required',
+            'course_code'=>'required',
+            'semesters'=>'required',
+            'credit_unit'=>'required',
+            'user_id'=>'required'
+        ]));
+
+        Session::flash('message','Hey '.$courses['course_code'].' was  successful updated');
+
         return back();
     }
 

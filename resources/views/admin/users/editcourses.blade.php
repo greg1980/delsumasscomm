@@ -11,9 +11,20 @@
             <div id="content">
                 <!-- Page Heading -->
                 <div class="container-fluid col-lg-12">
-                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800"> create <small>Course</small> </h1>
-                    </div>
+                   <div class="row">
+                       <div class="col-lg-9">
+                           <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                               <h1 class="h3 mb-0 text-gray-800"> Edit <small>Course</small> </h1>
+                           </div>
+                       </div>
+                       <div class="col-lg-3 pull-right">
+                               <div class="form-group">
+                                   <div class="col-sm-12">
+                                       <a href="{{ route('admin.courses') }}"><button class="btn btn-primary btn-sm " ><i class="fas fa-backward mr-2"></i> BACK</button></a>
+                                   </div>
+                               </div>
+                       </div>
+                   </div>
                     @if (Session::has('message'))
 
                         <div  class="balert balert-success ">
@@ -38,12 +49,13 @@
                             <h6 class="m-0 font-weight-bold text-white "><span><i class="fas fa-user-plus"></i></span> Add New Course</h6>
                         </div>
                         <div class="card-body col-lg-12">
-                            <form method="post" action="/storeCourse" class="px-6 py-3"  enctype="multipart/form-data">
+                            <form method="post" action="/admin/courses/{{$courses->id}}" class="px-6 py-3"  enctype="multipart/form-data">
                                 {{ csrf_field() }}
+                                {{ method_field('PATCH') }}
                                 <div class="form-group row">
-                                    <label for="" class="col-sm-2 col-form-label">Course Title</label>
-                                    <div class="col-sm-8">
-                                        <input type="text" class="form-control col-sm-12 {{$errors->has('course_name') ? 'is-invalid' : ''}}"  name="course_name" value="{{ old('course_name') }}" {{Auth()->user()->role_id != 1 ? 'readonly' : ''}}>
+                                    <label for="" class="col-sm-2 col-form-label">Course Name</label>
+                                    <div class="col-sm-6">
+                                        <input type="text" class="form-control col-sm-8 {{$errors->has('course_name') ? 'is-invalid' : ''}}"  name="course_name" value="{{ $courses->course_name }}" {{Auth()->user()->role_id != 1 ? 'readonly' : ''}}>
                                     </div>
                                 </div>
 
@@ -51,9 +63,9 @@
                                     <label for="" class="col-sm-2 col-form-label">Level</label>
                                     <div class="col-sm-8">
                                         <select class="form-control col-sm-6 {{$errors->has('level_id') ? 'is-invalid' : ''}}" name="level_id" id="">
-                                            <option>select an option</option>
-                                            @foreach ($levels as $level_id => $level)
-                                                <option value="{{$level->id}}">{{$level->name}}</option>
+                                            <option value="{{$courses->level_id}}"></option>
+                                            @foreach ($levels as  $id => $name)
+                                                <option value="{{ $id }}" {{ $id == $courses->level_id ? 'selected' : '' }}>{{$name}} Level</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -62,7 +74,7 @@
                                 <div class="form-group row">
                                     <label for="" class="col-sm-2 col-form-label">Course Code</label>
                                     <div class="col-sm-8">
-                                        <input type="text" value="{{ old('course_code') }}" class="form-control col-sm-6 {{$errors->has('course_code') ? 'is-invalid' : ''}}" name="course_code">
+                                        <input type="text" value="{{ $courses->course_code }}" class="form-control col-sm-6 {{$errors->has('course_code') ? 'is-invalid' : ''}}" name="course_code">
                                     </div>
                                 </div>
 
@@ -70,9 +82,11 @@
                                     <label for="" class="col-sm-2 col-form-label">Semester</label>
                                     <div class="col-sm-8">
                                         <select name="semesters" id="" class="form-control col-sm-6 {{$errors->has('semester') ? 'is-invalid' : ''}}">
-                                            <option>select an option</option>
-                                            <option value="0">First</option>
-                                            <option value="1">Second</option>
+
+                                           @if ($courses->semesters === 0)
+                                                <option value="{{$courses->semesters }}" {{ $id == $courses->semesters ? 'selected' : ''}}>{{$courses === 0 ? 'Second' : 'First'}}</option>
+                                           @endif
+                                               <option value="{{$courses->semesters }}" {{ $id == $courses->semesters ? 'selected' : ''}}>{{$courses === 1 ? 'First' : 'Second'}}</option>
                                         </select>
                                     </div>
                                 </div>
@@ -80,7 +94,7 @@
                                 <div class="form-group row">
                                     <label for="" class="col-sm-2 col-form-label">Credit Unit</label>
                                     <div class="col-sm-8">
-                                        <input type="number" value="{{old('credit_unit')}}" class="form-control col-sm-6 {{$errors->has('credit_unit') ? 'is-invalid' : ''}}" name="credit_unit">
+                                        <input type="number" value="{{$courses->credit_unit}}" class="form-control col-sm-6 {{$errors->has('credit_unit') ? 'is-invalid' : ''}}" name="credit_unit">
                                     </div>
                                 </div>
 
@@ -90,7 +104,7 @@
                                         <select name="user_id" id="" class="form-control col-sm-6 {{$errors->has('user_id') ? 'is-invalid' : ''}}">
                                             <option>select an option</option>
                                             @foreach ($users as  $user)
-                                                <option value="{{$user->id}}">{{$user->name}}</option>
+                                                <option value="{{$user->id}}" {{ $user->id ? 'selected' : ''}}>{{$user->name}}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -99,7 +113,7 @@
                                 <div class="form-group row">
                                     <label for="" class="col-sm-2 col-form-label"></label>
                                     <div class="col-sm-8">
-                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                        <button type="submit" class="btn btn-primary btn-sm">Submit</button>
                                     </div>
                                 </div>
                             </form>

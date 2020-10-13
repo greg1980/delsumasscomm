@@ -23,12 +23,15 @@ class StudentController extends Controller
         $users = User::all();
         $courses = Course::all();
         $enrollments = Enrollment::all();
-        foreach ($enrollments as $enrollment){
-            if(auth()->user()->id === $enrollment->user_id){
-              return   view('admin.students.index',compact('users','courses','enrollment'));
+        if ($enrollments) {
+            foreach ($enrollments as $enrollment) {
+                if (auth()->user()->id === $enrollment->user_id) {
+                    return view('admin.students.index', compact('users', 'courses', 'enrollment'));
+                }
             }
+            return view('admin.students.index',compact('users','courses','enrollment'));
         }
-        return view('admin.students.index',compact('users','courses','enrollment'));
+
     }
 
     /**
