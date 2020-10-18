@@ -135,20 +135,31 @@ class AdminUsersController extends Controller
         if (auth()->id() !== $user->id){
             abort(403);
         }
-
-        $user->update(request()->validate([
-            'title'=>'required',
-            'gender'=>'required',
-            'dateofbirth'=>'required',
-            'mobile'=>['required','size:11'],
-            'housenumber'=>'required',
-            'level_id'=>'required',
-            'yearofadmission'=>'required',
-            'yearofgrad'=>'required',
-            'matnumber'=>'required',
-            'address'=>'required',
-            'city'=>'required',
+        if (auth()->user()->role->id === 3) {
+            $user->update(request()->validate([
+                'title' => 'required',
+                'gender' => 'required',
+                'dateofbirth' => 'required',
+                'mobile' => ['required', 'size:11'],
+                'housenumber' => 'required',
+                'level_id' => 'required',
+                'yearofadmission' => 'required',
+                'yearofgrad' => 'required',
+                'matnumber' => 'required',
+                'address' => 'required',
+                'city' => 'required',
             ]));
+        }else{
+            $user->update(request()->validate([
+                'title' => 'required',
+                'gender' => 'required',
+                'dateofbirth' => 'required',
+                'mobile' => ['required', 'size:11'],
+                'housenumber' => 'required',
+                'address' => 'required',
+                'city' => 'required',
+            ]));
+        }
         Session::flash('message','Hey  '.$user['name'].' your profile was  successful updated');
         return back();
     }
@@ -241,7 +252,7 @@ class AdminUsersController extends Controller
             }
         }
 
-        Session::flash('message','The course  '.$course['course_name'].' was  successful created');
+        Session::flash('message','The course was  successful created');
         return back();
     }
     public function editcourses($id){

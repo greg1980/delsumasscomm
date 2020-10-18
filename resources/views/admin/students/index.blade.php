@@ -41,7 +41,7 @@
                                 </thead>
                                 <tbody>
                                 @foreach($users as $user)
-                                   @foreach($user->courses as $course)
+                                   @foreach($user->courses->sortBy('id') as $course)
                                       @if (Auth::user()->level_id === $course->level_id)
 
                                             <tr>
@@ -53,7 +53,7 @@
                                                 <td><span class="badge badge-danger">{{$course->level->name}}</span>  Level</td>
                                                 <td>
                                                    <span>
-                                                       <i class="{{ Auth::user()->id !== $enrollment->user_id ? '' : 'far fa-check-circle text-success'}} "></i></span>
+                                                       <i class="{{ $enrollment->course_id !== $course->id ? '' : 'far fa-check-circle text-success'}} "></i></span>
                                                 </td>
                                             </tr>
                                       @endif
@@ -68,8 +68,8 @@
                                     <label for="enrolled" class="">
                                         <input type="hidden" name="courses" value="courses">
                                     </label>
-                                    @if (Auth::user()->id !== $enrollment->user_id)
-                                        <button type="submit" class="btn btn-sm btn-primary">Register</button>
+                                    @if ( $enrollment->course_id !== $course->id)
+                                            <button type="submit" class="btn btn-sm btn-primary">Register</button>
                                     @else
                                         <button type="submit" class="btn btn-sm btn-primary" disabled>Registered</button>
                                     @endif

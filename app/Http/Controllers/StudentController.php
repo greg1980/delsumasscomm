@@ -21,27 +21,19 @@ class StudentController extends Controller
     public function index()
     {
         $users = User::all();
-        $courses = Course::all();
+        $courses = auth()->user()->courses;
         $enrollments = Enrollment::all();
         if ($enrollments) {
             foreach ($enrollments as $enrollment) {
-                if (auth()->user()->id === $enrollment->user_id) {
-                    return view('admin.students.index', compact('users', 'courses', 'enrollment'));
+                foreach ($courses as $course) {
+                    if (auth()->user()->id === $enrollment->user_id && $enrollment->course_id === $course->id ) {
+                        return view('admin.students.index', compact('users', 'courses', 'enrollment'));
+                    }
                 }
             }
-            return view('admin.students.index',compact('users','courses','enrollment'));
+            return view('admin.students.index', compact('users', 'courses', 'enrollment'));
         }
 
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Http\Response|\Illuminate\View\View
-     */
-    public function create()
-    {
-       //
     }
 
     /**
@@ -56,6 +48,7 @@ class StudentController extends Controller
     {
 
         $users = User::all();
+        $enrollment = auth()->user()->enrollment;
         $courses = Course::all();
           foreach($courses  as $course){
               if (auth()->user()->level_id === $course->level_id){
@@ -71,7 +64,6 @@ class StudentController extends Controller
             }
 
         return back();
-
 
     }
 

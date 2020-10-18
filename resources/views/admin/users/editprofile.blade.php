@@ -79,6 +79,9 @@
                                     <label for="exampleInputEmail1" >GENDER</label>
                                     <select class="form-control {{$errors->has('gender') ?'is-invalid': ''}}"  name="gender" id="">
 {{--                                        <option value="{{$user->gender ? 'Female' : 'Male' }}">{{$user->gender ? 'Female' : 'Male' }}</option>--}}
+                                        @if ($user->gender)
+                                            <option value="{{$user->gender }}" {{$user->gender ? 'selected' : ''}}>{{$user->gender === 0 ? 'Male' : 'Female' }}</option>
+                                        @endif
                                         <option value="0">Male</option>
                                         <option value="1">Female</option>
                                     </select>
@@ -108,30 +111,32 @@
                                     <label for="exampleInputEmail1" >CITY</label>
                                     <input type="text" name="city" class="form-control {{$errors->has('city') ?'is-invalid': ''}}" id="exampleInputEmail1" value="{{$user->city}}">
                                 </div>
-                                <div class="form-group mr-5 ml-5">
-                                    <label for="exampleInputEmail1" >MAT NUMBER</label>
-                                    <input type="text" name="matnumber" class="form-control {{$errors->has('matnumber') ?'is-invalid': ''}}" id="exampleInputEmail1" value="{{$user->matnumber}}">
-                                </div>
-                                <div class="form-group mr-5 ml-5">
-                                    <label for="exampleInputEmail1" >User Level</label>
-                                        <select class="form-control  {{$errors->has('level_id') ? 'is-invalid' : ''}}" name="level_id" id="">
-                                            <option value="" >Choose current Level</option>
-                                            @foreach ($levels as  $id => $name)
-                                                <option value="{{$id}}">{{$name}} Level</option>
-                                            @endforeach
-                                        </select>
-                                </div>
 
-                                <div class="form-group mr-5 ml-5">
-                                    <label for="exampleInputEmail1" >YEAR OF ADMISSION</label>
-                                    <input type="date" name="yearofadmission" class="form-control {{$errors->has('yearofadmission') ?'is-invalid': ''}}" id="exampleInputEmail1" value="{{$user->yearofadmission}}">
-                                </div>
+                                @if(Auth()->user()->role->id === 3)
+                                    <div class="form-group mr-5 ml-5">
+                                        <label for="exampleInputEmail1" >MAT NUMBER</label>
+                                        <input type="text" name="matnumber" class="form-control {{$errors->has('matnumber') ?'is-invalid': ''}}" id="exampleInputEmail1" value="{{$user->matnumber}}">
+                                    </div>
+                                    <div class="form-group mr-5 ml-5">
+                                        <label for="exampleInputEmail1" >User Level</label>
+                                            <select class="form-control  {{$errors->has('level_id') ? 'is-invalid' : ''}}" name="level_id" id="">
+                                                <option value="{{$user->level_id }}">Choose an option</option>
+                                                @foreach ($levels as  $id => $name)
+                                                    <option value="{{$id}}" {{ $id == $user->level_id ? 'selected' : '' }}>{{$name}} Level</option>
+                                                @endforeach
+                                            </select>
+                                    </div>
+                                    <div class="form-group mr-5 ml-5">
+                                        <label for="exampleInputEmail1" >YEAR OF ADMISSION</label>
+                                        <input type="date" name="yearofadmission" class="form-control {{$errors->has('yearofadmission') ?'is-invalid': ''}}" id="exampleInputEmail1" value="{{$user->yearofadmission}}">
+                                    </div>
 
-                                <div class="form-group mr-5 ml-5">
-                                    <label for="exampleInputEmail1" >YEAR OF GRADUATION</label>
-                                    <input type="date" name="yearofgrad" class="form-control {{$errors->has('yearofgrad') ?'is-invalid': ''}}" id="exampleInputEmail1" value="{{$user->yearofgrad}}">
-                                    <small id="helpId" class="text-muted">Expected year of graduation</small>
-                                </div>
+                                    <div class="form-group mr-5 ml-5">
+                                        <label for="exampleInputEmail1" >YEAR OF GRADUATION</label>
+                                        <input type="date" name="yearofgrad" class="form-control {{$errors->has('yearofgrad') ?'is-invalid': ''}}" id="exampleInputEmail1" value="{{$user->yearofgrad}}">
+                                        <small id="helpId" class="text-muted">Expected year of graduation</small>
+                                    </div>
+                                @endif
 
                                 <div class="col ml-5 mt-5">
                                     <div class="form-group">

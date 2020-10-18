@@ -26,7 +26,7 @@ class Course extends Model
 
     public function enrollments(){
 
-        return $this->belongsTo( Course::class);
+        return $this->hasOne( Course::class);
     }
 
 }

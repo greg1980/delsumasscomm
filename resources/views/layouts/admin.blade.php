@@ -70,8 +70,8 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header"><i class="fas fa-fw fa-users-cog"></i> <span> Manage Users:</span></h6>
                         <a class="collapse-item" href="{{ url('/admin/users/') }}"><i class="fas fa-user mr-2"></i> Users</a>
-                        <a class="collapse-item" href="{{ url('/admin/courses/') }}"><i class="text-primary fas fa-book mr-2"></i> Courses</a>
                         <a class="collapse-item" href="{{ url('/admin/users/create') }}"><i class=" text-primary fas fa-plus mr-3 "></i>Add Lecturers </a>
+                        <a class="collapse-item" href="{{ url('/admin/courses/') }}"><i class="text-primary fas fa-book mr-2"></i> Courses</a>
                         <a class="collapse-item" href="{{ url('/users/course') }}"> <i class="text-primary fas fa-plus-square mr-3"></i>Add Courses </a>
                         <a class="collapse-item" href="blank.html"><i class="text-primary fas fa-user-tie mr-2"></i>Supervisors</a>
                     </div>

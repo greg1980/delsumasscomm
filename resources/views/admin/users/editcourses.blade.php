@@ -83,10 +83,11 @@
                                     <div class="col-sm-8">
                                         <select name="semesters" id="" class="form-control col-sm-6 {{$errors->has('semester') ? 'is-invalid' : ''}}">
 
-                                           @if ($courses->semesters === 0)
-                                                <option value="{{$courses->semesters }}" {{ $id == $courses->semesters ? 'selected' : ''}}>{{$courses === 0 ? 'Second' : 'First'}}</option>
+                                           @if ($courses->semesters)
+                                                <option value="{{$courses->semesters }}" {{ $id == $courses->semesters ? 'selected' : ''}}>{{$courses->semesters === 0 ? 'First' : 'Second' }}</option>
                                            @endif
-                                               <option value="{{$courses->semesters }}" {{ $id == $courses->semesters ? 'selected' : ''}}>{{$courses === 1 ? 'First' : 'Second'}}</option>
+                                               <option value="0">First</option>
+                                               <option value="1">Second</option>
                                         </select>
                                     </div>
                                 </div>
@@ -118,8 +119,6 @@
                                 </div>
                             </form>
                         </div>
-
-
                     </div>
                 </div>
             </div>

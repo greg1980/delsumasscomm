@@ -28,16 +28,16 @@
 
     <div class="collapse navbar-collapse mr-5 " id="navbarSupportedContent">
         <ul class="navbar-nav ml-auto ">
-            <li class="nav-item active">
+            <li class="nav-item {{Request::path() === '/' ? 'active' : ''}}">
                 <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item {{Request::path() === '/about' ? 'active' : ''}}">
                 <a class="nav-link"  href="{{ route('about') }}">About Us</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item {{Request::path() === '/research' ? 'active' : ''}}">
                 <a class="nav-link" href="{{ route('research') }}">Research</a>
             </li>
-            <li class="nav-item dropdown">
+            <li class="nav-item dropdown {{Request::path() === '/students' ? 'active' : ''}}">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Students
                 </a>
@@ -48,7 +48,7 @@
                     <a class="dropdown-item" href="{{ route('amasscos') }}">Amasscos</a>
                 </div>
             </li>
-            <li class="nav-item dropdown">
+            <li class="nav-item dropdown {{ Request::path() === '/alumni' ? 'active' : ''}}">
                 <a href="{{ route('alumni') }}" class="nav-link dropdown-toggle" href="" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Alumni
                 </a>
@@ -58,18 +58,18 @@
                     <a href="{{ route('news')}}" class="dropdown-item">News</a>
                 </div>
             </li>
-            <li class="nav-item">
+            <li class="nav-item {{Request::path() === '/contact' ? 'active' : ''}}">
                 <a class="nav-link" href="{{ route('contact') }}">Contact Us</a>
             </li>
-            @guest
+            @if (!auth()->user())
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('login') }}" tabindex="-1" aria-disabled="true">Login</a>
                 </li>
             @else
                 <li class="nav-item">
-                    <a class="nav-link"  href="{{ route('logout') }}" tabindex="-1" aria-disabled="true">Login</a>
+                    <a class="nav-link"  href="{{ route('logout') }}" tabindex="-1" aria-disabled="true">Logout</a>
                 </li>
-            @endguest
+            @endif
         </ul>
     </div>
 </nav>

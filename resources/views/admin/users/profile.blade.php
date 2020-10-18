@@ -94,21 +94,23 @@
 
                         </div>
                     </div>
-                    <div class="card mb-5 border-bottom-primary">
-                        <div class="card-block">
-                            <div class="card-header text-white bg-primary"><i class="fa fa-graduation-cap mr-2"></i> School Info</div>
-                            <div class="form-group mt-3 ml-5">
-                                <label class="col-md-12"><b>MAT NUMBER :</b> {{ $user->matnumber ?  $user->matnumber  : '-' }} </label>
-                            </div>
-                            <div class="form-group ml-5">
-                                <label class="col-md-12"><b>YEAR OF ADMISSION : </b>{{ $user->yearofadmission ?  $user->yearofadmission  : '-' }}</label>
-                            </div>
-                            <div class="form-group ml-5">
-                                <label class="col-md-12"><b>YEAR OF GRADUATION :</b> {{ $user->yearofgrad ?  $user->yearofgrad : '-' }}</label>
+
+                        @if (auth()->user()->role->id === 3)
+                        <div class="card mb-5 border-bottom-primary">
+                            <div class="card-block">
+                                <div class="card-header text-white bg-primary"><i class="fa fa-graduation-cap mr-2"></i> School Info</div>
+                                <div class="form-group mt-3 ml-5">
+                                    <label class="col-md-12"><b>MAT NUMBER :</b> {{ $user->matnumber ?  $user->matnumber  : '-' }} </label>
+                                </div>
+                                <div class="form-group ml-5">
+                                    <label class="col-md-12"><b>YEAR OF ADMISSION : </b>{{ $user->yearofadmission ?  $user->yearofadmission  : '-' }}</label>
+                                </div>
+                                <div class="form-group ml-5">
+                                    <label class="col-md-12"><b>YEAR OF GRADUATION :</b> {{ $user->yearofgrad ?  $user->yearofgrad : '-' }}</label>
+                                </div>
                             </div>
                         </div>
-                    </div>
-
+                        @endif
 
                     </form>
                 </div>

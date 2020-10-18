@@ -34,7 +34,7 @@
                                 </thead>
                                 <tbody>
                                 @foreach ($users as $user)
-                                    @foreach($user->courses as $course)
+                                    @foreach($user->courses->sortBy('id') as $course)
                                             <tr>
                                                 <th scope="row">{{$course->id}}</th>
 
@@ -43,7 +43,7 @@
                                                 <td><span class="badge badge-danger">{{$course->credit_unit}}</span> Unit</td>
                                                 <td>{{$user->name}}</td>
                                                 <td><span class="badge badge-danger">{{$course->level->name}}</span>  Level</td>
-                                                <td><span><i class=""></i>{{ $course->semesters == 1 ? 'First' : 'second' }} </span></td>
+                                                <td><span><i class=""></i>{{ $course->semesters === 0 ? 'First' : 'second' }} </span></td>
                                             </tr>
                                     @endforeach
                                     @endforeach
