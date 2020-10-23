@@ -61,7 +61,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/admin/users/{course}/editcourses','AdminUsersController@editcourses')->name('admin.users.editcourses');
     Route::GET('enrollment/create','StudentController@create')->name('enrollment.create');
     Route::POST('enrollment','StudentController@store')->name('enrollment.store');
-    //Route::resource('register','studentController');
+    Route::resource('lecturer','LecturerController');
+    Route::get('/results', 'LecturerController@results')->name('admin.lecturer.results');
 
 });
 
