@@ -74,11 +74,11 @@ class User extends Authenticatable
 //    }
 
     public function level(){
-      return  $this->belongsTo(Level::class);
+      return  $this->belongsTo(Level::class, 'level_id');
     }
 
     public function courses(){
-        return $this->hasMany(Course::class, 'user_id')->latest('updated_at');
+        return $this->hasMany(Course::class)->latest('updated_at');
     }
 
    public function enrollments(){

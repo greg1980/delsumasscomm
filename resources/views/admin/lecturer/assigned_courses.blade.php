@@ -14,7 +14,7 @@
                 <!-- Page Heading -->
                 <div class="container-fluid">
                     <div class="d-sm-flex align-items-center justify-content-between mb-4 " >
-                        <h1 class="h3 ml-4 mt-5 mb-0 text-gray-800"> <span class="badge badge-info">{{ Auth::user()->name }}</span> Blackboard <i class="fas fa-chalkboard-teacher ml-3"></i></h1>
+                        <h1 class="h3 ml-4 mt-5 mb-0 text-gray-800"> <span class="badge badge-info">{{ Auth::user()->name }}</span> Assigned courses <i class="fas fa-book ml-2"></i>  </h1>
                         <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
                     </div>
                     @if (Session::has('message'))

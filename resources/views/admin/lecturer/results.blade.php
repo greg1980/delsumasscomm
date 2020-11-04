@@ -28,7 +28,34 @@
                     @endif
                     <div class="card-body">
                         <div class="card-header">
-
+                            <table class="table table-striped">
+                                <thead class="bg-gradient-primary text-white">
+                                <tr>
+                                    <th scope="col">course Name</th>
+                                    <th scope="col">Code</th>
+                                    <th scope="col">Credit Unit</th>
+                                    <th scope="col">Student Name</th>
+                                    <th scope="col">Level name</th>
+                                    <th scope="col">Semesters</th>
+                                    <th scope="col">Marks</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach($results->sortBy('course_code') as $result)
+                                      @if ($result->enrolled === 1 && $result->user_id === auth()->user()->id)
+                                          <tr>
+                                              <td>{{$result->course_name}}</a></td>
+                                              <td>{{ $result->course_code}}</span></td>
+                                              <td><span class="badge badge-danger">{{$result->credit_unit}}</span> Unit</td>
+                                              <td>{{$result->name}}</td>
+                                              <td><span class="badge badge-danger">{{$result->level_id}}00</span> Level</td>
+                                              <td><span><i class=""></i>{{ $result->semesters === 0 ? 'First' : 'second' }} </span></td>
+                                              <td><a href="#">{{$result->grades === null ? 'N-A' : $result->grades }}</a></td>
+                                          </tr>
+                                      @endif
+                                    @endforeach
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>

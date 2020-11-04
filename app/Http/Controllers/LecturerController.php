@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Course;
+use App\Enrollment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class LecturerController extends Controller
 {
@@ -31,11 +34,28 @@ class LecturerController extends Controller
      *
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Http\Response|\Illuminate\View\View
      */
-    public function results()
+    public function results(Enrollment $enrollment, Course $courses)
+    {
+        if (auth()->user()->role_id !== 2){
+            abort(403);
+        }
+         $results = DB::table('enrollments')
+             ->join('courses','enrollments.course_id','=','courses.id')
+             ->join('users','enrollments.user_id','=','users.id')
+             ->join('levels','enrollments.level_id','=','levels.id')
+             ->select('enrollments.*','enrollments.user_id','courses.credit_unit','courses.course_code','enrollments.course_id','enrollments.id','enrollments.enrolled','users.name','courses.course_name','courses.user_id')->get();
+        return view('admin.lecturer.results', compact('results'));
+    }
+
+/**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Http\Response|\Illuminate\View\View
+     */
+    public function assignedcourses()
     {
         //
-
-        return view('admin.lecturer.results');
+        return view('admin.lecturer.assigned_courses');
     }
 
 

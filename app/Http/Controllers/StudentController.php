@@ -22,18 +22,15 @@ class StudentController extends Controller
     {
         $users = User::all();
         $courses = auth()->user()->courses;
-        $enrollments = Enrollment::all();
-        if ($enrollments) {
-            foreach ($enrollments as $enrollment) {
-                foreach ($courses as $course) {
-                    if (auth()->user()->id === $enrollment->user_id && $enrollment->course_id === $course->id ) {
-                        return view('admin.students.index', compact('users', 'courses', 'enrollment'));
-                    }
-                }
-            }
-            return view('admin.students.index', compact('users', 'courses', 'enrollment'));
-        }
+        $enrollment = auth()->user()->enrollment;
+//       if(auth()->user()->level_id === $enrollment->level_id ){
+//           $enrollment =  DB::table('users')
+//               ->join('enrollments','users.id','=','enrollments.user_id')
+//               ->join('courses','enrollments.course_id','=','courses.id')
+//               ->select('users.*','enrollments.user_id','courses.course_code','enrollments.course_id','enrollments.id','enrollments.enrolled','courses.course_name')->get();
+//       }
 
+        return view('admin.students.index', compact('users', 'courses','enrollment'));
     }
 
     /**
@@ -42,26 +39,25 @@ class StudentController extends Controller
      * @param Course $course
      * @param Enrollment $enrollment
      * @param User $user
-     * @return \Illuminate\Http\RedirectResponse
+     * @return bool|\Illuminate\Http\RedirectResponse
      */
-    public function store(Course $course, Enrollment $enrollment,User $user)
+    public function store()
     {
-
-        $users = User::all();
         $enrollment = auth()->user()->enrollment;
         $courses = Course::all();
-          foreach($courses  as $course){
-              if (auth()->user()->level_id === $course->level_id){
-                   $enrollment = new Enrollment();
-                      $enrollment->course_id = $course->id ;
+          foreach($courses  as $course) {
+              if (auth()->user()->level_id === $course->level_id) {
+
+                      $enrollment = new Enrollment();
+                      $enrollment->course_id = $course->id;
                       $enrollment->user_id = auth()->user()->id;
                       $enrollment->level_id = $course->level_id;
-                      $enrollment->semesters =  $course->semesters ;
+                      $enrollment->semesters = $course->semesters;
                       $enrollment->enrolled = 1;
                       $enrollment->year = date("Y-m-d");
                       $enrollment->save();
-               }
-            }
+                  }
+              }
 
         return back();
 
@@ -112,5 +108,38 @@ class StudentController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Http\Response|\Illuminate\View\View
+     */
+    public function blackboard()
+    {
+        return view('admin.students.blackboard');
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Http\Response|\Illuminate\View\View
+     */
+    public function myresults()
+    {
+        return view('admin.students.results');
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Http\Response|\Illuminate\View\View
+     */
+    public function myproject()
+    {
+        return view('admin.students.project');
     }
 }

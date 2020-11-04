@@ -43,7 +43,6 @@
                                 @foreach($users as $user)
                                    @foreach($user->courses->sortBy('id') as $course)
                                       @if (Auth::user()->level_id === $course->level_id)
-
                                             <tr>
                                                 <th scope="row">{{$course->id}}</th>
                                                 <td><a href="">{{$course->course_name}}</a></td>
@@ -53,13 +52,14 @@
                                                 <td><span class="badge badge-danger">{{$course->level->name}}</span>  Level</td>
                                                 <td>
                                                    <span>
-                                                       <i class="{{ $enrollment->course_id !== $course->id ? '' : 'far fa-check-circle text-success'}} "></i></span>
+                                                        @foreach ($course->enrollments as $enrollment)
+                                                       <i class="{{$enrollment->user_id === Auth::user()->id && Auth::user()->level_id === $enrollment->level_id ? 'far fa-check-circle text-success' : ''}} "></i></span>
+                                                    @endforeach
                                                 </td>
                                             </tr>
                                       @endif
                                     @endforeach
                                 @endforeach
-
                                 </tbody>
                             </table>
 
@@ -68,14 +68,13 @@
                                     <label for="enrolled" class="">
                                         <input type="hidden" name="courses" value="courses">
                                     </label>
-                                    @if ( $enrollment->course_id !== $course->id)
-                                            <button type="submit" class="btn btn-sm btn-primary">Register</button>
+
+                                    @if ($enrollment->user_id === Auth::user()->id && Auth::user()->level_id === $enrollment->level_id)
+                                        <button type="submit" class="btn btn-sm btn-primary" {{$enrollment ? 'disabled' : ''}}>Registered</button>
                                     @else
-                                        <button type="submit" class="btn btn-sm btn-primary" disabled>Registered</button>
+                                        <button type="submit" class="btn btn-sm btn-primary" >Register</button>
                                     @endif
-
                                 </form>
-
                         </div>
                     </div>
                 </div>

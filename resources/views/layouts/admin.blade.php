@@ -89,10 +89,10 @@
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Custom Utilities:</h6>
                     <a class="collapse-item" href="{{url('/admin/students/')}}"><i class="fas fa-book-open mr-2"></i>Courses</a>
-                    <a class="collapse-item" href="utilities-border.html"><i class="fas fa-chalkboard-teacher mr-2"></i>Blackboard</a>
-                    <a class="collapse-item" href="utilities-animation.html"><i class="fas fa-poll-h mr-2"></i>Results</a>
-                    <a class="collapse-item" href="utilities-other.html"><i class="fas fa-book mr-2"></i>Project</a>
-                    <a class="collapse-item" href="blank.html"><i class="fas fa-book-reader mr-2"></i>Supervision</a>
+                    <a class="collapse-item" href="{{url('/students/blackboard')}}"><i class="fas fa-chalkboard-teacher mr-2"></i>Blackboard</a>
+                    <a class="collapse-item" href="{{url('/students/results')}}"><i class="fas fa-poll-h mr-2"></i>Results</a>
+                    <a class="collapse-item" href="{{url('/students/project')}}"><i class="fas fa-book mr-2"></i>Project</a>
+                    <a class="collapse-item" href="#"><i class="fas fa-book-reader mr-2"></i>Supervision</a>
                 </div>
             </div>
         </li>
@@ -118,7 +118,7 @@
                     <h6 class="collapse-header">Staff Settings</h6>
                     <a class="collapse-item" href="{{url('/lecturer')}}"><i class="fas fa-chalkboard-teacher mr-2"></i>Blackboard</a>
                     <a class="collapse-item" href="{{url('/lecturer/results')}}"><i class="fas fa-poll-h mr-2"></i>Results</a>
-                    <a class="collapse-item" href="forgot-password.html"><i class="fas fa-poll-h mr-2"></i>Assigned Courses</a>
+                    <a class="collapse-item" href="{{url('/lecturer/assigned_courses')}}"><i class="fas fa-book mr-2"></i>Assigned Courses</a>
                     <div class="collapse-divider"></div>
                     <h6 class="collapse-header">Other Pages:</h6>
                     <a class="collapse-item" href="404.html">Publications</a>

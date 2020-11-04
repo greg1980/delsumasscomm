@@ -53,16 +53,28 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/admin/users/{user}/editprofile','AdminUsersController@edit')->name('admin.users.editprofile');
     Route::PATCH('/admin/users/{user}','AdminUsersController@update')->name('users.update ');
     Route::PATCH('/admin/courses/{courses}','AdminUsersController@updateCourses')->name('admin.courses.updateCourses ');
-    Route::get('/admin/students/', 'StudentController@index')->name('admin.students');
     Route::get('/admin/courses','AdminUsersController@courses')->name('admin.courses');
     Route::get('users/course','AdminUsersController@course')->name('users.course');
     Route::post('/storeCourse','AdminUsersController@storeCourse')->name('storeCourse');
-    Route::PATCH('/course/{course}','StudentController@update')->name('register.update');
     Route::get('/admin/users/{course}/editcourses','AdminUsersController@editcourses')->name('admin.users.editcourses');
+    /**
+     *  Students controller
+     */
     Route::GET('enrollment/create','StudentController@create')->name('enrollment.create');
+    Route::get('/admin/students/', 'StudentController@index')->name('admin.students');
+    Route::PATCH('/course/{course}','StudentController@update')->name('register.update');
     Route::POST('enrollment','StudentController@store')->name('enrollment.store');
-    Route::resource('lecturer','LecturerController');
-    Route::get('/results', 'LecturerController@results')->name('admin.lecturer.results');
+    Route::get('/students/blackboard','StudentController@blackboard')->name('students.blackboard');
+    Route::get('/students/results','StudentController@myresults')->name('results');
+    Route::get('/students/project','StudentController@myproject')->name('project');
+    /**
+     *  lecturers controller
+     */
+    Route::get('/lecturer', 'LecturerController@index')->name('lecturer.index  ');
+    Route::get('/lecturer/results', 'LecturerController@results')->name('lecturer.results');
+    Route::get('/lecturer/assigned_courses', 'LecturerController@assignedcourses')->name('lecturer.assigned_courses');
+
+    //    Route::resource('lecturer','LecturerController');
 
 });
 

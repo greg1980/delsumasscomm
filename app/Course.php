@@ -17,16 +17,16 @@ class Course extends Model
     ];
 
     public function users(){
-        return $this->belongsToMany(User::class);
+        return $this->belongsToMany(User::class, 'user_id');
     }
 
     public function level(){
-        return $this->belongsTo(level::class);
+        return $this->belongsTo(level::class, 'level_id');
     }
 
     public function enrollments(){
 
-        return $this->hasOne( Course::class);
+        return $this->hasMany( Enrollment::class);
     }
 
 }

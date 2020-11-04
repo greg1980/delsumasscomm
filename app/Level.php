@@ -12,11 +12,11 @@ class Level extends Model
     ];
 
 public function course(){
-    return $this->hasOne(Course::class);
+    return $this->hasOne(Course::class, 'level_id');
 }
 
 public function user(){
-    return $this->belongsTo(User::class);
+    return $this->belongsTo(User::class, 'level_id');
 }
 
 }
