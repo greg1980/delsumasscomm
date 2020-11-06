@@ -23,13 +23,6 @@ class StudentController extends Controller
         $users = User::all();
         $courses = auth()->user()->courses;
         $enrollment = auth()->user()->enrollment;
-//       if(auth()->user()->level_id === $enrollment->level_id ){
-//           $enrollment =  DB::table('users')
-//               ->join('enrollments','users.id','=','enrollments.user_id')
-//               ->join('courses','enrollments.course_id','=','courses.id')
-//               ->select('users.*','enrollments.user_id','courses.course_code','enrollments.course_id','enrollments.id','enrollments.enrolled','courses.course_name')->get();
-//       }
-
         return view('admin.students.index', compact('users', 'courses','enrollment'));
     }
 
@@ -43,11 +36,9 @@ class StudentController extends Controller
      */
     public function store()
     {
-        $enrollment = auth()->user()->enrollment;
         $courses = Course::all();
           foreach($courses  as $course) {
               if (auth()->user()->level_id === $course->level_id) {
-
                       $enrollment = new Enrollment();
                       $enrollment->course_id = $course->id;
                       $enrollment->user_id = auth()->user()->id;

@@ -50,9 +50,39 @@
                                               <td>{{$result->name}}</td>
                                               <td><span class="badge badge-danger">{{$result->level_id}}00</span> Level</td>
                                               <td><span><i class=""></i>{{ $result->semesters === 0 ? 'First' : 'second' }} </span></td>
-                                              <td><a href="#">{{$result->grades === null ? 'N-A' : $result->grades }}</a></td>
+                                              <td><a href="{{url('lecturer/'. $result->id)}}"  data-toggle="modal" data-target="#example-Modal{{$result->id}}">{{$result->grades === null ? 'N-A' : $result->grades . '-' . '%' }}</a></td>
                                           </tr>
                                       @endif
+                                      <!--       Modal -->
+                                      <div class="modal fade" id="example-Modal{{$result->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                          <div class="modal-dialog">
+                                              <div class="modal-content">
+                                                  <div class="modal-header bg-gradient-primary">
+                                                      <h5 class="modal-title text-white" id="exampleModalLabel">New message</h5>
+                                                      <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                                                          <span aria-hidden="true">&times;</span>
+                                                      </button>
+                                                  </div>
+                                                  <div class="modal-body">
+                                                      <form action="" method="">
+                                                          @csrf
+                                                          <div class="form-group">
+                                                              <div class="row">
+                                                                  <div class="col-lg-9"><span class="badge badge-info">Students Name:</span> {{$result->name}} </div><br>
+                                                                  <div class="col-lg-3"><span class="badge badge-danger mr-3">{{ $result->course_code}}</span></div>
+                                                              </div>
+                                                              <label for="recipient-name" class="col-form-label">Marks</label>
+                                                              <input type="number" class="form-control" id="recipient-name">
+                                                          </div>
+                                                      </form>
+                                                  </div>
+                                                  <div class="modal-footer">
+                                                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                      <button type="button" class="btn btn-primary">Send message</button>
+                                                  </div>
+                                              </div>
+                                          </div>
+                                      </div>
                                     @endforeach
                                 </tbody>
                             </table>
