@@ -21,7 +21,12 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css')}}">
     <!-- Custom styles for this template-->
     <link href="{{ asset('css/sb-admin-2.min.css') }}" rel="stylesheet">
+    <!-- Bootstrap core JavaScript-->
+    <script src=" {{ asset('vendor/jquery/jquery.min.js') }}"></script>
+    <script src=" {{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js' )}}"></script>
 
+    <!-- Core plugin JavaScript-->
+    <script src="{{ asset('vendor/jquery-easing/jquery.easing.min.js') }}"></script>
 </head>
 
 <body id="page-top">
@@ -397,12 +402,7 @@
     </div>
 </div>
 
-<!-- Bootstrap core JavaScript-->
-<script src=" {{ asset('vendor/jquery/jquery.min.js') }}"></script>
-<script src=" {{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js' )}}"></script>
 
-<!-- Core plugin JavaScript-->
-<script src="{{ asset('vendor/jquery-easing/jquery.easing.min.js') }}"></script>
 
 <!-- Custom scripts for all pages-->
 <script src="{{ asset('js/sb-admin-2.min.js') }}" defer></script>
@@ -414,7 +414,18 @@
 <!-- Page level custom scripts -->
 <script src="{{ asset('js/demo/chart-area-demo.js')}}"></script>
 <script src="{{ asset('js/demo/chart-pie-demo.js')}}"></script>
+<script>
+    $('#exampleModal').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget)
+        var grades = button.data('grades')
+        var result_id = button.data('result_id')
 
+        var modal = $(this)
+        modal.find('.modal-title ').text('Add Grades');
+        modal.find('.modal-body #grades').val( grades);
+        modal.find('.modal-body #result_id').val( result_id);
+    })
+</script>
 </body>
 
 </html>

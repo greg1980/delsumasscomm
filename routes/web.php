@@ -71,8 +71,9 @@ Route::group(['middleware' => 'auth'], function () {
      *  lecturers controller
      */
     Route::get('/lecturer', 'LecturerController@index')->name('lecturer.index  ');
-    Route::get('/lecturer/results', 'LecturerController@results')->name('lecturer.results');
+    Route::get('/lecturer/results', 'LecturerController@results')->name('admin.lecturer.results');
     Route::get('/lecturer/assigned_courses', 'LecturerController@assignedcourses')->name('lecturer.assigned_courses');
+    Route::patch('/lecturer/{lecturer}','LecturerController@update')->name('lecturer.update');
 
     //    Route::resource('lecturer','LecturerController');
 

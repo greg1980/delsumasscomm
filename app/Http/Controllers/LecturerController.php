@@ -97,11 +97,13 @@ class LecturerController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $results = Enrollment::findOrFail($request->result_id);
+        $results->update($request->all());
+      return back();
     }
 
     /**

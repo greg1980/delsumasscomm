@@ -85,7 +85,7 @@ class StudentController extends Controller
      */
     public function update(User $user,Enrollment $enrollment)
     {
-        //
+
         $user->update(['enrolled'=> request()->has('enrolled')]);
         return back();
     }
