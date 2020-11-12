@@ -6,6 +6,7 @@ use App\Course;
 use App\Enrollment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 
 class LecturerController extends Controller
 {
@@ -101,9 +102,16 @@ class LecturerController extends Controller
      */
     public function update(Request $request)
     {
+        if (auth()->user()->role_id !== 2){
+            abort(403);
+        }
+
         $results = Enrollment::findOrFail($request->result_id);
+        $oldresult = $results->grades;
         $results->update($request->all());
-      return back();
+        Session::flash('message',' Grade  was  successful updated from '.' ' .$oldresult.'%'.' '.'to' . ' '.$results['grades'].'%' );
+
+        return back();
     }
 
     /**

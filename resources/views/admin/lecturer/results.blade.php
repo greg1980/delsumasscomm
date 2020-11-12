@@ -51,7 +51,7 @@
                                               <td><span class="badge badge-danger">{{$result->level_id}}00</span> Level</td>
                                               <td><span><i class=""></i>{{ $result->semesters === 0 ? 'First' : 'second' }} </span></td>
                                               <td>
-                                                  <a  data-grades="{{$result->grades}}" data-result_id="{{$result->id}}" type="button"   data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">
+                                                  <a href="{{url('lecturer/update'. $result->id)}}" class="{{$result->grades <= 45 ? 'text-danger' : 'text-success'}}" data-grades="{{$result->grades}}" data-result_name="{{$result->name}}" data-result_id="{{$result->id}}" type="button"   data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">
                                                       {{$result->grades === null ? 'N-A' : $result->grades . '' . '%' }}
                                                   </a>
                                               </td>
@@ -73,16 +73,16 @@
                                                           {{ method_field('PATCH') }}
                                                           <div class="form-group">
                                                               <div class="row">
-                                                                  <div class="col-lg-9"><span class="badge badge-info">Students Name:</span> {{$result->name}} </div><br>
+                                                                  <div class="col-lg-9" id="result_name"><span class="badge badge-info">Level:</span> {{$result->level_id}}00</div><br>
                                                                   <div class="col-lg-3"><span class="badge badge-danger mr-3">{{ $result->course_code}}</span></div>
                                                               </div>
                                                               <label for="grades" class="col-form-label">Marks</label>
-                                                              <input type="text" class="form-control" id="grades" name="grades" >
+                                                              <input type="number" class="form-control" id="grades" name="grades" >
                                                               <input type="hidden" id="result_id" name="result_id">
                                                           </div>
                                                           <div class="modal-footer">
                                                               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                              <button type="submit" id="submitBtn" class="btn btn-primary">Update Grades</button>
+                                                              <button type="submit"  class="btn btn-primary">Update Grades</button>
                                                           </div>
                                                       </form>
                                                   </div>

@@ -7,7 +7,6 @@
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/StudentController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/StudentController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/admin/lecturer/results.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/lecturer/results.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/layouts/admin.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/admin.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -267,10 +266,11 @@
       <screen x="-1920" y="153" width="1920" height="1040" />
     </state>
     <state x="-1373" y="153" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1920.1040/-1920.153.1920.1040/-3286.163.1366.728@-1920.153.1920.1040" timestamp="1598740597065" />
-    <state x="-1231" y="427" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1601681446642">
+    <state x="-1231" y="427" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1605188234593">
       <screen x="-1920" y="153" width="1920" height="1040" />
     </state>
     <state x="-1231" y="427" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/-1920.153.1920.1040/-3286.163.1366.728/0.0.1920.1040@-1920.153.1920.1040" timestamp="1601681446642" />
+    <state x="-1231" y="427" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1920.1040/-1920.153.1920.1040/-3286.163.1366.728@-1920.153.1920.1040" timestamp="1605188234593" />
     <state x="-1181" y="427" key="FileChooserDialogImpl" timestamp="1601888835281">
       <screen x="-1920" y="153" width="1920" height="1040" />
     </state>
@@ -279,20 +279,16 @@
       <screen x="-1920" y="153" width="1920" height="1040" />
     </state>
     <state x="-1179" y="486" key="NewPhpClassDialog/0.0.1920.1040/-1920.153.1920.1040/-3286.163.1366.728@-1920.153.1920.1040" timestamp="1602833554186" />
-    <state x="-1772" y="285" width="1736" height="856" key="com.intellij.history.integration.ui.views.DirectoryHistoryDialog" timestamp="1596031925726">
-      <screen x="-1920" y="153" width="1920" height="1040" />
-    </state>
-    <state x="-1772" y="285" width="1736" height="856" key="com.intellij.history.integration.ui.views.DirectoryHistoryDialog/0.0.1920.1040/-1920.153.1920.1040/-3286.163.1366.728@-1920.153.1920.1040" timestamp="1596031925726" />
     <state x="-3286" y="163" width="1382" height="815" key="dock-window-1" timestamp="1603573482155">
       <screen x="-3286" y="163" width="1366" height="728" />
     </state>
     <state x="-3286" y="163" width="1382" height="815" key="dock-window-1/-1920.153.1920.1040/-3286.163.1366.728/0.0.1920.1040@-1920.153.1920.1040" timestamp="1601480950279" />
     <state x="-3286" y="163" width="1382" height="815" key="dock-window-1/0.0.1920.1040/-1920.153.1920.1040/-3286.163.1366.728@-1920.153.1920.1040" timestamp="1603573482155" />
     <state x="-1431" y="393" width="1382" height="815" key="dock-window-1/0.0.1920.1040/-3286.163.1366.728/-1920.153.1920.1040@-1920.153.1920.1040" timestamp="1598475562249" />
-    <state x="-3066" y="187" width="1069" height="536" key="find.popup" timestamp="1602695156592">
+    <state x="-3066" y="187" width="1069" height="536" key="find.popup" timestamp="1605187027055">
       <screen x="-3286" y="163" width="1366" height="728" />
     </state>
-    <state x="-3066" y="187" width="1069" height="536" key="find.popup/0.0.1920.1040/-1920.153.1920.1040/-3286.163.1366.728@-1920.153.1920.1040" timestamp="1602695156592" />
+    <state x="-3066" y="187" width="1069" height="536" key="find.popup/0.0.1920.1040/-1920.153.1920.1040/-3286.163.1366.728@-1920.153.1920.1040" timestamp="1605187027055" />
     <state x="-3286" y="163" width="1366" height="728" key="find.popup/0.0.1920.1040/-3286.163.1366.728/-1920.153.1920.1040@-1920.153.1920.1040" timestamp="1602103227416" />
     <state x="-1220" y="305" key="refactoring.ChangeSignatureDialog" timestamp="1600942683878">
       <screen x="-1920" y="153" width="1920" height="1040" />

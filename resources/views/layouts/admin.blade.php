@@ -419,9 +419,10 @@
         var button = $(event.relatedTarget)
         var grades = button.data('grades')
         var result_id = button.data('result_id')
+        var result_name = button.data('result_name')
 
         var modal = $(this)
-        modal.find('.modal-title ').text('Add Grades');
+        modal.find('.modal-title ').text('Update Grades For ' + result_name);
         modal.find('.modal-body #grades').val( grades);
         modal.find('.modal-body #result_id').val( result_id);
     })
