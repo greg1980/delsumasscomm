@@ -252,7 +252,7 @@ class AdminUsersController extends Controller
             }
         }
 
-        Session::flash('message','The course was  successful created');
+        Session::flash('message','The course  '.$course['course_name'].' was  successful created');
         return back();
     }
     public function editcourses($id){

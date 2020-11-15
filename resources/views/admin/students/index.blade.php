@@ -25,56 +25,72 @@
                             </h4>
                         </div>
                     @endif
-                    <div class="card-body">
-                        <div class="card-header">
-                            <table class="table table-striped">
-                                <thead class="bg-gradient-primary text-white">
-                                <tr>
-                                    <th scope="col">Id</th>
-                                    <th scope="col">course Name</th>
-                                    <th scope="col">Code</th>
-                                    <th scope="col">Credit Unit</th>
-                                    <th scope="col">Assigned To</th>
-                                    <th scope="col">Level name</th>
-                                    <th scope="col">Registered</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                @foreach($users as $user)
-                                   @foreach($user->courses->sortBy('id') as $course)
-                                      @if (Auth::user()->level_id === $course->level_id)
-                                            <tr>
-                                                <th scope="row">{{$course->id}}</th>
-                                                <td><a href="">{{$course->course_name}}</a></td>
-                                                <td><span class="badge badge-primary">{{ $course->course_code ? $course->course_code  : 'None'}}</span></td>
-                                                <td><span class="badge badge-danger">{{$course->credit_unit}}</span> Unit</td>
-                                                <td><span class="badge badge-info">{{$user->name}}</span></td>
-                                                <td><span class="badge badge-danger">{{$course->level->name}}</span>  Level</td>
-                                                <td>
-                                                   <span>
-                                                        @foreach ($course->enrollments as $enrollment)
-                                                       <i class="{{$enrollment->user_id === Auth::user()->id && Auth::user()->level_id === $enrollment->level_id ? 'far fa-check-circle text-success' : ''}} "></i></span>
-                                                    @endforeach
-                                                </td>
-                                            </tr>
-                                      @endif
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">Current Semesters Courses Table</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="users-table" width="100%" cellspacing="0">
+                                    <thead class=" text-primary text-bold">
+                                    <tr>
+                                        <th>Id</th>
+                                        <th>course Name</th>
+                                        <th>Code</th>
+                                        <th>Credit Unit</th>
+                                        <th>Assigned To</th>
+                                        <th>Level name</th>
+                                        <th>Registered</th>
+                                    </tr>
+                                    </thead>
+                                    <tfoot class="text-primary text-bold">
+                                    <tr>
+                                        <th>Id</th>
+                                        <th>course Name</th>
+                                        <th>Code</th>
+                                        <th>Credit Unit</th>
+                                        <th>Assigned To</th>
+                                        <th>Level name</th>
+                                        <th>Registered</th>
+                                    </tr>
+                                    </tfoot>
+                                    <tbody>
+                                    @foreach($users as $user)
+                                       @foreach($user->courses->sortBy('id') as $course)
+                                          @if (Auth::user()->level_id === $course->level_id)
+                                                <tr>
+                                                    <th scope="row">{{$course->id}}</th>
+                                                    <td><a href="">{{$course->course_name}}</a></td>
+                                                    <td><span class="badge badge-primary">{{ $course->course_code ? $course->course_code  : 'None'}}</span></td>
+                                                    <td><span class="badge badge-danger">{{$course->credit_unit}}</span> Unit</td>
+                                                    <td><span class="badge badge-info">{{$user->name}}</span></td>
+                                                    <td><span class="badge badge-danger">{{$course->level->name}}</span>  Level</td>
+                                                    <td>
+                                                       <span>
+                                                            @foreach ($course->enrollments as $enrollment)
+                                                           <i class="{{$enrollment->user_id === Auth::user()->id && Auth::user()->level_id === $enrollment->level_id ? 'far fa-check-circle text-success' : ''}} "></i></span>
+                                                        @endforeach
+                                                    </td>
+                                                </tr>
+                                          @endif
+                                        @endforeach
                                     @endforeach
-                                @endforeach
-                                </tbody>
-                            </table>
+                                    </tbody>
+                                </table>
 
-                                <form action="/enrollment" method="POST" enctype="multipart/form-data">
-                                    @csrf
-                                    <label for="enrolled" class="">
-                                        <input type="hidden" name="courses" value="courses">
-                                    </label>
+                                    <form action="/enrollment" method="POST" enctype="multipart/form-data">
+                                        @csrf
+                                        <label for="enrolled" class="">
+                                            <input type="hidden" name="courses" value="courses">
+                                        </label>
 
-                                    @if ($enrollment->user_id === Auth::user()->id && Auth::user()->level_id === $enrollment->level_id)
-                                        <button type="submit" class="btn btn-sm btn-primary" {{$enrollment ? 'disabled' : ''}}>Registered</button>
-                                    @else
-                                        <button type="submit" class="btn btn-sm btn-primary" >Register</button>
-                                    @endif
-                                </form>
+                                        @if ($enrollment->user_id === Auth::user()->id && Auth::user()->level_id === $enrollment->level_id)
+                                            <button type="submit" class="btn btn-sm btn-primary" {{$enrollment ? 'disabled' : ''}}>Registered</button>
+                                        @else
+                                            <button type="submit" class="btn btn-sm btn-primary" >Register</button>
+                                        @endif
+                                    </form>
+                            </div>
                         </div>
                     </div>
                 </div>

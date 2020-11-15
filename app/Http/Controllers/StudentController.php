@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\DB;
 class StudentController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a listing of the students course based on level.
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
@@ -27,7 +27,7 @@ class StudentController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Stores students courses based on current level in the enrollment table .
      *
      * @param Course $course
      * @param Enrollment $enrollment

@@ -3,9 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="c612f4c5-a3cd-4083-913e-5d2701704c70" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AdminUsersController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/AdminUsersController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/LecturerController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/LecturerController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/StudentController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/StudentController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/lecturer/results.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/lecturer/results.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/demo/chart-pie-demo.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/demo/chart-pie-demo.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/demo/datatables-demo.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/demo/datatables-demo.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/users/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/users/index.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/layouts/admin.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/admin.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -271,6 +274,10 @@
     </state>
     <state x="-1231" y="427" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/-1920.153.1920.1040/-3286.163.1366.728/0.0.1920.1040@-1920.153.1920.1040" timestamp="1601681446642" />
     <state x="-1231" y="427" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1920.1040/-1920.153.1920.1040/-3286.163.1366.728@-1920.153.1920.1040" timestamp="1605188234593" />
+    <state x="-1828" y="245" width="1736" height="856" key="DiffContextDialog" timestamp="1605194527694">
+      <screen x="-1920" y="153" width="1920" height="1040" />
+    </state>
+    <state x="-1828" y="245" width="1736" height="856" key="DiffContextDialog/0.0.1920.1040/-1920.153.1920.1040/-3286.163.1366.728@-1920.153.1920.1040" timestamp="1605194527694" />
     <state x="-1181" y="427" key="FileChooserDialogImpl" timestamp="1601888835281">
       <screen x="-1920" y="153" width="1920" height="1040" />
     </state>
@@ -279,12 +286,16 @@
       <screen x="-1920" y="153" width="1920" height="1040" />
     </state>
     <state x="-1179" y="486" key="NewPhpClassDialog/0.0.1920.1040/-1920.153.1920.1040/-3286.163.1366.728@-1920.153.1920.1040" timestamp="1602833554186" />
-    <state x="-3286" y="163" width="1382" height="815" key="dock-window-1" timestamp="1603573482155">
+    <state x="-3286" y="163" width="1382" height="815" key="dock-window-1" timestamp="1605281159626">
       <screen x="-3286" y="163" width="1366" height="728" />
     </state>
     <state x="-3286" y="163" width="1382" height="815" key="dock-window-1/-1920.153.1920.1040/-3286.163.1366.728/0.0.1920.1040@-1920.153.1920.1040" timestamp="1601480950279" />
-    <state x="-3286" y="163" width="1382" height="815" key="dock-window-1/0.0.1920.1040/-1920.153.1920.1040/-3286.163.1366.728@-1920.153.1920.1040" timestamp="1603573482155" />
+    <state x="-3286" y="163" width="1382" height="815" key="dock-window-1/0.0.1920.1040/-1920.153.1920.1040/-3286.163.1366.728@-1920.153.1920.1040" timestamp="1605281159626" />
     <state x="-1431" y="393" width="1382" height="815" key="dock-window-1/0.0.1920.1040/-3286.163.1366.728/-1920.153.1920.1040@-1920.153.1920.1040" timestamp="1598475562249" />
+    <state x="-3286" y="163" width="1382" height="815" key="dock-window-2" timestamp="1605282613652">
+      <screen x="-3286" y="163" width="1366" height="728" />
+    </state>
+    <state x="-3286" y="163" width="1382" height="815" key="dock-window-2/0.0.1920.1040/-1920.153.1920.1040/-3286.163.1366.728@-1920.153.1920.1040" timestamp="1605282613652" />
     <state x="-3066" y="187" width="1069" height="536" key="find.popup" timestamp="1605187027055">
       <screen x="-3286" y="163" width="1366" height="728" />
     </state>

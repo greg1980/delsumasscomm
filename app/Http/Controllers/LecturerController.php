@@ -108,8 +108,12 @@ class LecturerController extends Controller
 
         $results = Enrollment::findOrFail($request->result_id);
         $oldresult = $results->grades;
+        if ($oldresult <= 0){
+            $oldresult = '';
+        }
+
         $results->update($request->all());
-        Session::flash('message',' Grade  was  successful updated from '.' ' .$oldresult.'%'.' '.'to' . ' '.$results['grades'].'%' );
+        Session::flash('message',' The grade  was  successful updated from '.' ' .$oldresult.'%'.' '.'to' . ' '.$results['grades'].'%' );
 
         return back();
     }

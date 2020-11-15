@@ -18,20 +18,36 @@
                         <h1 class="h3 ml-4 mt-5 mb-0 text-gray-800">Total of <span class="badge badge-info"> {{ count($courses) }} </span> Courses</h1>
                         <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
                     </div>
+
+                <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">Courses Table</h6>
+                        </div>
                     <div class="card-body">
-                        <div class="card-header">
-                            <table class="table table-striped">
-                                <thead class="bg-gradient-primary text-white">
+                        <div class="table-responsive">
+                            <table class="table table-bordered" id="users-table" width="100%" cellspacing="0">
+                                <thead class=" text-primary text-bold">
                                 <tr>
-                                    <th scope="col">Id</th>
-                                    <th scope="col">course Name</th>
-                                    <th scope="col">Code</th>
-                                    <th scope="col">Credit Unit</th>
-                                    <th scope="col">Assigned To</th>
-                                    <th scope="col">Level name</th>
-                                    <th scope="col">Semesters</th>
+                                    <th>Id</th>
+                                    <th>course Name</th>
+                                    <th>Code</th>
+                                    <th>Credit Unit</th>
+                                    <th>Assigned To</th>
+                                    <th>Level name</th>
+                                    <th>Semesters</th>
                                 </tr>
                                 </thead>
+                                <tfoot class="text-primary text-bold">
+                                <tr>
+                                    <th>Id</th>
+                                    <th>course Name</th>
+                                    <th>Code</th>
+                                    <th>Credit Unit</th>
+                                    <th>Assigned To</th>
+                                    <th>Level Name</th>
+                                    <th>Semesters</th>
+                                </tr>
+                                </tfoot>
                                 <tbody>
                                 @foreach ($users as $user)
                                     @foreach($user->courses->sortBy('id') as $course)
@@ -46,11 +62,13 @@
                                                 <td><span><i class=""></i>{{ $course->semesters === 0 ? 'First' : 'second' }} </span></td>
                                             </tr>
                                     @endforeach
-                                    @endforeach
+                                 @endforeach
                                 </tbody>
                             </table>
                         </div>
                     </div>
+                </div>
+
                 </div>
             </div>
         </div>
