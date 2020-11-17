@@ -17,7 +17,14 @@ class LecturerController extends Controller
      */
     public function index()
     {
-        return view(' admin.lecturer.index ');
+
+        $failCount = DB::table('enrollments')->select('enrollment.*')->where('grades', '<=', 45)->count();
+//        $passCount = DB::table('enrollments')->select('enrollment.*')->where('grades', '>=', 46)->count();
+        $passCount = DB::table('users')->whereExists( function ($query){
+            $query->select(DB::raw(1))->from('enrollments')->whereRaw('enrollments.user_id  = users.id');
+        })->count();
+//            ->where('course_id', '=', '1')->count();
+        return view(' admin.lecturer.index ', compact('failCount','passCount'));
     }
 
     /**
@@ -44,7 +51,10 @@ class LecturerController extends Controller
              ->join('courses','enrollments.course_id','=','courses.id')
              ->join('users','enrollments.user_id','=','users.id')
              ->join('levels','enrollments.level_id','=','levels.id')
-             ->select('enrollments.*','enrollments.user_id','courses.credit_unit','courses.course_code','enrollments.course_id','enrollments.id','enrollments.enrolled','users.name','courses.course_name','courses.user_id')->get();
+             ->select('enrollments.*','enrollments.user_id','courses.credit_unit',
+                 'courses.course_code','enrollments.course_id','enrollments.id','enrollments.enrolled'
+                 ,'users.name','courses.course_name','courses.user_id')->get();
+
         return view('admin.lecturer.results', compact('results'));
     }
 

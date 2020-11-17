@@ -11,53 +11,14 @@
 
             <!-- Main Content -->
             <div id="content">
-                <div class="alert alert-light border-warning">
-                    <div class="row">
-                        <div class="col-lg-4">
-                            <div class="card-body">
-                                <div class="chart-pie pt-4 pb-2">
-                                    <canvas id="myPieChart"></canvas>
-                                </div>
-                                <div class="mt-4 text-center small">
-                                    <span class="mr-2">
-                                      <i class="fas fa-circle text-success"></i> Pass
-                                    </span>
-                                    <span class="mr-2">
-                                      <i class="fas fa-circle text-danger"></i> Failed
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4">
-                            <div class="card-body">
-                                <div class="chart-area pt-4 pb-2">
-                                    <canvas id="myAreaChart"></canvas>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4">
-                            <div class="card-body">
-                                <div class="chart-bar pt-4 pb-2">
-                                    <canvas id="myBarChart"></canvas>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Page Heading -->
+                @include('includes.lecdashboard')
+               <!-- Page Heading -->
                 <div class="container-fluid">
                     <div class="d-sm-flex align-items-center justify-content-between mb-4 " >
                         <h1 class="h3 ml-4 mt-5 mb-0 text-gray-800">Result Sheets For Courses Lectured By <span class="badge badge-info">{{ Auth::user()->name }}</span> </h1>
                         <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
                     </div>
-                    @if (Session::has('message'))
-                        <div  class="balert balert-success ">
-                            <h4 class="mt-5 mb-5 ml-5">
-                                <span><i class="fas fa-check-circle"></i></span>
-                                {{ Session::get('message') }}
-                            </h4>
-                        </div>
-                    @endif
+                @include('includes.alerts')
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
                             <h6 class="m-0 font-weight-bold text-primary">Edit Exam Scores</h6>

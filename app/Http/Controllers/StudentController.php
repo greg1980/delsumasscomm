@@ -120,7 +120,46 @@ class StudentController extends Controller
      */
     public function myresults()
     {
-        return view('admin.students.results');
+        if (auth()->user()->role_id !== 3){
+            abort(403);
+        }
+        $results = DB::table('enrollments')
+            ->join('courses','enrollments.course_id','=','courses.id')
+            ->join('users','enrollments.user_id','=','users.id')
+            ->join('levels','enrollments.level_id','=','levels.id')
+            ->select('enrollments.*','enrollments.user_id','courses.credit_unit',
+                'courses.course_code','enrollments.course_id','enrollments.id','enrollments.enrolled'
+                ,'users.name','courses.course_name','courses.user_id')->get();
+
+        $failCount = DB::table('enrollments')
+            ->join('courses','enrollments.course_id','=','courses.id')
+            ->join('users','enrollments.user_id','=','users.id')
+            ->join('levels','enrollments.level_id','=','levels.id')
+            ->select('enrollment.*','enrollments.course_id','enrollments.id','enrollments.grades','user.name','courses.course_name','courses.user_id')
+            ->where('grades', '<=', 45)->count();
+
+        $passCount = DB::table('enrollments')
+            ->join('courses','enrollments.course_id','=','courses.id')
+            ->join('users','enrollments.user_id','=','users.id')
+            ->join('levels','enrollments.level_id','=','levels.id')
+            ->select('enrollment.*','enrollments.course_id','enrollments.id','enrollments.grades','user.name','courses.course_name','courses.user_id')
+            ->where('grades', '>=', 45)->count();
+
+        $maxCount = DB::table('enrollments')
+            ->join('courses','enrollments.course_id','=','courses.id')
+            ->join('users','enrollments.user_id','=','users.id')
+            ->join('levels','enrollments.level_id','=','levels.id')
+            ->select('enrollment.*','enrollments.course_id','enrollments.id','enrollments.grades','user.name','courses.course_name','courses.user_id')
+            ->max('grades');
+        $avgCount = DB::table('enrollments')
+            ->join('courses','enrollments.course_id','=','courses.id')
+            ->join('users','enrollments.user_id','=','users.id')
+            ->join('levels','enrollments.level_id','=','levels.id')
+            ->select('enrollment.*','enrollments.course_id','enrollments.id','enrollments.grades','user.name','courses.course_name','courses.user_id')
+            ->avg('grades');
+
+
+        return view('admin.students.results', compact('results','failCount','passCount','maxCount','avgCount'));
     }
 
     /**

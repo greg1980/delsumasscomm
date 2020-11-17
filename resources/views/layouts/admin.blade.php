@@ -404,7 +404,6 @@
 </div>
 
 
-
 <!-- Custom scripts for all pages-->
 <script src="{{ asset('js/sb-admin-2.min.js') }}" defer></script>
 
@@ -438,6 +437,7 @@
         }, 3000 );
     });
 </script>
+
 </body>
 
 </html>
