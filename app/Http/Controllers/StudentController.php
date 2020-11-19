@@ -123,6 +123,7 @@ class StudentController extends Controller
         if (auth()->user()->role_id !== 3){
             abort(403);
         }
+        $users = User::all();
         $results = DB::table('enrollments')
             ->join('courses','enrollments.course_id','=','courses.id')
             ->join('users','enrollments.user_id','=','users.id')
@@ -131,36 +132,32 @@ class StudentController extends Controller
                 'courses.course_code','enrollments.course_id','enrollments.id','enrollments.enrolled'
                 ,'users.name','courses.course_name','courses.user_id')->get();
 
-        $failCount = DB::table('enrollments')
-            ->join('courses','enrollments.course_id','=','courses.id')
-            ->join('users','enrollments.user_id','=','users.id')
-            ->join('levels','enrollments.level_id','=','levels.id')
-            ->select('enrollment.*','enrollments.course_id','enrollments.id','enrollments.grades','user.name','courses.course_name','courses.user_id')
-            ->where('grades', '<=', 45)->count();
 
-        $passCount = DB::table('enrollments')
-            ->join('courses','enrollments.course_id','=','courses.id')
-            ->join('users','enrollments.user_id','=','users.id')
-            ->join('levels','enrollments.level_id','=','levels.id')
-            ->select('enrollment.*','enrollments.course_id','enrollments.id','enrollments.grades','user.name','courses.course_name','courses.user_id')
-            ->where('grades', '>=', 45)->count();
+        $maxCounts = DB::table('enrollments')->select(['user_id', DB::raw('max(grades) As enrollment_count')])
+            ->groupBy('user_id')->orderBy('enrollment_count','desc')->get();
 
-        $maxCount = DB::table('enrollments')
-            ->join('courses','enrollments.course_id','=','courses.id')
-            ->join('users','enrollments.user_id','=','users.id')
-            ->join('levels','enrollments.level_id','=','levels.id')
-            ->select('enrollment.*','enrollments.course_id','enrollments.id','enrollments.grades','user.name','courses.course_name','courses.user_id')
-            ->max('grades');
         $avgCount = DB::table('enrollments')
             ->join('courses','enrollments.course_id','=','courses.id')
             ->join('users','enrollments.user_id','=','users.id')
             ->join('levels','enrollments.level_id','=','levels.id')
-            ->select('enrollment.*','enrollments.course_id','enrollments.id','enrollments.grades','user.name','courses.course_name','courses.user_id')
+            ->select('enrollments.*','enrollments.course_id','enrollments.id','enrollments.grades','user.name','courses.course_name','courses.user_id')
             ->avg('grades');
 
+        $passCounts = DB::table('enrollments')->select(['user_id','grades','id', DB::raw('count(id ) AS enrollment_grades')])
+            ->where('grades', '>=', 47)
+            ->groupBy('user_id','grades','id')->orderBy('id', 'desc')->get();
 
-        return view('admin.students.results', compact('results','failCount','passCount','maxCount','avgCount'));
+//dd($passCounts);
+         $failCounts = DB::table('enrollments')->select(['user_id','grades','id', DB::raw('count(id ) AS enrollment_grades')])
+             ->where('grades', '<=', 46)
+             ->groupBy('user_id','grades','id')->orderBy('id', 'desc')->get();
+
+           $counts = DB::table('enrollments')->select(['user_id', DB::raw('count(user_id) As enrollment_count')])
+            ->groupBy('user_id')->orderBy('enrollment_count','desc')->get();
+
+        return view('admin.students.results', compact('results','failCounts','passCounts','maxCounts','avgCount','counts','users'));
     }
+
 
     /**
      * Remove the specified resource from storage.

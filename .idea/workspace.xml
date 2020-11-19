@@ -2,15 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c612f4c5-a3cd-4083-913e-5d2701704c70" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/resources/views/includes/lecdashboard.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/LecturerController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/LecturerController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/StudentController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/StudentController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/lecturer/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/lecturer/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/lecturer/results.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/lecturer/results.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/admin/students/results.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/students/results.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/includes/alerts.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/includes/alerts.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/admin.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/admin.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -250,7 +244,12 @@
       <workItem from="1604481363297" duration="9000" />
       <workItem from="1604484075004" duration="20000" />
       <workItem from="1604498976522" duration="2318000" />
-      <workItem from="1605514123401" duration="34292000" />
+      <workItem from="1605514123401" duration="38851000" />
+      <workItem from="1605598632930" duration="7027000" />
+      <workItem from="1605654059079" duration="7928000" />
+      <workItem from="1605687605533" duration="6009000" />
+      <workItem from="1605765033552" duration="11188000" />
+      <workItem from="1605780237797" duration="8245000" />
     </task>
     <servers />
   </component>
@@ -276,10 +275,11 @@
     </state>
     <state x="-1231" y="427" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/-1920.153.1920.1040/-3286.163.1366.728/0.0.1920.1040@-1920.153.1920.1040" timestamp="1601681446642" />
     <state x="-1231" y="427" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1920.1040/-1920.153.1920.1040/-3286.163.1366.728@-1920.153.1920.1040" timestamp="1605188234593" />
-    <state x="-1828" y="245" width="1736" height="856" key="DiffContextDialog" timestamp="1605194527694">
+    <state x="-1715" y="247" width="1736" height="856" key="DiffContextDialog" timestamp="1605827019252">
       <screen x="-1920" y="153" width="1920" height="1040" />
     </state>
     <state x="-1828" y="245" width="1736" height="856" key="DiffContextDialog/0.0.1920.1040/-1920.153.1920.1040/-3286.163.1366.728@-1920.153.1920.1040" timestamp="1605194527694" />
+    <state x="-1715" y="247" width="1736" height="856" key="DiffContextDialog/0.0.1920.1040/-3286.163.1366.728/-1920.153.1920.1040@-1920.153.1920.1040" timestamp="1605827019252" />
     <state x="-1181" y="427" key="FileChooserDialogImpl" timestamp="1601888835281">
       <screen x="-1920" y="153" width="1920" height="1040" />
     </state>
@@ -316,5 +316,16 @@
     </state>
     <state x="-1297" y="378" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040/-1920.153.1920.1040/-3286.163.1366.728@-1920.153.1920.1040" timestamp="1601363660683" />
     <state x="-1297" y="378" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040/-3286.163.1366.728/-1920.153.1920.1040@-1920.153.1920.1040" timestamp="1603492517533" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/resources/views/includes/lecdashboard.blade.php</url>
+          <line>34</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
