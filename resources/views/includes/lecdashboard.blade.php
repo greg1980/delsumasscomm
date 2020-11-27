@@ -31,9 +31,10 @@
         </div>
     </div>
 </div>
+
 <?php
-$failCount = DB::table('enrollments')->select('enrollment.*')->where('grades', '<=', 45)->count();
-$passCount = DB::table('enrollments')->select('enrollment.*')->where('grades', '>=', 46)->count();
+$failCount = DB::table('enrollments')->select('enrollment.*')->where('grades', '<=', 46)->count();
+$passCount = DB::table('enrollments')->select('enrollment.*')->where('grades', '>=', 47)->count();
 
 ?>
 

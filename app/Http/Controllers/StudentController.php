@@ -113,7 +113,7 @@ class StudentController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Dashboard query for students results .
      *
      * @param
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Http\Response|\Illuminate\View\View
@@ -147,7 +147,6 @@ class StudentController extends Controller
             ->where('grades', '>=', 47)
             ->groupBy('user_id','grades','id')->orderBy('id', 'desc')->get();
 
-//dd($passCounts);
          $failCounts = DB::table('enrollments')->select(['user_id','grades','id', DB::raw('count(id ) AS enrollment_grades')])
              ->where('grades', '<=', 46)
              ->groupBy('user_id','grades','id')->orderBy('id', 'desc')->get();

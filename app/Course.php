@@ -29,4 +29,8 @@ class Course extends Model
         return $this->hasMany( Enrollment::class);
     }
 
+    public function lecturers(){
+        return $this->hasMany(Lecturer::class, 'course_code');
+    }
+
 }

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Course;
 use App\Enrollment;
+use App\Lecturer;
+use App\Level;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
@@ -15,16 +17,17 @@ class LecturerController extends Controller
      *
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Http\Response|\Illuminate\View\View
      */
-    public function index()
+    public function blackboard(Lecturer $lecturer)
     {
-
-        $failCount = DB::table('enrollments')->select('enrollment.*')->where('grades', '<=', 45)->count();
-//        $passCount = DB::table('enrollments')->select('enrollment.*')->where('grades', '>=', 46)->count();
-        $passCount = DB::table('users')->whereExists( function ($query){
-            $query->select(DB::raw(1))->from('enrollments')->whereRaw('enrollments.user_id  = users.id');
-        })->count();
-//            ->where('course_id', '=', '1')->count();
-        return view(' admin.lecturer.index ', compact('failCount','passCount'));
+        if (auth()->user()->role_id !== 2){
+            abort(403);
+        }
+        $courses = auth()->user()->course_code;
+        $lecturers = DB::table('lecturers')
+            ->join('courses','lecturers.course_code', '=','courses.course_code')
+            ->select('lecturers.*','courses.user_id')->get();
+        $levels = Level::all();
+        return view(' admin.lecturer.blackboard ',compact('courses','levels','lecturers'));
     }
 
     /**
@@ -35,6 +38,7 @@ class LecturerController extends Controller
     public function create()
     {
         //
+
     }
 
     /**
@@ -71,14 +75,26 @@ class LecturerController extends Controller
 
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created students notes/assignment.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
         //
+        if (auth()->user()->role_id !== 2){
+            abort(403);
+        }
+
+        $message = Lecturer::create(request()->validate([
+            'title'=>'required',
+            'description'=>'required',
+            'level_id'=>'required',
+            'course_code'=>'required',
+        ]));
+        Session::flash('message','The Student notes for '.$message['title'].' was  successful created');
+        return back();
     }
 
     /**
@@ -104,7 +120,7 @@ class LecturerController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the students results storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id

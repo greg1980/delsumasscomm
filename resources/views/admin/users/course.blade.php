@@ -14,15 +14,7 @@
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800"> create <small>Course</small> </h1>
                     </div>
-                    @if (Session::has('message'))
-
-                        <div  class="balert balert-success ">
-                            <h4 class="mt-5 mb-5 ml-5">
-                                <span><i class="fas fa-check-circle"></i></span>
-                                {{ Session::get('message') }}
-                            </h4>
-                        </div>
-                    @endif
+                    @include('includes.alerts')
                     @if ($errors->any())
                         <div class="palert palert-danger mt-5 mb-5">
                             <span><h4><i class="fas fa-exclamation-triangle mt-3 mb-4 ml-5"></i> Rectify the Following Errors </h4></span>

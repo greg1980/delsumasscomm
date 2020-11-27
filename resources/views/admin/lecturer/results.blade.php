@@ -12,6 +12,63 @@
             <!-- Main Content -->
             <div id="content">
                 @include('includes.lecdashboard')
+                    <div class="content-inner">
+                        <!-- Dashboard Counts Section-->
+                        <section class="dashboard-counts no-padding-bottom">
+                            <div class="container-fluid">
+                                <div class="row bg-white shadow">
+                                    <!-- Item -->
+                                    <div class="col-xl-3 col-sm-6">
+                                        <div class="item d-flex align-items-center">
+                                            <div class="icon bg-violet"><i class="icon-user"></i></div>
+                                            <div class="title"><span>New<br>Clients</span>
+                                                <div class="progress">
+                                                    <div role="progressbar" style="width: 25%; height: 4px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" class="progress-bar bg-violet"></div>
+                                                </div>
+                                            </div>
+                                            <div class="number"><strong>25</strong></div>
+                                        </div>
+                                    </div>
+                                    <!-- Item -->
+                                    <div class="col-xl-3 col-sm-6">
+                                        <div class="item d-flex align-items-center">
+                                            <div class="icon bg-red"><i class="icon-padnote"></i></div>
+                                            <div class="title"><span>Work<br>Orders</span>
+                                                <div class="progress">
+                                                    <div role="progressbar" style="width: 70%; height: 4px;" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" class="progress-bar bg-red"></div>
+                                                </div>
+                                            </div>
+                                            <div class="number"><strong>70</strong></div>
+                                        </div>
+                                    </div>
+                                    <!-- Item -->
+                                    <div class="col-xl-3 col-sm-6">
+                                        <div class="item d-flex align-items-center">
+                                            <div class="icon bg-green"><i class="icon-bill"></i></div>
+                                            <div class="title"><span>New<br>Invoices</span>
+                                                <div class="progress">
+                                                    <div role="progressbar" style="width: 40%; height: 4px;" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" class="progress-bar bg-green"></div>
+                                                </div>
+                                            </div>
+                                            <div class="number"><strong>40</strong></div>
+                                        </div>
+                                    </div>
+                                    <!-- Item -->
+                                    <div class="col-xl-3 col-sm-6">
+                                        <div class="item d-flex align-items-center">
+                                            <div class=""><i class="fas fa-briefcase text-primary mr-3"></i></div>
+                                            <div class="title"><span>Open<br>Cases</span>
+                                                <div class="progress">
+                                                    <div role="progressbar" style="width: 50%; height: 4px;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" class="progress-bar bg-orange"></div>
+                                                </div>
+                                            </div>
+                                            <div class="number"><strong>50</strong></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
                <!-- Page Heading -->
                 <div class="container-fluid">
                     <div class="d-sm-flex align-items-center justify-content-between mb-4 " >
@@ -59,7 +116,7 @@
                                                   <td><span class="badge badge-danger">{{$result->level_id}}00</span> Level</td>
                                                   <td><span><i class=""></i>{{ $result->semesters === 0 ? 'First' : 'second' }} </span></td>
                                                   <td>
-                                                      <a href="{{url('lecturer/update'. $result->id)}}" class="{{$result->grades <= 45 ? 'text-danger' : 'text-success'}}" data-grades="{{$result->grades}}" data-result_name="{{$result->name}}" data-result_id="{{$result->id}}" type="button"   data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">
+                                                      <a href="{{url('lecturer/update'. $result->id)}}" class="{{$result->grades <= 46 ? 'text-danger' : 'text-success'}}" data-grades="{{$result->grades}}" data-result_name="{{$result->name}}" data-result_id="{{$result->id}}" type="button"   data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">
                                                           {{$result->grades === null ? 'N-A' : $result->grades . '' . '%' }}
                                                       </a>
                                                   </td>

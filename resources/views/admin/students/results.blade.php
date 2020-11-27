@@ -27,50 +27,50 @@
                                                 @endif
                                             @endif
                                         @endforeach
-                                   <h6 class="{{$counter >= 3 ? 'text-danger' : 'text-success'}}">{{$counter >= 3 ? 'You need to work harder to Improve on your result !' : 'Good result keep it up'}}</h6>
+                                        <h6 class="{{$counter >= 3 ? 'text-danger' : 'text-success'}}">{{$counter >= 3 ? 'You need to work harder to Improve on your result !' : 'Good result keep it up'}}</h6>
 
-                                   <h6>Subjects Taken <span class="badge badge-info">
-                                        @foreach($counts as $count)
-                                         @if (auth()->user()->id === $count->user_id)
-                                             {{$count->enrollment_count }}
-                                         @endif
-                                        @endforeach
-                                       </span>
-                                   </h6>
+                                           <h6>Subjects Taken <span class="badge badge-info">
+                                                @foreach($counts as $count)
+                                                 @if (auth()->user()->id === $count->user_id)
+                                                     {{$count->enrollment_count }}
+                                                 @endif
+                                                @endforeach
+                                               </span>
+                                           </h6>
 
-                                        <h6>Failed Grades:
-                                            <?php $counter = 0 ?>
-                                            @foreach($failCounts as $key=> $failCount)
-                                               @if (auth()->user()->id === $failCount->user_id)
-                                                    @if ($failCount->grades <= 46)
-                                                        <?php $counter++?>
-                                                    @endif
-                                               @endif
-                                            @endforeach
-                                            <span class="badge badge-danger"> {{$counter}}</span>
-                                        </h6>
-
-                                   <h6>Passed Grades:
-                                    <?php $counter = 0 ?>
-                                       @foreach($passCounts as  $passCount)
-                                               @if (auth()->user()->id === $passCount->user_id)
-                                                   @if ($passCount->grades >= 47)
-                                                   <?php $counter++?>
+                                            <h6>Failed Grades:
+                                                <?php $counter = 0 ?>
+                                                @foreach($failCounts as $key=> $failCount)
+                                                   @if (auth()->user()->id === $failCount->user_id)
+                                                        @if ($failCount->grades <= 46)
+                                                            <?php $counter++?>
+                                                        @endif
                                                    @endif
-                                               @endif
-                                           @endforeach
-                                       <span class="badge badge-success">{{$counter}}</span>
-                                   </h6>
+                                                @endforeach
+                                                <span class="badge badge-danger"> {{$counter}}</span>
+                                            </h6>
 
-                                   <h6>Max Score <span class="badge badge-success">
-                                           @foreach($maxCounts as $key=> $maxCount)
-                                               @if (auth()->user()->id === $maxCount->user_id)
-                                                   {{$maxCount->enrollment_count}}
-                                               @endif
-                                           @endforeach
-                                       </span>
-                                   </h6>
-                                   <h6>Total Average Score <span class="badge {{$avgCount <= 49 ? 'badge-danger' : 'badge-info'}}">{{ round($avgCount)}}% </span></h6>
+                                           <h6>Passed Grades:
+                                            <?php $counter = 0 ?>
+                                               @foreach($passCounts as  $passCount)
+                                                       @if (auth()->user()->id === $passCount->user_id)
+                                                           @if ($passCount->grades >= 47)
+                                                           <?php $counter++?>
+                                                           @endif
+                                                       @endif
+                                                   @endforeach
+                                               <span class="badge badge-success">{{$counter}}</span>
+                                           </h6>
+
+                                           <h6>Max Score <span class="badge badge-success">
+                                                   @foreach($maxCounts as $key=> $maxCount)
+                                                       @if (auth()->user()->id === $maxCount->user_id)
+                                                           {{$maxCount->enrollment_count}}
+                                                       @endif
+                                                   @endforeach
+                                               </span>
+                                           </h6>
+                                        <h6>Total Average Score <span class="badge {{$avgCount <= 49 ? 'badge-danger' : 'badge-info'}}">{{ round($avgCount)}}% </span></h6>
                                     </div>
                                 </div>
                             </div>
@@ -94,14 +94,7 @@
                         <h1 class="h3 ml-4 mt-5 mb-0 text-gray-800">Result Sheets For Courses Taken By <span class="badge badge-info">{{ Auth::user()->name }}</span> </h1>
                         <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
                     </div>
-                    @if (Session::has('message'))
-                        <div  class="balert balert-success ">
-                            <h4 class="mt-5 mb-5 ml-5">
-                                <span><i class="fas fa-check-circle"></i></span>
-                                {{ Session::get('message') }}
-                            </h4>
-                        </div>
-                    @endif
+                    @include('includes.alerts')
                     <div class="card-body">
                         <div class="table-responsive">
                             <table class="table table-bordered" id="users-table" width="100%" cellspacing="0">

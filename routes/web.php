@@ -70,15 +70,18 @@ Route::group(['middleware' => 'auth'], function () {
     /**
      *  lecturers controller
      */
-    Route::get('/lecturer', 'LecturerController@index')->name('lecturer.index  ');
+    Route::get('/lecturer/blackboard', 'LecturerController@blackboard')->name('blackboard.index  ');
+    Route::POST('/lecturer', 'LecturerController@store')->name(' lecturer.store');
     Route::get('/lecturer/results', 'LecturerController@results')->name('admin.lecturer.results');
     Route::get('/lecturer/assigned_courses', 'LecturerController@assignedcourses')->name('lecturer.assigned_courses');
     Route::patch('/lecturer/{lecturer}','LecturerController@update')->name('lecturer.update');
 
-    //    Route::resource('lecturer','LecturerController');
+//        Route::resource('lecturer','LecturerController');
 
 });
-
+Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {
+    \UniSharp\LaravelFilemanager\Lfm::routes();
+});
 
 //Route::get('admin/users/course', function () {
 //    return view('course');

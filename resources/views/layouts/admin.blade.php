@@ -122,7 +122,7 @@
             <div id="collapsePages" class="collapse show" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Staff Settings</h6>
-                    <a class="collapse-item" href="{{url('/lecturer')}}"><i class="fas fa-chalkboard-teacher mr-2"></i>Blackboard</a>
+                    <a class="collapse-item" href="{{url('/lecturer/blackboard')}}"><i class="fas fa-chalkboard-teacher mr-2"></i>Blackboard</a>
                     <a class="collapse-item" href="{{url('/lecturer/results')}}"><i class="fas fa-poll-h mr-2"></i>Results</a>
                     <a class="collapse-item" href="{{url('/lecturer/assigned_courses')}}"><i class="fas fa-book mr-2"></i>Assigned Courses</a>
                     <div class="collapse-divider"></div>
