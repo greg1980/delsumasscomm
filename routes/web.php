@@ -75,6 +75,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/lecturer/results', 'LecturerController@results')->name('admin.lecturer.results');
     Route::get('/lecturer/assigned_courses', 'LecturerController@assignedcourses')->name('lecturer.assigned_courses');
     Route::patch('/lecturer/{lecturer}','LecturerController@update')->name('lecturer.update');
+    Route::patch('/lecturer/blackboard/{lecturer}','LecturerController@updateNotes')->name('lecturer.updateNotes');
+    Route::delete('/lecturer/lecturer/{lecturer}','LecturerController@deleteNotes')->name('lecturer.deleteNotes');
 
 //        Route::resource('lecturer','LecturerController');
 

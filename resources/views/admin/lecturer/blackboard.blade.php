@@ -66,27 +66,101 @@
                                     <h6 class="m-0 font-weight-bold text-primary">Notes / Assignments</h6>
                                 </div>
                                 <div class="card-body">
-                                    <div class="text-center">
-                                        <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;" src="img/undraw_posting_photo.svg" alt="">
-                                    </div>
                                         <div class="table-responsive">
-                                            <table class="table table-bordered" id="users-table" width="100%" cellspacing="0">
+                                            <table class="table table-bordered  table-hover  table-striped" id="notes-table" width="100%" cellspacing="0">
                                                 <thead class=" text-primary text-bold">
                                                 <tr>
                                                     <th>Title</th>
                                                     <th>Code</th>
-                                                    <th>Level name</th>
+                                                    <th>Created At</th>
                                                 </tr>
                                                 </thead>
                                                 <tbody>
                                                 @foreach($lecturers as $lecturer )
-                                                    @if (auth()->user()->id === $lecturer->user_id)
+                                                    @if (auth()->user()->id === $lecturer->user_id && $lecturer->deleted_at === null)
                                                     <tr>
-                                                        <td><a href="#">{{$lecturer->Title}}</a></td>
+                                                        <td>
+                                                            <a href="{{url('lecturer/update/'. $lecturer->id)}}"
+                                                               data-level_id="{{$lecturer->level_id}}"
+                                                               data-title="{{$lecturer->title}}"
+                                                               data-lecturer_id="{{$lecturer->id}}"
+                                                               data-course_code="{{$lecturer->course_code}}"
+                                                               data-mydescription="{{$lecturer->description}}"
+                                                               type="button"
+                                                               data-toggle="modal"
+                                                               data-target="#lecturerModal"
+                                                               data-whatever="@mdo">
+                                                                {{$lecturer->title}}
+                                                            </a>
+                                                        </td>
                                                         <td><span class="badge badge-info">{{$lecturer->course_code}}</span></td>
-                                                        <td>{{$lecturer->created_at}}</td>
+                                                        <td><small><i class="far fa-clock text-danger"></i></small> {{  \Carbon\Carbon::parse($lecturer->created_at)->diffForHumans() }} </td>
+                                                        <td>
+                                                            <form action="{{ route('lecturer.deleteNotes',$lecturer->id) }}" method="post" enctype="multipart/form-data">
+                                                                @csrf
+                                                                @method('DELETE')
+                                                                <button type="submit" class="btn btn-danger btn-xs {{Auth()->user()->role_id !== 2 ? 'disabled' : ''}}" ><span><i class="far fa-trash-alt"></i></span></button>
+                                                            </form>
+                                                        </td>
                                                     </tr>
                                                     @endif
+
+                                                    <!--       Modal -->
+                                                    <div class="modal fade" id="lecturerModal" tabindex="-1" aria-labelledby="lecturerModalLabel" aria-hidden="true">
+                                                        <div class="modal-dialog modal-xl">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header bg-gradient-primary">
+                                                                    <h5 class="modal-title text-white" id="lecturerModalLabel">New message</h5>
+                                                                    <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                                                                        <span aria-hidden="true">&times;</span>
+                                                                    </button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <form action="{{route('lecturer.updateNotes','test')}}" method="post">
+                                                                        @csrf
+                                                                        {{ method_field('PATCH') }}
+                                                                        <input type="hidden" id="lecturer_id" name="lecturer_id">
+                                                                        <div class="form-group">
+                                                                            <div class="row">
+                                                                                <div class="col-lg-9" ><span class="badge badge-info">Level:</span> {{$lecturer->level_id}}00</div><br>
+                                                                                <div class="col-lg-3" ><span class="badge badge-danger mr-3">{{ $lecturer->course_code}}</span></div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <label for="exampleFormControlInput1" class="font-weight-bold">Post Title:</label>
+                                                                            <input type="text" class="form-control" id="title"  name="title" >
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <label for="exampleFormControlSelect1" class="font-weight-bold">Students Level:</label>
+                                                                            <select class="form-control" id="level_id" name="level_id">
+                                                                                <option>select an option</option>
+                                                                                @foreach ($levels as $level_id => $level)
+                                                                                    <option value="{{$level->id}}">{{$level->name}}</option>
+                                                                                @endforeach
+                                                                            </select>
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <label for="exampleFormControlSelect2" class="font-weight-bold">Assigned Course:</label>
+                                                                            <select class="form-control" id="course_code" name="course_code">
+                                                                                <option>select an option</option>
+                                                                                @foreach(auth()->user()->courses as $course)
+                                                                                    <option>{{$course->course_code}}</option>
+                                                                                @endforeach
+                                                                            </select>
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <label for="description" class="font-weight-bold">Textarea:</label>
+                                                                            <textarea class="form-control" id="description" rows="8"  name="description"></textarea>
+                                                                        </div>
+                                                                        <div class="modal-footer">
+                                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                            <button type="submit"  class="btn btn-primary modalButton">Update Notes</button>
+                                                                        </div>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 @endforeach
                                                 </tbody>
                                             </table>

@@ -145,13 +145,38 @@ class LecturerController extends Controller
     }
 
     /**
+     * Update the students results storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function updateNotes(Request $request){
+        if (auth()->user()->role_id !== 2){
+            abort(403);
+        }
+        $messages = Lecturer::findorFail($request->lecturer_id);
+
+        $messages->update($request->all());
+        Session::flash('message',' Your notes was successful updated ' );
+        return back();
+    }
+
+    /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroy($id)
+    public function deleteNotes(Lecturer $lecturer)
     {
         //
+        if (auth()->user()->role_id !== 2){
+            abort(403);
+        }
+
+        $lecturer->delete();
+        Session::flash('message', 'Your notes for '. $lecturer->course_code.' was deleted successful');
+        return back();
     }
 }

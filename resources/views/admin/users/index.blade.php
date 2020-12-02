@@ -32,7 +32,7 @@
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table class="table table-bordered" id="users-table" width="100%" cellspacing="0">
+                                <table class="table table-bordered table-hover  table-striped" id="users-table" width="100%" cellspacing="0">
                                     <thead class=" text-primary text-bold">
                                     <tr>
                                         <th>Id</th>
@@ -63,15 +63,15 @@
                                             <td>{{$user->id}}</td>
                                             <td><img height="50" src="{{$user->avatar ? asset('/storage/images/'. $user->avatar ) : '/storage/images/150.jpg' }}" alt=""></td>
                                             <td><a href="{{route('admin.users.profile', $user->id)}}">{{$user->name}}</a></td>
-                                            <td>{{$user->is_active ? 'Active' : 'In-Active'}}</td>
+                                            <td class="{{$user->is_active ? 'text-success' : 'text-danger'}}">{{$user->is_active ? 'Active' : 'In-Active'}}</td>
                                             <td>{{ $user->role ? $user->role->name : 'None'}}</td>
                                             <td>{{ $user->email }}</td>
-                                            <td>{{ $user->created_at->diffForHumans() }} <small><i class="far fa-clock"></i></small></td>
+                                            <td> <small><i class="far fa-clock text-danger"></i></small> {{ $user->created_at->diffForHumans() }}</td>
                                             <td>
                                                 <form action="{{ route('destroy',$user->id) }}" method="post" enctype="multipart/form-data">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger {{Auth()->user()->role_id !== 1 ? 'disabled' : ''}}" ><span><i class="far fa-trash-alt"></i></span></button>
+                                                    <button type="submit" class="btn btn-danger {{Auth()->user()->role_id !== 2 ? 'disabled' : ''}}" ><span><i class="far fa-trash-alt"></i></span></button>
                                                 </form>
                                             </td>
                                         </tr>

@@ -15,10 +15,11 @@ class CreateLecturersTable extends Migration
     {
         Schema::create('lecturers', function (Blueprint $table) {
             $table->id();
-            $table->string('Title');
+            $table->string('title');
             $table->longText('description');
             $table->integer('level_id')->index();
             $table->string('course_code', 10)->index();
+            $table->softDeletes('deleted_at',0);
             $table->timestamps();
         });
     }

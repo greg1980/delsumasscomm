@@ -24,7 +24,7 @@
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table class="table table-bordered" id="users-table" width="100%" cellspacing="0">
+                                <table class="table table-bordered table-hover  table-striped" id="users-table" width="100%" cellspacing="0">
                                     <thead class=" text-primary text-bold">
                                     <tr>
                                         <th>Id</th>
