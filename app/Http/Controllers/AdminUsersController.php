@@ -245,13 +245,12 @@ class AdminUsersController extends Controller
         foreach ($users as $user){
             foreach ($user->courses as $course){
                 if($course->email_sent !== 1){
-                Mail::to($user->email)->queue(new CourseCreated($course, $user));
+                Mail::to($user->email)->send(new CourseCreated($course, $user));
                 $course->email_sent = 1;
                 $course->save();
                 }
             }
         }
-
         Session::flash('message','The course  '.$course['course_name'].' was  successful created');
         return back();
     }

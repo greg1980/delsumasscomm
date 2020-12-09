@@ -6,8 +6,11 @@ use App\Course;
 use App\Enrollment;
 use App\Lecturer;
 use App\Level;
+use App\Mail\ResultModified;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 
 class LecturerController extends Controller
@@ -67,10 +70,11 @@ class LecturerController extends Controller
      *
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Http\Response|\Illuminate\View\View
      */
-    public function assignedcourses()
+    public function assignedcourses(Course $course)
     {
         //
-        return view('admin.lecturer.assigned_courses');
+        $courses = auth()->user()->course;
+        return view('admin.lecturer.assigned_courses', compact('courses'));
     }
 
 
@@ -140,6 +144,7 @@ class LecturerController extends Controller
 
         $results->update($request->all());
         Session::flash('message',' The grade  was  successful updated from '.' ' .$oldresult.'%'.' '.'to' . ' '.$results['grades'].'%' );
+        Mail::to(auth()->user()->email)->send(new ResultModified($results));
 
         return back();
     }

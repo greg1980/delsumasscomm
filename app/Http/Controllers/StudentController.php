@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Course;
 use App\Enrollment;
+use App\Lecturer;
 use App\Level;
 use App\Role;
 use App\User;
@@ -58,11 +59,12 @@ class StudentController extends Controller
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Http\Response|\Illuminate\View\View
      */
     public function show($id)
     {
-        //
+        $notes = Lecturer::findorFail($id);
+       return view(' admin.students.note ',compact('notes') );
     }
 
     /**
@@ -109,7 +111,10 @@ class StudentController extends Controller
      */
     public function blackboard()
     {
-        return view('admin.students.blackboard');
+        $notes= DB::table('lecturers')
+            ->join('courses','lecturers.course_code','=','courses.course_code')
+            ->select('lecturers.*','lecturers.title','lecturers.description')->paginate(8);
+        return view('admin.students.blackboard', compact('notes'));
     }
 
     /**

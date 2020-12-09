@@ -67,6 +67,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/students/blackboard','StudentController@blackboard')->name('students.blackboard');
     Route::get('/students/results','StudentController@myresults')->name('results');
     Route::get('/students/project','StudentController@myproject')->name('project');
+    Route::get('/admin/students/{note}','StudentController@show')->name('admin.students.note');
     /**
      *  lecturers controller
      */

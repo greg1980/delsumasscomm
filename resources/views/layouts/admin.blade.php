@@ -414,6 +414,8 @@
 <!-- Page level custom scripts -->
 <script src="{{ asset('js/demo/chart-area-demo.js')}}"></script>
 <script src="{{ asset('js/demo/chart-pie-demo.js')}}"></script>
+<script src="{{ asset('js/easypiechart.js')}}"></script>
+<script src="{{ asset('js/easypiechart-data.js')}}"></script>
 
 <!-- Page level plugins -->
 <script src="{{ asset('vendor/datatables/jquery.dataTables.min.js')}}"></script>

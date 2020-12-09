@@ -87,7 +87,7 @@ $passCount = DB::table('enrollments')->select('enrollment.*')->where('grades', '
             labels: ['Failed', 'Pass'],
             datasets: [{
                 label: '# of Results',
-                data: [12, 19],
+                data: [100, 19],
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',
                     'rgba(75, 192, 192, 0.2)',
