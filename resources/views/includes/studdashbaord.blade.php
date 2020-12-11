@@ -10,7 +10,7 @@
                         <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Total Failed Courses</div>
                         <div class="h5 mb-0 font-weight-bold text-gray-800">
                             <h3>
-                                <?php $counter = 0 ?>
+                                <?php use Illuminate\Support\Facades\DB;$counter = 0 ?>
                                 @foreach($failCounts as $key=> $failCount)
                                     @if (auth()->user()->id === $failCount->user_id)
                                         @if ($failCount->grades <= 46)
@@ -64,11 +64,24 @@
                         <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Total Average Score</div>
                         <div class="row no-gutters align-items-center">
                             <div class="col-auto">
-                                <div class="h5 mb-0 mr-3 font-weight-bold {{$avgCount <= '50' ? 'text-danger' : 'text-success'}}">{{ round($avgCount)}}%</div>
+                                <?php $sum = 0; $avgCount = 0; $count = 0; $total = 1 ;?>
+                                @foreach($avgCounts as $key=> $avgCount)
+                                    @if (auth()->user()->id === $avgCount->id)
+                                        <?php
+                                        $sum+= $avgCount->grades;
+                                        ?>
+                                    @endif
+                                    @foreach($counts as $count)
+                                        @if (auth()->user()->id === $count->user_id)
+                                            <?php   $total = $count->enrollment_count; ?>
+                                        @endif
+                                    @endforeach
+                                @endforeach
+                                <div class="h5 mb-0 mr-3 font-weight-bold {{round($sum/$total) <= '50' ? 'text-danger' : 'text-success'}}">{{ round($sum/$total)}}%</div>
                             </div>
                             <div class="col">
                                 <div class="progress progress-sm mr-2">
-                                    <div class="progress-bar  bg-info progress-bar-animated" role="progressbar" style="width: {{ round($avgCount)}}%" aria-valuenow="{{ round($avgCount)}}%" aria-valuemin="0" aria-valuemax="100"></div>
+                                    <div class="progress-bar  bg-info progress-bar-animated" role="progressbar" style="width: {{ round($sum/$total)}}%" aria-valuenow="{{ round($sum/$total)}}%" aria-valuemin="0" aria-valuemax="100"></div>
                                 </div>
                             </div>
                         </div>
@@ -131,7 +144,24 @@
         <div class="col-xs-6 col-md-3">
             <div class="panel panel-default">
                 <div class="panel-body easypiechart-panel">
-                    <div class="easypiechart" id="{{$avgCount <= 49 ? 'easypiechart-red' : 'easypiechart-teal'}}" data-percent="{{ round($avgCount) }}" ><span class="percent {{$avgCount <= 49 ? 'text-danger' : 'text-success'}}">{{ round($avgCount) }}%</span></div>
+                    <?php $sum = 0; $avgCount = 0; $count = 0;?>
+                    @foreach($avgCounts as $key=> $avgCount)
+                        @if (auth()->user()->id === $avgCount->id)
+                           <?php
+                              $sum+= $avgCount->grades;
+                            ?>
+                        @endif
+                            @foreach($counts as $count)
+                                @if (auth()->user()->id === $count->user_id)
+                                 <?php   $total = $count->enrollment_count; ?>
+                                @endif
+                            @endforeach
+                    @endforeach
+                        <div class="easypiechart" id="{{round($sum/$total) <= 49 ? 'easypiechart-red' : 'easypiechart-teal'}}" data-percent="{{ round($sum/$total) }}" >
+                            <span class="percent {{round($sum/$total) <= 49 ? 'text-danger' : 'text-success'}}">
+                                {{ round($sum/$total) }}%
+                            </span>
+                        </div>
                     <small>Total Average Score</small>
                 </div>
             </div>

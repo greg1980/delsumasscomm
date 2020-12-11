@@ -77,11 +77,12 @@
                                             <input type="hidden" name="courses" value="courses">
                                         </label>
 
-                                        @if ($enrollment->user_id === Auth::user()->id && Auth::user()->level_id === $enrollment->level_id)
-                                            <button type="submit" class="btn btn-sm btn-primary" {{$enrollment ? 'disabled' : ''}}>Registered</button>
-                                        @else
-                                            <button type="submit" class="btn btn-sm btn-primary" >Register</button>
-                                        @endif
+                                            @if ($ans)
+                                                <button type="submit" class="btn btn-sm btn-primary" {{$ans ? 'disabled' : ''}}>Registered</button>
+                                            @else
+                                                <button type="submit" class="btn btn-sm btn-primary" >Register</button>
+                                            @endif
+
                                     </form>
                             </div>
                         </div>
