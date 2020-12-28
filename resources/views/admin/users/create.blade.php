@@ -53,17 +53,6 @@
                                         <input type="password" value="{{old('password')}}" class="form-control col-sm-10 {{$errors->has('password') ? 'is-invalid' : ''}}" name="password">
                                     </div>
                                 </div>
-
-                                <div class="form-group row">
-                                    <label for="" class="col-sm-2 col-form-label">Status</label>
-                                    <div class="col-sm-8">
-                                        <select name="is_active" id="" class="form-control col-sm-10 {{$errors->has('is_active') ? 'is-invalid' : ''}}">
-                                            <option value="0">Inactive</option>
-                                            <option value="1">Active</option>
-                                        </select>
-                                    </div>
-                                </div>
-
                                 <div class="form-group row">
                                     <label for="" class="col-sm-2 col-form-label">User Role</label>
                                     <div class="col-sm-8 mb-5">

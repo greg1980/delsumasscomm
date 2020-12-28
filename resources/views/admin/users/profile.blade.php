@@ -102,6 +102,9 @@
                                 <div class="form-group mt-3 ml-5">
                                     <label class="col-md-12"><b>MAT NUMBER :</b> {{ $user->matnumber ?  $user->matnumber  : '-' }} </label>
                                 </div>
+                                <div class="form-group mt-3 ml-5">
+                                    <label class="col-md-12"><b>SEMESTER :</b> {{$user->semesters === 0 ? 'First' : 'Second'}}</label>
+                                </div>
                                 <div class="form-group ml-5">
                                     <label class="col-md-12"><b>YEAR OF ADMISSION : </b>{{ $user->yearofadmission ?  $user->yearofadmission  : '-' }}</label>
                                 </div>

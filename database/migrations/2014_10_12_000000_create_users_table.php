@@ -25,10 +25,10 @@ class CreateUsersTable extends Migration
             $table->Integer('housenumber')->nullable();
             $table->Date('yearofadmission')->nullable();
             $table->Date('yearofgrad')->nullable();
-            $table->integer('matnumber')->unique()->nullable();
+            $table->string('matnumber')->unique()->nullable();
+            $table->integer('semesters')->default(false);
             $table->string('address')->nullable();
             $table->string('city')->nullable();
-            $table->integer('is_active')->default(false);
             $table->integer('role_id')->index()->unsigned()->nullable()->default(3);
             $table->string('avatar')->nullable();
             $table->timestamp('email_verified_at')->nullable();

@@ -43,7 +43,7 @@
                                     <label for="" class="col-sm-2 col-form-label">Level</label>
                                     <div class="col-sm-8">
                                         <select class="form-control col-sm-6 {{$errors->has('level_id') ? 'is-invalid' : ''}}" name="level_id" id="">
-                                            <option>select an option</option>
+                                            <option value="">select an option</option>
                                             @foreach ($levels as $level_id => $level)
                                                 <option value="{{$level->id}}">{{$level->name}}</option>
                                             @endforeach
@@ -61,10 +61,21 @@
                                 <div class="form-group row">
                                     <label for="" class="col-sm-2 col-form-label">Semester</label>
                                     <div class="col-sm-8">
-                                        <select name="semesters" id="" class="form-control col-sm-6 {{$errors->has('semester') ? 'is-invalid' : ''}}">
-                                            <option>select an option</option>
+                                        <select name="semesters" id="" class="form-control col-sm-6 {{$errors->has('semesters') ? 'is-invalid' : ''}}">
+                                            <option value="">select an option</option>
                                             <option value="0">First</option>
                                             <option value="1">Second</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label for="" class="col-sm-2 col-form-label">Status</label>
+                                    <div class="col-sm-8">
+                                        <select name="choices" id="" class="form-control col-sm-6 {{$errors->has('choices') ? 'is-invalid' : ''}}">
+                                            <option value="">select an option</option>
+                                            <option value="0">Core</option>
+                                            <option value="1">Elective</option>
                                         </select>
                                     </div>
                                 </div>
@@ -80,7 +91,8 @@
                                     <label for="" class="col-sm-2 col-form-label">Assign To</label>
                                     <div class="col-sm-8">
                                         <select name="user_id" id="" class="form-control col-sm-6 {{$errors->has('user_id') ? 'is-invalid' : ''}}">
-                                            <option>select an option</option>
+                                            <option value="">select an option</option>
+                                            <option value="0">Unknown</option>
                                             @foreach ($users as  $user)
                                                 <option value="{{$user->id}}">{{$user->name}}</option>
                                             @endforeach
@@ -96,8 +108,6 @@
                                 </div>
                             </form>
                         </div>
-
-
                     </div>
                 </div>
             </div>

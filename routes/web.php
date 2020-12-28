@@ -31,19 +31,12 @@ Route::get('/amasscos', 'undergraduateController@amasscos')->name('amasscos');
 Route::get('/events', 'alumniController@index')->name('events');
 Route::get('/news', 'alumniController@news')->name('news');
 
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
-
-Route::get('/activate/{code}','ActivationController@activation')->name('user.activation');
-Route::get('/resend/code','ActivationController@coderesend')->name('code.resend');
-
 /**
  * Authenticated pages
  */
 Route::group(['middleware' => 'auth'], function () {
 
-    Route::get('/admin', 'AdminController@index')->name('admin.index');
+    //Route::get('/admin', 'AdminController@index')->name('admin.index');
     Route::get('/admin/users', 'AdminUsersController@index')->name('admin.users');
     Route::post('/store','AdminUsersController@store')->name('store');
     Route::get('admin/users/create','AdminUsersController@create')->name('users.create');
@@ -82,10 +75,10 @@ Route::group(['middleware' => 'auth'], function () {
 //        Route::resource('lecturer','LecturerController');
 
 });
+
 Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {
     \UniSharp\LaravelFilemanager\Lfm::routes();
 });
 
-//Route::get('admin/users/course', function () {
-//    return view('course');
-//});
+Auth::routes(['verify'=> true]);
+Route::get('/home', 'HomeController@index')->name('home');

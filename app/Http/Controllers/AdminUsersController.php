@@ -63,7 +63,6 @@ class AdminUsersController extends Controller
             'name'=>'required',
             'email'=>'required',
             'password'=>'required',
-            'is_active'=>'required',
             'role_id'=> 'required',
 
         ]));
@@ -146,6 +145,7 @@ class AdminUsersController extends Controller
                 'yearofadmission' => 'required',
                 'yearofgrad' => 'required',
                 'matnumber' => 'required',
+                'semesters'=>'required',
                 'address' => 'required',
                 'city' => 'required',
             ]));
@@ -194,7 +194,7 @@ class AdminUsersController extends Controller
             abort(403);
         }
         $levels = Level::all();
-        $users = DB::select('select * from users where role_id = 2', [2]);
+        $users = DB::select('select * from users where role_id = 2 ', [2]);
         return view('admin.users.course',compact('levels','users'));
 
      }
@@ -237,7 +237,8 @@ class AdminUsersController extends Controller
             'course_code'=>'required',
             'credit_unit'=>'required',
             'user_id'=> 'required',
-            'semesters'=> 'required'
+            'semesters'=> 'required',
+            'choices'=>'required'
         ])
 
         );
@@ -254,6 +255,10 @@ class AdminUsersController extends Controller
         Session::flash('message','The course  '.$course['course_name'].' was  successful created');
         return back();
     }
+
+    /*
+    *
+    */
     public function editcourses($id){
 
         if(auth()->user()->role_id !== 1){
@@ -285,7 +290,8 @@ class AdminUsersController extends Controller
             'course_code'=>'required',
             'semesters'=>'required',
             'credit_unit'=>'required',
-            'user_id'=>'required'
+            'user_id'=>'required',
+            'choices' => 'required'
         ]));
 
         Session::flash('message','Hey '.$courses['course_code'].' was  successful updated');

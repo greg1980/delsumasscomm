@@ -23,17 +23,18 @@ class StudentController extends Controller
     {
         $users = User::all();
         $courses = auth()->user()->courses;
+        $registerCourses = DB::table('courses')->orderByDesc('Level_id')->get();
         /* loading enrollment to manipulate the button in the view  */
-        $enrolled = DB::table('enrollments')->select(['user_id','enrolled','level_id', DB::raw('count(user_id) As enrollment_count')])
-            ->groupBy('user_id','enrolled','level_id')->orderBy('enrollment_count','desc')->get();
+        $enrolled = DB::table('enrollments')->select(['user_id','enrolled','level_id','semesters', DB::raw('count(user_id) As enrollment_count')])
+            ->groupBy('user_id','enrolled','level_id','semesters')->orderBy('enrollment_count','desc')->get();
         /* creating a variable and then a loop to see if a user already has an enrollment for the year and assigns it to the variable  */
-       $ans = [];
+       $registered = [];
         foreach($enrolled as $enroll){
-           if (auth()->user()->id === $enroll->user_id &&  auth()->user()->level_id === $enroll->level_id){
-               $ans = $enroll->enrolled;
+           if (auth()->user()->id === $enroll->user_id &&  auth()->user()->level_id === $enroll->level_id && auth()->user()->semesters === $enroll->semesters){
+               $registered = $enroll->enrolled;
            }
         }
-        return view('admin.students.index', compact('users', 'courses','ans'));
+        return view('admin.students.index', compact('users', 'courses','registered','registerCourses'));
     }
 
     /**
@@ -49,7 +50,7 @@ class StudentController extends Controller
         /* creating a course enrollment after instantiating the enrollment class  */
         $courses = Course::all();
           foreach($courses  as $course) {
-              if (auth()->user()->level_id === $course->level_id) {
+              if (auth()->user()->level_id === $course->level_id && auth()->user()->semesters === $course->semesters) {
                       $enrollment = new Enrollment();
                       $enrollment->course_id = $course->id;
                       $enrollment->user_id = auth()->user()->id;

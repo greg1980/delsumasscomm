@@ -21,7 +21,7 @@ class CreateCoursesTable extends Migration
             $table->integer('user_id')->index()->unsigned();
             $table->integer('level_id')->index()->unsigned();
             $table->integer('semesters')->default(false);
-//            $table->string('status', 4);
+            $table->integer('choices')->default(false);;
             $table->timestamps();
             $table->integer('email_sent')->default(false);
         });

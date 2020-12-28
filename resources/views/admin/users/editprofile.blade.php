@@ -127,6 +127,14 @@
                                             </select>
                                     </div>
                                     <div class="form-group mr-5 ml-5">
+                                        <label for="exampleInputEmail1">Semester</label>
+                                            <select name="semesters" id="" class="form-control {{$errors->has('semesters') ? 'is-invalid' : ''}}">
+                                                <option value="">select an option</option>
+                                                <option value="0">First</option>
+                                                <option value="1">Second</option>
+                                            </select>
+                                    </div>
+                                    <div class="form-group mr-5 ml-5">
                                         <label for="exampleInputEmail1" >YEAR OF ADMISSION</label>
                                         <input type="date" name="yearofadmission" class="form-control {{$errors->has('yearofadmission') ?'is-invalid': ''}}" id="exampleInputEmail1" value="{{$user->yearofadmission}}">
                                     </div>

@@ -13,7 +13,8 @@ class Course extends Model
         'user_id',
         'level_id',
         'semesters',
-        'email_sent'
+        'email_sent',
+        'choices'
     ];
 
     public function users(){

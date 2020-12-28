@@ -63,7 +63,7 @@
                                             <td>{{$user->id}}</td>
                                             <td><img height="50" src="{{$user->avatar ? asset('/storage/images/'. $user->avatar ) : '/storage/images/150.jpg' }}" alt=""></td>
                                             <td><a href="{{route('admin.users.profile', $user->id)}}">{{$user->name}}</a></td>
-                                            <td class="{{$user->is_active ? 'text-success' : 'text-danger'}}">{{$user->is_active ? 'Active' : 'In-Active'}}</td>
+                                            <td class="{{$user->email_verified_at ? 'text-success' : 'text-danger'}}">{{$user->email_verified_at ? 'Active' : 'In-Active'}}</td>
                                             <td>{{ $user->role ? $user->role->name : 'None'}}</td>
                                             <td>{{ $user->email }}</td>
                                             <td> <small><i class="far fa-clock text-danger"></i></small> {{ $user->created_at->diffForHumans() }}</td>
