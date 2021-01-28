@@ -9,14 +9,19 @@ class Enrollment extends Model
 {
     use Notifiable;
 
+    protected $casts = [
+        'course_id' => 'array',
+    ];
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'enrolled','user_id','course_id','level_id','semesters','year','grades'
+        'course_id', 'enrolled','user_id','level_id','semesters','year','grades'
     ];
+
 
     public function user(){
         return $this->belongsTo(User::class,  'user_id');

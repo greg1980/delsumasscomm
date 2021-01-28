@@ -50,7 +50,7 @@ class StudentController extends Controller
         /* creating a course enrollment after instantiating the enrollment class  */
         $courses = Course::all();
           foreach($courses  as $course) {
-              if (auth()->user()->level_id === $course->level_id && auth()->user()->semesters === $course->semesters) {
+              if (auth()->user()->level_id === $course->level_id && auth()->user()->semesters === $course->semesters && $course->choices !=1) {
                       $enrollment = new Enrollment();
                       $enrollment->course_id = $course->id;
                       $enrollment->user_id = auth()->user()->id;
@@ -64,6 +64,26 @@ class StudentController extends Controller
 
         return back();
 
+    }
+
+    /**
+     *
+     */
+    public function storeElective(Request $request){
+
+        $courses_ids = $request->get('course_id');
+        foreach($courses_ids  as $courses_id) {
+            $course = Course::find($courses_id);
+                $enrollment = new Enrollment();
+                $enrollment->course_id = $course->id;
+                $enrollment->user_id = auth()->user()->id;
+                $enrollment->level_id = $course->level_id;
+                $enrollment->semesters = $course->semesters;
+                $enrollment->enrolled = 1;
+                $enrollment->year = date("Y-m-d");
+                $enrollment->save();
+        }
+        return back();
     }
 
     /**

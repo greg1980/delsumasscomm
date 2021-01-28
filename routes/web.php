@@ -57,6 +57,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/admin/students/', 'StudentController@index')->name('admin.students');
     Route::PATCH('/course/{course}','StudentController@update')->name('register.update');
     Route::POST('enrollment','StudentController@store')->name('enrollment.store');
+    Route::POST('elective','StudentController@storeElective')->name('enrollments.elective');
     Route::get('/students/blackboard','StudentController@blackboard')->name('students.blackboard');
     Route::get('/students/results','StudentController@myresults')->name('results');
     Route::get('/students/project','StudentController@myproject')->name('project');
