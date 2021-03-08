@@ -448,6 +448,7 @@
         var lecturer_id = button.data('lecturer_id')
         var course_code = button.data('course_code')
         var level_id = button.data('level_id')
+        var deadline = button.data('deadline')
 
         var modal = $(this)
         modal.find('.modal-title ').text('Update Note / assignments For ' + course_code);
@@ -456,6 +457,7 @@
         modal.find('.modal-body #course_code').val( course_code);
         modal.find('.modal-body #title').val(title);
         modal.find('.modal-body #lecturer_id').val(lecturer_id);
+        modal.find('.modal-body #deadline').val(deadline);
     })
 </script>
 

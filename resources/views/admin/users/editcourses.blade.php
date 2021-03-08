@@ -82,12 +82,25 @@
                                     <label for="" class="col-sm-2 col-form-label">Semester</label>
                                     <div class="col-sm-8">
                                         <select name="semesters" id="" class="form-control col-sm-6 {{$errors->has('semester') ? 'is-invalid' : ''}}">
-
                                            @if ($courses->semesters)
                                                 <option value="{{$courses->semesters }}" {{ $id == $courses->semesters ? 'selected' : ''}}>{{$courses->semesters === 0 ? 'First' : 'Second' }}</option>
                                            @endif
                                                <option value="0">First</option>
                                                <option value="1">Second</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label for="" class="col-sm-2 col-form-label">Status</label>
+                                    <div class="col-sm-8">
+                                        <select name="choices" id="" class="form-control col-sm-6 {{$errors->has('choices') ? 'is-invalid' : ''}}">
+                                            @if ($courses->choices)
+                                                <option value="{{$courses->choices}}"{{$id == $courses->choices ? 'selected' : ''}}>
+                                                    {{$courses->choices === 0 ? 'Core':'Elective'}}</option>
+                                            @endif
+                                            <option value="0">Core</option>
+                                            <option value="1">Elective</option>
                                         </select>
                                     </div>
                                 </div>
@@ -103,9 +116,9 @@
                                     <label for="" class="col-sm-2 col-form-label">Assign To</label>
                                     <div class="col-sm-8">
                                         <select name="user_id" id="" class="form-control col-sm-6 {{$errors->has('user_id') ? 'is-invalid' : ''}}">
-                                            <option>select an option</option>
-                                            @foreach ($users as  $user)
-                                                <option value="{{$user->id}}" {{ $user->id ? 'selected' : ''}}>{{$user->name}}</option>
+                                            <option value="{{$courses->user_id}}"></option>
+                                            @foreach ($users as  $id => $user)
+                                                <option value="{{$user->id}}" {{ $user->id == $courses->user_id ? 'selected' : ''}}>{{$user->name}}</option>
                                             @endforeach
                                         </select>
                                     </div>

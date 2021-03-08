@@ -18,7 +18,8 @@
                         <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
                     </div>
                    @include('includes.alerts')
-                    <div class="card shadow mb-4">
+                  <div class="row">
+                    <div class="card shadow mb-4 col-lg-8 col-xlg-3 col-md-5 mr-5">
                         <div class="card-body">
                             <div class="card-header">
                                  <div class="card-title">
@@ -33,10 +34,19 @@
                             <div class="card-body">
                                     <p class="card-text">{!! $notes->description !!}</p>
                             </div>
-
                         </div>
                     </div>
+                      <div class="col-lg-3 col-xlg-3 col-md-5">
+                          <div class="card shadow mb-4">
+                            <div class="mr-4 ml-4 mb-4">
+                                <label for="formFileLg" class="form-label mt-5 ml-3">Submit Your Assignment</label>
+                                <input class="form-control form-control-lg mt-3 mb-5 " id="formFileLg" type="file">
+                                <button type="button" class="btn btn-primary">Submit</button>
+                            </div>
+                          </div>
+                    </div>
                 </div>
+            </div>
             </div>
         </div>
     </div>

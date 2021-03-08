@@ -11,12 +11,15 @@
 
             <!-- Main Content -->
             <div id="content">
-               @include('includes.lecdashboard')
-                <!-- Page Heading -->
+            @include('includes.lecdashboard')
+            <!-- Page Heading -->
                 <div class="container-fluid">
-                    <div class="d-sm-flex align-items-center justify-content-between mb-4 " >
-                        <h1 class="h3 ml-4 mt-5 mb-0 text-gray-800"> <span class="badge badge-info">{{ Auth::user()->name }}</span> Blackboard <i class="fas fa-chalkboard-teacher ml-3"></i></h1>
-                        <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
+                    <div class="d-sm-flex align-items-center justify-content-between mb-4 ">
+                        <h1 class="h3 ml-4 mt-5 mb-0 text-gray-800"><span
+                                class="badge badge-info">{{ Auth::user()->name }}</span> Blackboard <i
+                                class="fas fa-chalkboard-teacher ml-3"></i></h1>
+                        <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                                class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
                     </div>
                     @include('includes.alerts')
                     <div class="row">
@@ -25,38 +28,51 @@
                                 <div class="card-header py-3">
                                     <h6 class="m-0 font-weight-bold text-primary">Post Your Notes and Assignment</h6>
                                 </div>
-                                    <div class="card-body">
-                                        <form method="POST" action="/lecturer"  enctype="multipart/form-data" >
-                                            @csrf
-                                            <div class="form-group">
-                                                <label for="exampleFormControlInput1" class="font-weight-bold">Post Title:</label>
-                                                <input type="text" class="form-control" id="exampleFormControlInput1"  name="title" placeholder="Introduction Notes">
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="exampleFormControlSelect1" class="font-weight-bold">Students Level:</label>
-                                                <select class="form-control" id="exampleFormControlSelect1" name="level_id">
-                                                    <option>select an option</option>
-                                                    @foreach ($levels as $level_id => $level)
-                                                        <option value="{{$level->id}}">{{$level->name}}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="exampleFormControlSelect2" class="font-weight-bold">Assigned Course:</label>
-                                                <select class="form-control" id="exampleFormControlSelect2" name="course_code">
-                                                    <option>select an option</option>
-                                                    @foreach(auth()->user()->courses as $course)
+                                <div class="card-body">
+                                    <form method="POST" action="/lecturer" enctype="multipart/form-data">
+                                        @csrf
+                                        <div class="form-group">
+                                            <label for="exampleFormControlInput1" class="font-weight-bold">Post
+                                                Title:</label>
+                                            <input type="text" class="form-control" id="exampleFormControlInput1"
+                                                   name="title" placeholder="Introduction Notes">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="exampleFormControlSelect1" class="font-weight-bold">Students
+                                                Level:</label>
+                                            <select class="form-control" id="exampleFormControlSelect1" name="level_id">
+                                                <option>select an option</option>
+                                                @foreach ($levels as $level_id => $level)
+                                                    <option value="{{$level->id}}">{{$level->name}}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="exampleFormControlSelect2" class="font-weight-bold">Assigned
+                                                Course:</label>
+                                            <select class="form-control" id="exampleFormControlSelect2"
+                                                    name="course_code">
+                                                <option>select an option</option>
+                                                @foreach(auth()->user()->courses as $course)
                                                     <option>{{$course->course_code}}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="exampleFormControlTextarea1" class="font-weight-bold">Textarea:</label>
-                                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="8" name="description"></textarea>
-                                            </div>
-                                            <button type="submit" class="btn btn-lg btn-primary mb-2">Post Notes</button>
-                                        </form>
-                                    </div>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="exampleFormControlInput1"
+                                                   class="font-weight-bold">Deadline</label>
+                                            <input type="number" class="form-control" id="exampleFormControlInput1"
+                                                   name="deadline" placeholder="Introduction Notes">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="exampleFormControlTextarea1"
+                                                   class="font-weight-bold">Textarea:</label>
+                                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="8"
+                                                      name="description"></textarea>
+                                        </div>
+                                        <button type="submit" class="btn btn-lg btn-primary mb-2">Post Notes</button>
+                                    </form>
+                                </div>
                             </div>
                         </div>
 
@@ -66,18 +82,19 @@
                                     <h6 class="m-0 font-weight-bold text-primary">Notes / Assignments</h6>
                                 </div>
                                 <div class="card-body">
-                                        <div class="table-responsive">
-                                            <table class="table table-bordered  table-hover  table-striped" id="notes-table" width="100%" cellspacing="0">
-                                                <thead class=" text-primary text-bold">
-                                                <tr>
-                                                    <th>Title</th>
-                                                    <th>Code</th>
-                                                    <th>Created At</th>
-                                                </tr>
-                                                </thead>
-                                                <tbody>
-                                                @foreach($lecturers as $lecturer )
-                                                    @if (auth()->user()->id === $lecturer->user_id && $lecturer->deleted_at === null)
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered  table-hover  table-striped" id="notes-table"
+                                               width="100%" cellspacing="0">
+                                            <thead class=" text-primary text-bold">
+                                            <tr>
+                                                <th>Title</th>
+                                                <th>Code</th>
+                                                <th>Created At</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            @foreach($lecturers as $lecturer )
+                                                @if (auth()->user()->id === $lecturer->user_id && $lecturer->deleted_at === null)
                                                     <tr>
                                                         <td>
                                                             <a href="{{url('lecturer/update/'. $lecturer->id)}}"
@@ -86,6 +103,7 @@
                                                                data-lecturer_id="{{$lecturer->id}}"
                                                                data-course_code="{{$lecturer->course_code}}"
                                                                data-mydescription="{{$lecturer->description}}"
+                                                               data-deadline="{{$lecturer->deadline}}"
                                                                type="button"
                                                                data-toggle="modal"
                                                                data-target="#lecturerModal"
@@ -93,78 +111,145 @@
                                                                 {{$lecturer->title}}
                                                             </a>
                                                         </td>
-                                                        <td><span class="badge badge-info">{{$lecturer->course_code}}</span></td>
-                                                        <td><small><i class="far fa-clock text-danger"></i></small> {{  \Carbon\Carbon::parse($lecturer->created_at)->diffForHumans() }} </td>
+                                                        <td><span
+                                                                class="badge badge-info">{{$lecturer->course_code}}</span>
+                                                        </td>
+                                                        <td><small><i class="far fa-clock text-danger"></i>
+                                                            </small> {{  \Carbon\Carbon::parse($lecturer->created_at)->diffForHumans() }}
+                                                        </td>
                                                         <td>
-                                                            <form action="{{ route('lecturer.deleteNotes',$lecturer->id) }}" method="post" enctype="multipart/form-data">
-                                                                @csrf
-                                                                @method('DELETE')
-                                                                <button type="submit" class="btn btn-danger btn-xs {{Auth()->user()->role_id !== 2 ? 'disabled' : ''}}" ><span><i class="far fa-trash-alt"></i></span></button>
-                                                            </form>
+                                                            <a href="#" data-toggle="modal" data-target="#deleteModal" class="btn btn-danger btn-xs"><span><i class="far fa-trash-alt"></i></span></a>
                                                         </td>
                                                     </tr>
-                                                    @endif
+                                                @endif
 
-                                                    <!--       Modal -->
-                                                    <div class="modal fade" id="lecturerModal" tabindex="-1" aria-labelledby="lecturerModalLabel" aria-hidden="true">
-                                                        <div class="modal-dialog modal-xl">
-                                                            <div class="modal-content">
-                                                                <div class="modal-header bg-gradient-primary">
-                                                                    <h5 class="modal-title text-white" id="lecturerModalLabel">New message</h5>
-                                                                    <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
-                                                                        <span aria-hidden="true">&times;</span>
+                                                <!-- Delete Modal -->
+                                                <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="exampleModalLabel"></h5>
+                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                Are you sure you want to delete the note ?
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                                                <form
+                                                                    action="{{ route('lecturer.deleteNotes',$lecturer->id) }}"
+                                                                    method="post" enctype="multipart/form-data">
+                                                                    @csrf
+                                                                    @method('DELETE')
+                                                                    <button type="submit"
+                                                                            class="btn btn-danger btn-xs {{Auth()->user()->role_id !== 2 ? 'disabled' : ''}}">
+                                                                        <span><i class="far fa-trash-alt"></i></span> Delete
                                                                     </button>
-                                                                </div>
-                                                                <div class="modal-body">
-                                                                    <form action="{{route('lecturer.updateNotes','test')}}" method="post">
-                                                                        @csrf
-                                                                        {{ method_field('PATCH') }}
-                                                                        <input type="hidden" id="lecturer_id" name="lecturer_id">
-                                                                        <div class="form-group">
-                                                                            <div class="row">
-                                                                                <div class="col-lg-9" ><span class="badge badge-info">Level:</span> {{$lecturer->level_id}}00</div><br>
-                                                                                <div class="col-lg-3" ><span class="badge badge-danger mr-3">{{ $lecturer->course_code}}</span></div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="form-group">
-                                                                            <label for="exampleFormControlInput1" class="font-weight-bold">Post Title:</label>
-                                                                            <input type="text" class="form-control" id="title"  name="title" >
-                                                                        </div>
-                                                                        <div class="form-group">
-                                                                            <label for="exampleFormControlSelect1" class="font-weight-bold">Students Level:</label>
-                                                                            <select class="form-control" id="level_id" name="level_id">
-                                                                                <option>select an option</option>
-                                                                                @foreach ($levels as $level_id => $level)
-                                                                                    <option value="{{$level->id}}">{{$level->name}}</option>
-                                                                                @endforeach
-                                                                            </select>
-                                                                        </div>
-                                                                        <div class="form-group">
-                                                                            <label for="exampleFormControlSelect2" class="font-weight-bold">Assigned Course:</label>
-                                                                            <select class="form-control" id="course_code" name="course_code">
-                                                                                <option>select an option</option>
-                                                                                @foreach(auth()->user()->courses as $course)
-                                                                                    <option>{{$course->course_code}}</option>
-                                                                                @endforeach
-                                                                            </select>
-                                                                        </div>
-                                                                        <div class="form-group">
-                                                                            <label for="description" class="font-weight-bold">Textarea:</label>
-                                                                            <textarea class="form-control" id="description" rows="8"  name="description"></textarea>
-                                                                        </div>
-                                                                        <div class="modal-footer">
-                                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                                            <button type="submit"  class="btn btn-primary modalButton">Update Notes</button>
-                                                                        </div>
-                                                                    </form>
-                                                                </div>
+                                                                </form>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                @endforeach
-                                                </tbody>
-                                            </table>
-                                        </div>
+                                                </div>
+                                                <!-- end of Delete Modal -->
+
+                                                <!--       Modal -->
+                                                <div class="modal fade" id="lecturerModal" tabindex="-1"
+                                                     aria-labelledby="lecturerModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog modal-xl">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header bg-gradient-primary">
+                                                                <h5 class="modal-title text-white"
+                                                                    id="lecturerModalLabel">New message</h5>
+                                                                <button type="button" class="close text-white"
+                                                                        data-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <form action="{{route('lecturer.updateNotes','test')}}"
+                                                                      method="post">
+                                                                    @csrf
+                                                                    {{ method_field('PATCH') }}
+                                                                    <input type="hidden" id="lecturer_id"
+                                                                           name="lecturer_id">
+                                                                    <div class="form-group">
+                                                                        <div class="row">
+                                                                            <div class="col-lg-9"><span
+                                                                                    class="badge badge-info">Level:</span> {{$lecturer->level_id}}00
+                                                                            </div>
+                                                                            <br>
+                                                                            <div class="col-lg-3"><span
+                                                                                    class="badge badge-danger mr-3">{{ $lecturer->course_code}}</span>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label for="exampleFormControlInput1"
+                                                                               class="font-weight-bold">Post
+                                                                            Title:</label>
+                                                                        <input type="text" class="form-control"
+                                                                               id="title" name="title">
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label for="exampleFormControlSelect1"
+                                                                               class="font-weight-bold">Students
+                                                                            Level:</label>
+                                                                        <select class="form-control" id="level_id"
+                                                                                name="level_id">
+                                                                            <option>select an option</option>
+                                                                            @foreach ($levels as $level_id => $level)
+                                                                                <option
+                                                                                    value="{{$level->id}}">{{$level->name}}</option>
+                                                                            @endforeach
+                                                                        </select>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label for="exampleFormControlSelect2"
+                                                                               class="font-weight-bold">Assigned
+                                                                            Course:</label>
+                                                                        <select class="form-control" id="course_code"
+                                                                                name="course_code">
+                                                                            <option>select an option</option>
+                                                                            @foreach(auth()->user()->courses as $course)
+                                                                                <option>{{$course->course_code}}</option>
+                                                                            @endforeach
+                                                                        </select>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label for="exampleFormControlInput1"
+                                                                               class="font-weight-bold">Deadline</label>
+                                                                        <input type="number" class="form-control"
+                                                                               id="deadline" name="deadline"
+                                                                               value="{{$lecturer->deadline}}"
+                                                                               placeholder="Introduction Notes">
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label for="description"
+                                                                               class="font-weight-bold">Textarea:</label>
+                                                                        <textarea class="form-control" id="description"
+                                                                                  rows="8"
+                                                                                  name="description">{{$lecturer->description}}</textarea>
+                                                                    </div>
+                                                                    <div class="modal-footer">
+                                                                        <button type="button" class="btn btn-secondary"
+                                                                                data-dismiss="modal">Close
+                                                                        </button>
+                                                                        <button type="submit"
+                                                                                class="btn btn-primary modalButton">
+                                                                            Update Notes
+                                                                        </button>
+                                                                    </div>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            @endforeach
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
                             </div>
                         </div>

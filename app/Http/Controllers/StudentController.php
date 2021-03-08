@@ -8,9 +8,13 @@ use App\Lecturer;
 use App\Level;
 use App\Role;
 use App\User;
+use Carbon\Carbon;
+use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\DB;
+use Ramsey\Uuid\Type\Integer;
 
 class StudentController extends Controller
 {
@@ -37,39 +41,15 @@ class StudentController extends Controller
         return view('admin.students.index', compact('users', 'courses','registered','registerCourses'));
     }
 
-    /**
-     * Stores students courses based on current level in the enrollment table .
-     *
-     * @param Course $course
-     * @param Enrollment $enrollment
-     * @param User $user
-     * @return bool|\Illuminate\Http\RedirectResponse
-     */
-    public function store()
-    {
-        /* creating a course enrollment after instantiating the enrollment class  */
-        $courses = Course::all();
-          foreach($courses  as $course) {
-              if (auth()->user()->level_id === $course->level_id && auth()->user()->semesters === $course->semesters && $course->choices !=1) {
-                      $enrollment = new Enrollment();
-                      $enrollment->course_id = $course->id;
-                      $enrollment->user_id = auth()->user()->id;
-                      $enrollment->level_id = $course->level_id;
-                      $enrollment->semesters = $course->semesters;
-                      $enrollment->enrolled = 1;
-                      $enrollment->year = date("Y-m-d");
-                      $enrollment->save();
-                  }
-              }
-
-        return back();
-
-    }
 
     /**
      *
      */
     public function storeElective(Request $request){
+
+        $request->validate([
+            'course_id' => 'required'
+        ]);
 
         $courses_ids = $request->get('course_id');
         foreach($courses_ids  as $courses_id) {
@@ -146,8 +126,16 @@ class StudentController extends Controller
         /* loading the notes for the students blackboard  */
         $notes= DB::table('lecturers')
             ->join('courses','lecturers.course_code','=','courses.course_code')
-            ->select('lecturers.*','lecturers.title','lecturers.description')->paginate(8);
+            ->select('lecturers.*','lecturers.title','lecturers.description','lecturers.deadline')->paginate(8);
+
         return view('admin.students.blackboard', compact('notes'));
+    }
+
+    public static function nowAvailableLecturer($createadAt, $deadline)
+    {
+        $date = new DateTime($createadAt); // when you create this lecturer
+        $date->modify("+$deadline days"); // we put the deadline 2 days
+        return new DateTime() > $date;
     }
 
     /**

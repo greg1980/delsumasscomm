@@ -10,7 +10,7 @@
             <!-- Main Content -->
             <div id="content">
                 <div class="alert alert-info alert-dismissible fade show" role="alert">
-                    <h3><strong>Note: None departmental core and departmental elective courses would not appear here</strong></h3>
+                    <h3><strong>Note: None departmental core and elective courses would not appear on the table below</strong></h3>
                     <p>Please ensure you carry out your course registration with other department and faculty as normal.</p>
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
@@ -22,7 +22,6 @@
                         <h1 class="h3 ml-4 mt-5 mb-0 text-gray-800">Mass-Comm Department: <span class="badge badge-info">{{Auth::user() ? Auth::user()->level->name : ''}}</span> Level Courses</h1>
                         <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
                     </div>
-                    @include('includes.alerts')
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
                             <h6 class="m-0 font-weight-bold text-primary">Current Semesters Courses Table</h6>
@@ -85,21 +84,6 @@
                         </div>
                     </div>
 
-{{--                    <form action="/enrollment" method="POST" enctype="multipart/form-data" class="">--}}
-{{--                        @csrf--}}
-{{--                        <label for="enrolled" class="">--}}
-{{--                            <input type="hidden" name="courses" value="courses">--}}
-{{--                        </label>--}}
-{{--                        <div class="form-group row">--}}
-{{--                            <label for="" class="col-sm-1 col-form-label">Courses</label>--}}
-{{--                        </div>--}}
-{{--                        @if ($registered)--}}
-{{--                            <button type="submit" class="btn btn-sm btn-primary" {{$registered ? 'disabled' : ''}}>Registered</button>--}}
-{{--                        @else--}}
-{{--                            <button type="submit" class="btn btn-sm btn-primary" >Register</button>--}}
-{{--                        @endif--}}
-{{--                    </form>--}}
-
                         <div class="alert alert-warning alert-dismissible fade show" role="alert">
                             @if (auth()->user()->level_id == 1)
                                 <p> Students are expected to choose at least one Departmental elective course and one Faculty course from the Faculty among those listed below the table:</p>
@@ -109,6 +93,7 @@
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
+                                @include('includes.alerts')
                         </div>
                         <div v-show="true">
                             <form action="/elective" method="POST" enctype="multipart/form-data" class="">
@@ -116,11 +101,10 @@
                                 <div class="form-group row">
                                     <label for="" class="col-sm-1 col-form-label">Courses</label>
                                     <div class="col-sm-10">
-                                        <select name="course_id[]" class="form-select col-sm-8 form-control selectpicker {{$errors->has('level_id') ? 'is-invalid' : ''}}" size="6" multiple aria-label="multiple select example">
-                                            <option selected>select an option</option>
+                                        <select name="course_id[]" class="form-select col-sm-8 form-control selectpicker {{$errors->has('course_id') ? 'is-invalid' : ''}}" size="6" multiple aria-label="multiple select example">
                                             @foreach ($registerCourses as $course)
                                                 @if (Auth::user()->level_id === $course->level_id && Auth::user()->semesters === $course->semesters)
-                                                        <option value="{{$course->id}}">{{$course->course_name}} {{$course->course_code}}
+                                                        <option  value="{{$course->id}}">{{$course->course_name}} {{$course->course_code}}
                                                             <span class="badge {!! $course->choices == 0 ? 'badge-primary' : 'badge-danger' !!}">
                                                  {{$course->choices == 1 ? 'E' :'C' }}
                                             </span></option>
@@ -128,6 +112,9 @@
                                             @endforeach
                                         </select>
                                     </div>
+                                    @error('course_id')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
                                 </div>
                                 @if ($registered)
                                     <button type="submit" class="btn btn-sm btn-primary" {{$registered ? 'disabled' : ''}}>Registered</button>

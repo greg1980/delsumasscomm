@@ -23,8 +23,9 @@ class Lecturer extends Model
         'title',
         'description',
         'level_id',
-        'course_code'
-
+        'course_code',
+        'deadline',
+        'created_at'
         ];
 
     public function course(){
@@ -38,4 +39,11 @@ class Lecturer extends Model
     public function user(){
         return $this->belongsTo(User::class);
     }
+
+    public function getTimeRemainingAttribute($deadline) {
+        $time_left = $deadline - now();
+        return $time_left;
+
+     }
+
 }

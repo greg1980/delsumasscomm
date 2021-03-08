@@ -12,7 +12,7 @@
                 <!-- Page Heading -->
                 <div class="container-fluid col-lg-12">
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800"> create <small>Course</small> </h1>
+                        <h1 class="h3 mb-0 text-gray-800"> Create <small>course</small> </h1>
                     </div>
                     @include('includes.alerts')
                     @if ($errors->any())
