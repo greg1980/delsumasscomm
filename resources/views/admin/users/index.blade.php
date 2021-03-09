@@ -68,14 +68,40 @@
                                             <td>{{ $user->email }}</td>
                                             <td> <small><i class="far fa-clock text-danger"></i></small> {{ $user->created_at->diffForHumans() }}</td>
                                             <td>
-                                                <form action="{{ route('destroy',$user->id) }}" method="post" enctype="multipart/form-data">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger {{Auth()->user()->role_id !== 2 ? 'disabled' : ''}}" ><span><i class="far fa-trash-alt"></i></span></button>
-                                                </form>
+                                                <a href="#" data-toggle="modal" data-target="#deleteModal" class="btn btn-danger btn-xs"><span><i class="far fa-trash-alt"></i></span></a>
                                             </td>
                                         </tr>
                                     @endforeach
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel"></h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    Are you sure you want to delete the user ?
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                                    <form
+                                                        action="{{ route('users.deleteUser',$user->id) }}"
+                                                        method="post" enctype="multipart/form-data">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit"
+                                                                class="btn btn-danger btn-xs {{Auth()->user()->role_id == 1 ? 'disabled' : ''}}">
+                                                            <span><i class="far fa-trash-alt"></i></span> Delete
+                                                        </button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- End of Modal -->
                                     </tbody>
                                 </table>
                             </div>

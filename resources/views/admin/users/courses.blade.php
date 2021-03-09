@@ -76,11 +76,14 @@
                         </div>
                         <div class="card-body">
                             <div class="alert alert-warning alert-dismissible ">
-
+                                <h5><strong>Note: List of None Department Core Courses and all Elective Courses </strong></h5>
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
                             </div>
                             @foreach ($courses as $course)
                                 @if ($course->user_id == 0 || ($course->choices == 1))
-                                   <br> {{ $course->course_name}} {{$course->course_code}}
+                                   <br><a href="{{route('admin.users.editcourses', $course->id)}}">{{$course->course_name}}</a> {{$course->course_code}}
                                             <span class="badge {{$course->choices == 0 ? 'badge-primary' : 'badge-danger'}}">
                                                  {{$course->choices == 1 ? 'E' :'C' }}
                                             </span>

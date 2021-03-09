@@ -40,7 +40,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/admin/users', 'AdminUsersController@index')->name('admin.users');
     Route::post('/store','AdminUsersController@store')->name('store');
     Route::get('admin/users/create','AdminUsersController@create')->name('users.create');
-    Route::delete('admin/users/{user}','AdminUsersController@destroy')->name('destroy');
+    Route::delete('admin/users/{user}','AdminUsersController@deleteUser')->name('users.deleteUser');
     Route::get('/admin/users/{profile}', 'AdminUsersController@show')->name('admin.users.profile');
     Route::post('/upload','AdminUsersController@upload')->name('upload');
     Route::get('/admin/users/{user}/editprofile','AdminUsersController@edit')->name('admin.users.editprofile');

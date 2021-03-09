@@ -39,7 +39,7 @@
                       <div class="col-lg-3 col-xlg-3 col-md-5">
                           <div class="card shadow mb-4">
                             <div class="mr-4 ml-4 mb-4">
-                                <label for="formFileLg" class="form-label mt-5 ml-3">Submit Your Assignment</label>
+                                <label for="formFileLg" class="form-label mt-5 ml-3"><h4>Submit Your Assignment</h4></label>
                                 <input class="form-control form-control-lg mt-3 mb-5 " id="formFileLg" type="file">
                                 <button type="button" class="btn btn-primary">Submit</button>
                             </div>

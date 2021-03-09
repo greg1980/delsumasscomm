@@ -170,7 +170,7 @@ class AdminUsersController extends Controller
      * @param  User $user
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroy(User $user)
+    public function deleteUser(User $user)
     {
         if (auth()->id() === $user->id){
             abort(403);

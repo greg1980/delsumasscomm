@@ -85,10 +85,9 @@
                     </div>
 
                         <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                            @if (auth()->user()->level_id == 1)
+                            @if (auth()->user()->level_id)
+                                <h3>Note: To register hold down Ctrl on your keyboard and click on the course you intend to register </h3>
                                 <p> Students are expected to choose at least one Departmental elective course and one Faculty course from the Faculty among those listed below the table:</p>
-                            @elseif (auth()->user()->level_id == 2)
-                                <p>Students are expected to choose at least one Departmental elective course and one Faculty course among those listed below the table</p>
                             @endif
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
@@ -106,7 +105,7 @@
                                                 @if (Auth::user()->level_id === $course->level_id && Auth::user()->semesters === $course->semesters)
                                                         <option  value="{{$course->id}}">{{$course->course_name}} {{$course->course_code}}
                                                             <span class="badge {!! $course->choices == 0 ? 'badge-primary' : 'badge-danger' !!}">
-                                                 {{$course->choices == 1 ? 'E' :'C' }}
+                                                  {{$course->choices == 1 ? 'E' :'C' }}
                                             </span></option>
                                                 @endif
                                             @endforeach

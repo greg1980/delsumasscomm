@@ -116,6 +116,7 @@
                                     <label for="" class="col-sm-2 col-form-label">Assign To</label>
                                     <div class="col-sm-8">
                                         <select name="user_id" id="" class="form-control col-sm-6 {{$errors->has('user_id') ? 'is-invalid' : ''}}">
+                                            <option value="0">Unknown</option>
                                             <option value="{{$courses->user_id}}"></option>
                                             @foreach ($users as  $id => $user)
                                                 <option value="{{$user->id}}" {{ $user->id == $courses->user_id ? 'selected' : ''}}>{{$user->name}}</option>
