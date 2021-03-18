@@ -1,0 +1,35 @@
+version: '3.7'
+services:
+  web:
+    image: nginx
+    ports:
+      - "80:80"
+    volumes:
+      - .docker/web/default.conf:/etc/nginx/conf.d/default.conf:ro
+      - ./public:/usr/share/nginx/html
+  php:
+
+    build:
+      context: .docker/php
+    volumes:
+      - .:/var/www/html
+      - ./node_modules:/var/www/html/node_modules:ro
+      - ./vendor:/var/www/html/vendor:ro
+  smtp:
+    image: djfarrelly/maildev
+    ports:
+      - 8080:80
+      - 1025:25
+  database:
+    image: mysql:5.7
+    command: mysqld --sql_mode=""
+    ports:
+      - 3306:3306
+    volumes:
+      - database:/var/lib/mysql
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+volumes:
+  database:
+
+

@@ -33,7 +33,8 @@
                                     <div class="card-header" id="#headingOne">
                                         <h2 class="mb-0">
                                             <button class="btn  btn-link btn-block text-left text-black-50" type="button" data-toggle="collapse" data-target="#collapseOne{{ $course->id }}" aria-expanded="true" aria-controls="collapseOne">
-                                                <b>{{ $course->course_name }} </b> <b><span class="badge badge-danger ml-5"> {{ $course->course_code }}</span></b>
+                                                <b>{{ $course->course_name }} </b> <b><span class="badge badge-danger ml-5"> {{ $course->course_code }} </span>
+                                                </b> <b><span class="badge ml-5 {{$course->choices == 0 ? 'badge-primary' : 'badge-danger'}}">{{$course->choices == 1 ? 'E' :'C'}}</span></b>
                                             </button>
                                         </h2>
                                     </div>
