@@ -57,7 +57,7 @@
                                                 <td><span class="badge badge-primary">{{ $course->course_code ? $course->course_code  : 'None'}}</span></td>
                                                 <td><span class="badge badge-danger">{{$course->credit_unit}}</span> Unit</td>
                                                 <td>{{$user->name}}</td>
-                                                <td><span class="badge badge-danger">{{$course->level->name}}</span>  Level</td>
+                                                <td><span class="badge badge-danger">{{$course->level_id}}00</span>  Level</td>
                                                 <th scope="row">{{$course->choices == 1 ? 'Elective' :'Core' }}</th>
                                                 <td><span><i class=""></i>{{ $course->semesters === 0 ? 'First' : 'second' }} </span></td>
                                             </tr>

@@ -62,7 +62,42 @@ class LecturerController extends Controller
                  'courses.course_code','enrollments.course_id','enrollments.id','enrollments.enrolled'
                  ,'users.name','courses.course_name','courses.user_id')->get();
 
-        return view('admin.lecturer.results', compact('results'));
+        /* returning the maximum scores obtained in the exams per user  */
+        $maxCounts = DB::table('enrollments')
+            ->join('courses','enrollments.course_id','=','courses.id')
+            ->select(['courses.user_id', DB::raw('MAX(grades) as enrollment_count')])->where('grades','>', 0 )
+            ->groupBy('enrollments.id')->get();
+
+        /* returning all the results per user which will be then manipulated to get the average score of the student  */
+        $avgCounts = DB::table('enrollments')
+            ->join('courses','enrollments.course_id','=','courses.id')
+            ->join('users','enrollments.user_id','=','users.id')
+            ->join('levels','enrollments.level_id','=','levels.id')
+            ->select('enrollments.*','enrollments.course_id','enrollments.id','enrollments.grades','users.id','courses.course_name','courses.user_id')
+            ->get();
+        //dd($avgCounts);
+
+        /* returning the number of subjects passed  */
+        $passCounts = DB::table('enrollments')
+            ->join('courses','enrollments.course_id','=','courses.id')
+            ->select(['courses.id','grades','courses.user_id', DB::raw('count(courses.id ) AS enrollment_grades')])
+            ->where('grades', '>=', 47)
+            ->groupBy('user_id','grades','id','courses.user_id')->get();
+
+        /* returning the number of subjects failed  */
+        $failCounts = DB::table('enrollments')
+            ->join('courses','enrollments.course_id','=','courses.id')
+            ->select(['courses.id','grades','courses.user_id', DB::raw('count(courses.id ) AS enrollment_grades')])
+            ->where('grades', '<=', 46)
+            ->groupBy('user_id','grades','id')->orderBy('id', 'desc')->get();
+
+        /* returning the number of subjects enrolled  */
+        $counts = DB::table('enrollments')
+            ->join('courses','enrollments.course_id','=','courses.id')
+            ->select(['courses.id','grades','courses.user_id', DB::raw('count(courses.id) As enrollment_count')])
+            ->groupBy('user_id','courses.id','grades','courses.user_id')->orderBy('courses.id','desc')->get();
+
+        return view('admin.lecturer.results', compact('results','maxCounts','avgCounts','passCounts','failCounts','counts'));
     }
 
 /**

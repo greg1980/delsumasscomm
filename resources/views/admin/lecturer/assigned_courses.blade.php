@@ -10,7 +10,7 @@
 
             <!-- Main Content -->
             <div id="content">
-            @include('includes.lecdashboard')
+{{--            @include('includes.lecdashboard')--}}
                 <!-- Page Heading -->
                 <div class="container-fluid">
                     <div class="d-sm-flex align-items-center justify-content-between mb-5 " >
