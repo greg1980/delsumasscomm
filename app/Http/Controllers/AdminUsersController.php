@@ -6,6 +6,7 @@ use App\Course;
 use App\Enrollment;
 use App\Level;
 use App\Mail\CourseCreated;
+use App\Notifications\NotesCreated;
 use App\User;
 use App\Role;
 use App\Photo;
@@ -13,6 +14,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Session;
 
 class AdminUsersController extends Controller
@@ -247,6 +249,7 @@ class AdminUsersController extends Controller
             foreach ($user->courses as $course){
                 if($course->email_sent !== 1){
                 Mail::to($user->email)->send(new CourseCreated($course, $user));
+                //Notification::send($user, new NotesCreated($course, $user));
                 $course->email_sent = 1;
                 $course->save();
                 }

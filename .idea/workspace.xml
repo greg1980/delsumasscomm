@@ -6,11 +6,13 @@
   <component name="ChangeListManager">
     <list default="true" id="c612f4c5-a3cd-4083-913e-5d2701704c70" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/LecturerController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/LecturerController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/lecturer/assigned_courses.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/lecturer/assigned_courses.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/lecturer/blackboard.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/lecturer/blackboard.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/users/courses.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/users/courses.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/includes/lecdashboard.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/includes/lecdashboard.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AdminUsersController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/AdminUsersController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/StudentController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/StudentController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/app.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/students/note.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/students/note.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -156,6 +158,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
     <property name="ts.external.directory.path" value="C:\Program Files\JetBrains\PhpStorm 2019.1.3\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
@@ -175,7 +178,7 @@
       <recent name="C:\Users\greg.emegwali\Desktop\ticketsystem\public\css" />
     </key>
   </component>
-  <component name="RunManager" selected="Docker.docker-compose.yml.web: Compose Deployment">
+  <component name="RunManager" selected="Docker.php/Dockerfile">
     <configuration name="phpunit.xml" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
       <TestRunner scope="XML" />
       <method v="2" />
@@ -193,8 +196,17 @@
       </deployment>
       <method v="2" />
     </configuration>
+    <configuration name="php/Dockerfile" type="docker-deploy" factoryName="dockerfile" temporary="true" server-name="Docker">
+      <deployment type="dockerfile">
+        <settings>
+          <option name="sourceFilePath" value=".docker/php/Dockerfile" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Docker.php/Dockerfile" />
         <item itemvalue="Docker.docker-compose.yml.web: Compose Deployment" />
       </list>
     </recent_temporary>
@@ -328,7 +340,24 @@
       <workItem from="1614956847149" duration="27030000" />
       <workItem from="1615295488334" duration="15251000" />
       <workItem from="1615549730212" duration="5963000" />
-      <workItem from="1616072089932" duration="57295000" />
+      <workItem from="1616072089932" duration="66361000" />
+      <workItem from="1617094901709" duration="2035000" />
+      <workItem from="1617096962378" duration="17186000" />
+      <workItem from="1618392196478" duration="609000" />
+      <workItem from="1618578671182" duration="5426000" />
+      <workItem from="1619011082244" duration="2404000" />
+      <workItem from="1619098274445" duration="36000" />
+      <workItem from="1620379778480" duration="8220000" />
+      <workItem from="1620745985459" duration="75000" />
+      <workItem from="1620811806782" duration="2631000" />
+      <workItem from="1621240456821" duration="1812000" />
+      <workItem from="1622631625891" duration="2140000" />
+      <workItem from="1622703980348" duration="21000" />
+      <workItem from="1625006381889" duration="68000" />
+      <workItem from="1625006467836" duration="773000" />
+      <workItem from="1626687708146" duration="757000" />
+      <workItem from="1626699608150" duration="2084000" />
+      <workItem from="1626876279394" duration="6091000" />
     </task>
     <servers />
   </component>
@@ -370,5 +399,9 @@
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>

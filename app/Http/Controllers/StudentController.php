@@ -116,7 +116,7 @@ class StudentController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Loads the assignments for the students.
      *
      * @param
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Http\Response|\Illuminate\View\View
@@ -200,5 +200,21 @@ class StudentController extends Controller
     public function myproject()
     {
         return view('admin.students.project');
+    }
+
+    /**
+     * upload completed assignment to the lectures and also sends a copy as email
+     */
+    Public function uploadAssignment(){
+
+
+
+    }
+
+    /**
+     *
+     */
+    public function uploadProject(){
+
     }
 }

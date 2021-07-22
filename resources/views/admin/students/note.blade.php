@@ -38,11 +38,17 @@
                     </div>
                       <div class="col-lg-3 col-xlg-3 col-md-5">
                           <div class="card shadow mb-4">
-                            <div class="mr-4 ml-4 mb-4">
-                                <label for="formFileLg" class="form-label mt-5 ml-3"><h4>Submit Your Assignment</h4></label>
-                                <input class="form-control form-control-lg mt-3 mb-5 " id="formFileLg" type="file">
-                                <button type="button" class="btn btn-primary">Submit</button>
-                            </div>
+                            <form action="" method="Post">
+                                @csrf
+                                <div class="mr-4 ml-4 mb-4 mt-4">
+                                    <label for="formFileLg" class="form-label mt-2 ml-3 card-title"><h4>Submit Your Assignment</h4></label>
+                                    <div class="custom-file">
+                                        <input type="file" name="file" class="custom-file-input" id="chooseFile">
+                                        <label class="custom-file-label" for="chooseFile">Select file</label>
+                                        <button type="submit" class="btn btn-primary btn-block mt-4">Submit</button>
+                                    </div>
+                                </div>
+                            </form>
                           </div>
                     </div>
                 </div>
