@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Assignment;
 use App\Course;
 use App\Enrollment;
 use App\Lecturer;
@@ -14,6 +15,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 use Ramsey\Uuid\Type\Integer;
 
 class StudentController extends Controller
@@ -204,10 +206,35 @@ class StudentController extends Controller
 
     /**
      * upload completed assignment to the lectures and also sends a copy as email
+     * @param $user
+     * @param $request
+     * @param $id
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\View\View
      */
-    Public function uploadAssignment(){
+    Public function uploadAssignment($user, Request $request, $id){
 
 
+        if (auth()->user()->id !== $user()->user_id ){
+           abort(403);
+        }
+
+        $message = $request->validate([
+                'file_name'=>'required'
+            ]);
+
+        $lecturer = Lecturer::find($id);
+        $assignment = new Assignment();
+        $assignment->lecturer_id = $lecturer->id;
+        $assignment->user_id = auth()->user()->id;
+        $assignment->level_id = $lecturer->level_id;
+        $assignment->course_code = $lecturer->course_code;
+        print_r($assignment);
+
+        dd($assignment);
+
+        Session::flash('message','Your assignment '.$message['course_code'].' was  successful created');
+
+        return back();
 
     }
 

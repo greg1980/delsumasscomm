@@ -32,7 +32,7 @@
             </div>
             <img src="images/studio.jpg" class="d-block w-100 " alt="...">
             <div class="carousel-caption d-none d-md-block">
-                <h1 style="font-family: 'El Messiri', sans-serif;" class="text-white">DELTA STATE UNIVERISTY ABRAKA</h1>
+                <h1 style="font-family: 'El Messiri', sans-serif;" class="text-white">DELTA STATE UNIVERSITY ABRAKA</h1>
             </div>
         </div>
         <div class="carousel-item ">
@@ -60,7 +60,7 @@
 </div>
 <!--- End of Slider--->
 <div class="container-fluid delsu text-center ">
-        <h5 class="pt-3 text-white " style="font-family: 'El Messiri', sans-serif;">Knowlegde Character Service</h5>
+        <h5 class="pt-3 text-white " style="font-family: 'El Messiri', sans-serif;">Knowledge Character Service</h5>
 </div>
 <!--- Department --->
 <div class="row justify-content-md-center pt-5 ">
@@ -101,7 +101,7 @@
                 <p class="lead">Join our department association to know more on what you stand to gain</p>
             </div>
             <div class="col mt-lg-5">
-                <button type="button" class=" btn btn-info  ">Join Amascos <i class="fas fa-chevron-circle-right"></i></button>
+                <a type="button" href="{{ route('amasscos') }}" class=" btn btn-info  ">Join Amascos <i class="fas fa-chevron-circle-right"></i></a>
             </div>
         </div>
     </div>
@@ -122,7 +122,7 @@
             <h2 class="text-muted"> Want to know more about the department?</h2>
             <p class="lead text-justify">Delta state university was established in 1989 and had her first head of department who is now the current HOD.</p>
             <p class="lead text-justify">Dr Ogwezi is a communication expert and has expertise in the area of community development.</p>
-            <div class="text-center"> <button type="button" class=" btn btn-info ">Find out more</button></div>
+            <div class="text-center"><a class=" btn btn-info " href="{{route('about')}}" type="button" >Find out more</a> </div>
         </div>
     </div>
 </div>
@@ -138,7 +138,7 @@
                     <h2 class="card-title text-success mb-5 mt-5">RESEARCH</h2>
                     <h1 class="card-text text-center"style="font-family: 'El Messiri', sans-serif;">Our researchers are developing solutions to some pressing issues facing the world</h1>
                     <br>
-                    <br><button class="btn btn-success">Read More <i class="fas fa-chevron-right"></i></button>
+                    <br><a href="{{route('research')}}" class="btn btn-success">Read More <i class="fas fa-chevron-right"></i></a>
                 </div>
             </div>
             <div class="card fadeout">
@@ -147,7 +147,7 @@
                     <h2 class="card-title text-info mb-5 mt-5">JOURNALISM</h2>
                     <h1 class="card-text text-center" style="font-family: 'El Messiri', sans-serif;">We offer a wide range of training delivered by our experienced media veterans</h1>
                     <br>
-                    <br><button class="btn btn-info">Read More <i class="fas fa-chevron-right"></i></button>
+                    <br><a href="#" class="btn btn-info">Read More <i class="fas fa-chevron-right"></i></a>
                 </div>
             </div>
             <div class="card fadeout" >
@@ -156,7 +156,7 @@
                     <h2 class="card-title text-warning mb-5 mt-5">EVENTS</h2>
                     <h1 class="card-text text-center" style="font-family: 'El Messiri', sans-serif;">News and events within the department of mass communication</h1>
                     <br>
-                    <br> <button class="btn btn-warning text-white">Read More <i class="fas fa-chevron-right"></i></button>
+                    <br> <a href="{{route('events')}}" class="btn btn-warning text-white">Read More <i class="fas fa-chevron-right"></i></a>
                 </div>
             </div>
         </div>
@@ -190,7 +190,7 @@
                 <p class="lead text-muted">The simplest way to keep up-to-date is to register your details below and we will send you our email communications.</p>
             </div>
             <div class="col-lg-4 mt-lg-5" style="margin-left: 90px;">
-                <button type="button" class=" btn btn-info ml-auto mt-2 btn-lg">SUBSCRIBE <i class="fas fa-chevron-circle-right"></i></button>
+                <a href="{{route('news')}}" type="button" class=" btn btn-info ml-auto mt-2 btn-lg">SUBSCRIBE <i class="fas fa-chevron-circle-right"></i></a>
             </div>
         </div>
     </div>

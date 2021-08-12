@@ -34,7 +34,7 @@ class AlumniController extends Controller
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function contatc()
+    public function contact()
     {
         return view('/contact');
     }

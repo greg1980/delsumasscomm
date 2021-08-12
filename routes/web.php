@@ -24,12 +24,12 @@ Route::get('/', function () {
 Route::get('/Research', 'ResearchController@index')->name('research');
 Route::get('/About', 'ResearchController@about')->name('about');
 Route::get('/Alumni', 'AlumniController@index')->name('alumni');
-Route::get('/Contact', 'AlumniController@index')->name('contact');
-Route::get('/undergraduate', 'undergraduateController@index')->name('undergraduate');
-Route::get('/postgraduate', 'postgraduateController@index')->name('postgraduate');
-Route::get('/amasscos', 'undergraduateController@amasscos')->name('amasscos');
-Route::get('/events', 'alumniController@index')->name('events');
-Route::get('/news', 'alumniController@news')->name('news');
+Route::get('/Contact', 'AlumniController@contact')->name('contact');
+Route::get('/Undergraduate', 'UndergraduateController@index')->name('undergraduate');
+Route::get('/Postgraduate', 'PostgraduateController@index')->name('postgraduate');
+Route::get('/Amasscos', 'UndergraduateController@amasscos')->name('amasscos');
+Route::get('/Events', 'AlumniController@index')->name('events');
+Route::get('/News', 'AlumniController@news')->name('news');
 
 /**
  * Authenticated pages
@@ -62,6 +62,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/students/results','StudentController@myresults')->name('results');
     Route::get('/students/project','StudentController@myproject')->name('project');
     Route::get('/admin/students/{note}','StudentController@show')->name('admin.students.note');
+    Route::post('/assignment','StudentController@uploadAssignment')->name('assignment');
     /**
      *  lecturers controller
      */

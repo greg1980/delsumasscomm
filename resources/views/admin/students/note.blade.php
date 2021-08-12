@@ -38,15 +38,15 @@
                     </div>
                       <div class="col-lg-3 col-xlg-3 col-md-5">
                           <div class="card shadow mb-4">
-                            <form action="" method="Post">
+                            <form action="/upload" method="Post" enctype="multipart/form-data">
                                 @csrf
                                 <div class="mr-4 ml-4 mb-4 mt-4">
                                     <label for="formFileLg" class="form-label mt-2 ml-3 card-title"><h4>Submit Your Assignment</h4></label>
-                                    <div class="custom-file">
-                                        <input type="file" name="file" class="custom-file-input" id="chooseFile">
-                                        <label class="custom-file-label" for="chooseFile">Select file</label>
-                                        <button type="submit" class="btn btn-primary btn-block mt-4">Submit</button>
+                                    <div>
+                                        <label for="formFileLg" class="form-label">Choose the correct file to upload</label>
+                                        <input class="form-control form-control-lg" id="formFileLg" name="pdf" type="file">
                                     </div>
+                                        <button type="submit" class="btn btn-primary btn-block mt-4">Submit</button>
                                 </div>
                             </form>
                           </div>

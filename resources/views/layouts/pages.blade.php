@@ -28,16 +28,16 @@
 
     <div class="collapse navbar-collapse mr-5 " id="navbarSupportedContent">
         <ul class="navbar-nav ml-auto ">
-            <li class="nav-item {{Request::path() === '/' ? 'active' : ''}}">
-                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            <li class=" {{Request::path() === '/' ? 'nav-item active' : ''}}">
+                <a class="nav-link" href="/">Home </a>
             </li>
-            <li class="nav-item {{Request::path() === '/about' ? 'active' : ''}}">
+            <li class=" {{Request::path() === '/about' ? 'nav-item active' : ''}}">
                 <a class="nav-link"  href="{{ route('about') }}">About Us</a>
             </li>
-            <li class="nav-item {{Request::path() === '/research' ? 'active' : ''}}">
+            <li class=" {{Request::path() === '/research' ? 'nav-item active' : ''}}">
                 <a class="nav-link" href="{{ route('research') }}">Research</a>
             </li>
-            <li class="nav-item dropdown {{Request::path() === '/students' ? 'active' : ''}}">
+            <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Students
                 </a>
@@ -48,7 +48,7 @@
                     <a class="dropdown-item" href="{{ route('amasscos') }}">Amasscos</a>
                 </div>
             </li>
-            <li class="nav-item dropdown {{ Request::path() === '/alumni' ? 'active' : ''}}">
+            <li class="nav-item dropdown">
                 <a href="{{ route('alumni') }}" class="nav-link dropdown-toggle" href="" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Alumni
                 </a>
