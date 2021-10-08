@@ -8,6 +8,7 @@ use App\Lecturer;
 use App\Level;
 use App\Mail\ResultModified;
 use App\User;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
@@ -116,8 +117,8 @@ class LecturerController extends Controller
     /**
      * Store a newly created students notes/assignment.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\RedirectResponse
+     * @param Request $request
+     * @return RedirectResponse
      */
     public function store(Request $request)
     {
@@ -162,11 +163,10 @@ class LecturerController extends Controller
     /**
      * Update the students results storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\RedirectResponse
+     * @param Request $request
+     * @return RedirectResponse
      */
-    public function update(Request $request)
+    public function update(Request $request): RedirectResponse
     {
         if (auth()->user()->role_id !== 2){
             abort(403);
@@ -188,9 +188,9 @@ class LecturerController extends Controller
     /**
      * Update the students results storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param Request $request
      * @param  int  $id
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
     public function updateNotes(Request $request){
         if (auth()->user()->role_id !== 2){
@@ -207,7 +207,7 @@ class LecturerController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
     public function deleteNotes(Lecturer $lecturer)
     {

@@ -34,7 +34,7 @@ Route::get('/News', 'AlumniController@news')->name('news');
 /**
  * Authenticated pages
  */
-Route::group(['middleware' => 'auth'], function () {
+    Route::group(['middleware' => 'auth'], function () {
 
     //Route::get('/admin', 'AdminController@index')->name('admin.index');
     Route::get('/admin/users', 'AdminUsersController@index')->name('admin.users');
@@ -50,9 +50,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('users/course','AdminUsersController@course')->name('users.course');
     Route::post('/storeCourse','AdminUsersController@storeCourse')->name('storeCourse');
     Route::get('/admin/users/{course}/editcourses','AdminUsersController@editcourses')->name('admin.users.editcourses');
-    /**
-     *  Students controller
-     */
+
+/**
+ *  Students controller
+ */
     Route::GET('enrollment/create','StudentController@create')->name('enrollment.create');
     Route::get('/admin/students/', 'StudentController@index')->name('admin.students');
     Route::PATCH('/course/{course}','StudentController@update')->name('register.update');
@@ -62,10 +63,11 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/students/results','StudentController@myresults')->name('results');
     Route::get('/students/project','StudentController@myproject')->name('project');
     Route::get('/admin/students/{note}','StudentController@show')->name('admin.students.note');
-    Route::post('/assignment','StudentController@uploadAssignment')->name('assignment');
-    /**
-     *  lecturers controller
-     */
+    Route::post('/uploadAssignment','StudentController@uploadAssignment')->name('assignment');
+
+/**
+ *  lecturers controller
+ */
     Route::get('/lecturer/blackboard', 'LecturerController@blackboard')->name('blackboard.index  ');
     Route::POST('/lecturer', 'LecturerController@store')->name(' lecturer.store');
     Route::get('/lecturer/results', 'LecturerController@results')->name('admin.lecturer.results');
@@ -78,9 +80,9 @@ Route::group(['middleware' => 'auth'], function () {
 
 });
 
-Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {
-    \UniSharp\LaravelFilemanager\Lfm::routes();
-});
+    Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {
+        \UniSharp\LaravelFilemanager\Lfm::routes();
+    });
 
-Auth::routes(['verify'=> true]);
-Route::get('/home', 'HomeController@index')->name('home');
+    Auth::routes(['verify'=> true]);
+    Route::get('/home', 'HomeController@index')->name('home');

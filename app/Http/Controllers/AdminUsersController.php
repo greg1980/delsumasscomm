@@ -51,11 +51,10 @@ class AdminUsersController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
      * @param $user
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(Request $request)
+    public function store(): \Illuminate\Http\RedirectResponse
     {
         if (auth()->user()->role_id !== 1){
             abort(403);
@@ -84,7 +83,7 @@ class AdminUsersController extends Controller
         }
 
         if($request->hasFile('image')){
-            $filename =  $request->image->getClientOriginalName();
+            $filename = time(). '.' .$request->image->getClientOriginalName();
             $request->image->storeAs('images', $filename, 'public');
             auth()->user()->update(['avatar'=> $filename]);
         }
@@ -96,10 +95,9 @@ class AdminUsersController extends Controller
      * Display the specified resource.
      *
      * @param int $id
-     * @param User $user
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function show($id, User $user)
+    public function show(int $id)
     {
         $user = User::findOrFail($id);
         $name = $user->name;

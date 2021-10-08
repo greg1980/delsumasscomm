@@ -228,6 +228,7 @@ class StudentController extends Controller
         $assignment->user_id = auth()->user()->id;
         $assignment->level_id = $lecturer->level_id;
         $assignment->course_code = $lecturer->course_code;
+
         print_r($assignment);
 
         dd($assignment);

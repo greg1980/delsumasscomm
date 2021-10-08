@@ -36,9 +36,9 @@
                             </div>
                         </div>
                     </div>
-                      <div class="col-lg-3 col-xlg-3 col-md-5">
+                      <div class="col-lg-3 col-xlg-3 col-md-5 col-md-3">
                           <div class="card shadow mb-4">
-                            <form action="/upload" method="Post" enctype="multipart/form-data">
+                            <form action="/uploadAssignment" method="Post" enctype="multipart/form-data">
                                 @csrf
                                 <div class="mr-4 ml-4 mb-4 mt-4">
                                     <label for="formFileLg" class="form-label mt-2 ml-3 card-title"><h4>Submit Your Assignment</h4></label>
