@@ -28,14 +28,15 @@
                                     <h5 class="card-title"><b class="text-black-50">{{$note->title}}</b> </h5>
                                     <p><small>Created {{\Carbon\Carbon::parse($note->created_at)->diffForHumans() }} <i class="far fa-clock text-danger"></i></small></p>
                                     <h6 class="card-title">{{$note->course_code}}</h6>
-                                    @if (!\App\Http\Controllers\StudentController::nowAvailableLecturer($note->created_at, $note->deadline))
+                                    @if (!\App\Http\Controllers\StudentController::deadLineDate($note->created_at, $note->dead_line))
                                         <a type="button" href="{{ route('admin.students.note', $note->id)}}" class="btn btn-primary">View</a>
                                     @else
                                         <button type="button" class="btn btn-primary" disabled>View</button>
                                     @endif
                                 </div>
-                                @if (!\App\Http\Controllers\StudentController::nowAvailableLecturer($note->created_at, $note->deadline))
-                                    <div class="card-body mb text-success">Expires in {{$note->deadline > 1 ? "$note->deadline days" : "$note->deadline day"}}</div>
+                                @if (!\App\Http\Controllers\StudentController::deadLineDate($note->created_at, $note->dead_line))
+                                    <div class="card-body mb text-success">Expires in {{\App\Http\Controllers\StudentController::numberOfDays($note->created_at, $note->dead_line) > 1 ? \App\Http\Controllers\StudentController::numberOfDays($note->created_at, $note->dead_line).' days' : \App\Http\Controllers\StudentController::numberOfDays($note->created_at, $note->dead_line).' day'}}
+                                    </div>
                                 @else
                                     <div class="card-body mb text-warning">
                                         Assignment Expired <small><i class="far fa-clock text-danger"></i></small>

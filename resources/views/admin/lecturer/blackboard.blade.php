@@ -11,7 +11,7 @@
 
             <!-- Main Content -->
             <div id="content">
-            <!-- Page Heading -->
+                <!-- Page Heading -->
                 <div class="container-fluid">
                     <div class="d-sm-flex align-items-center justify-content-between mb-4 ">
                         <h1 class="h3 ml-4 mt-5 mb-0 text-gray-800"><span
@@ -60,8 +60,8 @@
                                         <div class="form-group">
                                             <label for="exampleFormControlInput1"
                                                    class="font-weight-bold">Deadline</label>
-                                            <input type="number" class="form-control" id="exampleFormControlInput1"
-                                                   name="deadline" placeholder="Introduction Notes">
+                                            <input type="date" class="form-control" id="exampleFormControlInput1"
+                                                   name="dead_line" placeholder="Introduction Notes">
                                         </div>
                                         <div class="form-group">
                                             <label for="exampleFormControlTextarea1"
@@ -101,8 +101,8 @@
                                                                data-title="{{$lecturer->title}}"
                                                                data-lecturer_id="{{$lecturer->id}}"
                                                                data-course_code="{{$lecturer->course_code}}"
-                                                               data-mydescription="{{$lecturer->description}}"
-                                                               data-deadline="{{$lecturer->deadline}}"
+                                                               data-description="{{$lecturer->description}}"
+                                                               data-dead_line="{{$lecturer->dead_line}}"
                                                                type="button"
                                                                data-toggle="modal"
                                                                data-target="#lecturerModal"
@@ -117,18 +117,22 @@
                                                             </small> {{  \Carbon\Carbon::parse($lecturer->created_at)->diffForHumans() }}
                                                         </td>
                                                         <td>
-                                                            <a href="#" data-toggle="modal" data-target="#deleteModal" class="btn btn-danger btn-xs"><span><i class="far fa-trash-alt"></i></span></a>
+                                                            <a href="#" data-toggle="modal" data-target="#deleteModal"
+                                                               class="btn btn-danger btn-xs"><span><i
+                                                                        class="far fa-trash-alt"></i></span></a>
                                                         </td>
                                                     </tr>
                                                 @endif
 
                                                 <!-- Delete Modal -->
-                                                <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+                                                <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog"
+                                                     aria-labelledby="deleteModalLabel" aria-hidden="true">
                                                     <div class="modal-dialog" role="document">
                                                         <div class="modal-content">
                                                             <div class="modal-header">
                                                                 <h5 class="modal-title" id="exampleModalLabel"></h5>
-                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                <button type="button" class="close" data-dismiss="modal"
+                                                                        aria-label="Close">
                                                                     <span aria-hidden="true">&times;</span>
                                                                 </button>
                                                             </div>
@@ -136,7 +140,9 @@
                                                                 Are you sure you want to delete the note ?
                                                             </div>
                                                             <div class="modal-footer">
-                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                                                <button type="button" class="btn btn-secondary"
+                                                                        data-dismiss="modal">Cancel
+                                                                </button>
                                                                 <form
                                                                     action="{{ route('lecturer.deleteNotes',$lecturer->id) }}"
                                                                     method="post" enctype="multipart/form-data">
@@ -144,7 +150,8 @@
                                                                     @method('DELETE')
                                                                     <button type="submit"
                                                                             class="btn btn-danger btn-xs {{Auth()->user()->role_id !== 2 ? 'disabled' : ''}}">
-                                                                        <span><i class="far fa-trash-alt"></i></span> Delete
+                                                                        <span><i class="far fa-trash-alt"></i></span>
+                                                                        Delete
                                                                     </button>
                                                                 </form>
                                                             </div>
@@ -174,19 +181,8 @@
                                                                     <input type="hidden" id="lecturer_id"
                                                                            name="lecturer_id">
                                                                     <div class="form-group">
-                                                                        <div class="row">
-                                                                            <div class="col-lg-9"><span
-                                                                                    class="badge badge-info">Level:</span> {{$lecturer->level_id}}00
-                                                                            </div>
-                                                                            <br>
-                                                                            <div class="col-lg-3"><span
-                                                                                    class="badge badge-danger mr-3">{{ $lecturer->course_code}}</span>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="form-group">
                                                                         <label for="exampleFormControlInput1"
-                                                                               class="font-weight-bold">Post
+                                                                               class="font-weight-bold">
                                                                             Title:</label>
                                                                         <input type="text" class="form-control"
                                                                                id="title" name="title">
@@ -219,9 +215,9 @@
                                                                     <div class="form-group">
                                                                         <label for="exampleFormControlInput1"
                                                                                class="font-weight-bold">Deadline</label>
-                                                                        <input type="number" class="form-control"
-                                                                               id="deadline" name="deadline"
-                                                                               value="{{$lecturer->deadline}}"
+                                                                        <input class="form-control"
+                                                                               id="dead_line" name="dead_line"
+                                                                               value="{{$lecturer->dead_line}}"
                                                                                placeholder="Introduction Notes">
                                                                     </div>
                                                                     <div class="form-group">
@@ -229,7 +225,7 @@
                                                                                class="font-weight-bold">Textarea:</label>
                                                                         <textarea class="form-control" id="description"
                                                                                   rows="8"
-                                                                                  name="description">{{$lecturer->description}}</textarea>
+                                                                        >{{$lecturer->description}}</textarea>
                                                                     </div>
                                                                     <div class="modal-footer">
                                                                         <button type="button" class="btn btn-secondary"
