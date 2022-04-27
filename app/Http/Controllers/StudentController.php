@@ -226,31 +226,40 @@ class StudentController extends Controller
 
     /**
      * upload completed assignment to the lectures and also sends a copy as email
-     * @param $user
-     * @param $request
-     * @param $id
+     * @param Request $request
+     *
      * @return RedirectResponse
      */
-    public function uploadAssignment($user, $request, $id): RedirectResponse
+    public function uploadAssignment(Request $request): RedirectResponse
     {
 
-
-        if (auth()->user()->id !== $user()->user_id) {
+        if (!auth()->user()->role_id) {
             abort(403);
         }
 
-        $message = $request->validate([
-            'file_name' => 'required'
-        ]);
 
-        $lecturer = Lecturer::find($id);
-        $assignment = new Assignment();
-        $assignment->lecturer_id = $lecturer->id;
-        $assignment->user_id = auth()->user()->id;
-        $assignment->level_id = $lecturer->level_id;
-        $assignment->course_code = $lecturer->course_code;
+        if ($request->hasFile('pdf')) {
+            $filename = time() . '.' . $request->pdf->getClientOriginalName();
+            $request->pdf->storeAs('pdfs', $filename, 'public');
+            auth()->user()->update(['file_name' => $filename]);
+        }
 
-        Session::flash('message', 'Your assignment ' . $message['course_code'] . ' was  successful created');
+        $courses = Course::all();
+
+        foreach ($courses as $course){
+
+            $assignment = new Assignment();
+
+            $assignment->lecturer_id = $course->user_id;
+            $assignment->course_name = $course->course_name;
+            $assignment->course_code = $course->course_code;
+            $assignment->file_name = $filename;
+            $assignment->level_id = auth()->user()->level_id;
+            $assignment->user_id = auth()->user()->id;
+            $assignment->save();
+
+        }
+        Session::flash('message','Your assignment '.$filename.' was  successful created');
 
         return back();
 

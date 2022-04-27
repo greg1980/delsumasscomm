@@ -40,10 +40,5 @@ class Lecturer extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function getTimeRemainingAttribute($dead_line) {
-        $time_left = $dead_line - now();
-        return $time_left;
-
-     }
 
 }

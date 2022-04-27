@@ -76,9 +76,6 @@ class User extends Authenticatable implements MustVerifyEmail
     }
 
 
-//    public function projects(){
-//        return $this->hasMany(Post::class);
-//    }
 
     public function level(){
       return  $this->belongsTo(Level::class, 'level_id');
@@ -88,7 +85,7 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(Course::class)->latest('updated_at');
     }
 
-   public function enrollments(){
+   public function enrollment(){
         return $this->hasMany(Enrollment::class);
    }
 

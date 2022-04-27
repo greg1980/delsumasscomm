@@ -23,11 +23,11 @@ class Assignment extends Model
     ];
 
     /**
-     * @return BelongsToMany
+     * @return BelongsTo
      */
-    public function users(): BelongsToMany
+    public function users(): BelongsTo
     {
-        return $this->belongsToMany(User::class, 'user_id');
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     /**
@@ -43,6 +43,8 @@ class Assignment extends Model
      */
     public function lecturers(): HasMany
     {
-        return $this->hasMany(Lecturer::class, 'lecturer_id');
+        return $this->hasMany(Lecturer::class, 'course_id');
     }
+
+
 }
