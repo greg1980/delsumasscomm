@@ -67,7 +67,7 @@
                 </li>
             @else
                 <li class="nav-item">
-                    <a class="nav-link"  href="{{ route('logout') }}" tabindex="-1" aria-disabled="true">Logout</a>
+                    <a class="nav-link"  href="{{ route('home') }}" tabindex="-1" aria-disabled="true">Dashboard</a>
                 </li>
             @endif
         </ul>

@@ -14,7 +14,7 @@
         "bootstrap": "^4.6.0",
         "cross-env": "^7.0.3",
         "jquery": "^3.6.0",
-        "laravel-mix": "^6.0.27",
+        "laravel-mix": "^6.0.43",
         "lodash": "^4.17.21",
         "popper.js": "^1.12",
         "resolve-url-loader": "^4.0.0",
@@ -24,6 +24,6 @@
         "vue-template-compiler": "^2.6.10"
     },
     "dependencies": {
-        "ckeditor4": "^4.16.0"
+        "ckeditor4": "^4.18.0"
     }
 }
