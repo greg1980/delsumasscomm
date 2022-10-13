@@ -245,7 +245,9 @@ class StudentController extends Controller
         }
 
         $courses = Course::all();
-
+    /**
+     * need to work on the loop here so as ro get the exact course  the user is viewing *
+     */
         foreach ($courses as $course){
 
             $assignment = new Assignment();
@@ -262,7 +264,6 @@ class StudentController extends Controller
         Session::flash('message','Your assignment '.$filename.' was  successful created');
 
         return back();
-
     }
 
     /**

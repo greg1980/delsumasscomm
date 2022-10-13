@@ -1,4 +1,3 @@
-
 <!-- Content Row -->
 <div class="row">
     <!-- Earnings (Monthly) Card Example -->
@@ -7,7 +6,8 @@
             <div class="card-body">
                 <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Total Students Failed </div>
+                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Total Students Failed
+                        </div>
                         <div class="h5 mb-0 font-weight-bold text-gray-800">
                             <h3>
                                 <?php use Illuminate\Support\Facades\DB;$counter = 0 ?>
@@ -35,7 +35,8 @@
             <div class="card-body">
                 <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Total Student Passed </div>
+                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Total Student Passed
+                        </div>
                         <div class="h5 mb-0 font-weight-bold text-gray-800">
                             <?php $counter = 0 ?>
                             @foreach($passCounts as  $passCount)
@@ -61,27 +62,27 @@
             <div class="card-body">
                 <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                        <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Students Average Scores</div>
+                        <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Students Average Scores
+                        </div>
                         <div class="row no-gutters align-items-center">
                             <div class="col-auto">
-                                <?php $sum = 0; $avgCount = 0; $count = 0; $total = 1 ;?>
-                                @foreach($avgCounts as $key=> $avgCount)
-                                    @if (auth()->user()->id === $avgCount->user_id)
-                                        <?php
-                                        $sum+= $avgCount->grades;
-                                        ?>
-                                    @endif
-                                @endforeach
-                                @foreach($counts as $count)
-                                    @if (auth()->user()->id === $count->user_id)
-                                        <?php   $total = $count->user_id; ?>
-                                    @endif
-                                @endforeach
-                                <div class="h5 mb-0 mr-3 font-weight-bold {{round($sum/$total) <= '50' ? 'text-danger' : 'text-success'}}">{{ round($sum/$total)}}%</div>
+                                @if ($avgCounts != 0)
+
+                                <div
+                                    class="h5 mb-0 mr-3 font-weight-bold {{round($avgCounts/$counts) <= '50' ? 'text-danger' : 'text-success'}}">{{ round($avgCounts/$counts)}}
+                                    %
+                                </div>
+                                @endif
                             </div>
                             <div class="col">
                                 <div class="progress progress-sm mr-2">
-                                    <div class="progress-bar {{round($sum/$total) <= '50' ? 'bg-danger' : ' bg-info'}} progress-bar-animated" role="progressbar" style="width: {{ round($sum/$total)}}%" aria-valuenow="{{ round($sum/$total)}}%" aria-valuemin="0" aria-valuemax="100"></div>
+                                    @if ($avgCounts != 0)
+                                    <div
+                                        class="progress-bar {{round($avgCounts/$counts) <= '50' ? 'bg-danger' : ' bg-info'}} progress-bar-animated"
+                                        role="progressbar" style="width: {{ round($avgCounts/$counts)}}%"
+                                        aria-valuenow="{{ round($avgCounts/$counts)}}%" aria-valuemin="0"
+                                        aria-valuemax="100"></div>
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -123,41 +124,38 @@
         <div class="col-xs-6 col-md-6">
             <div class="panel panel-default">
                 <div class="panel-body easypiechart-panel">
-{{--                    <?php $counter = 0 ?>--}}
-{{--                    @foreach($failCounts as $key=> $failCount)--}}
-{{--                        @if (auth()->user()->id === $failCount->user_id)--}}
-{{--                            @if ($failCount->grades <= 46)--}}
-{{--                                <?php $counter++?>--}}
-{{--                            @endif--}}
-{{--                        @endif--}}
-{{--                    @endforeach--}}
-{{--                    <h3 class="{{$counter >= 3 ? 'text-danger' : 'text-success'}} mt-3">--}}
-{{--                        {!!  $counter >= 3 ? '<i class="fas fa-praying-hands"></i> You need to work harder to improve on your result !' : '<i class="fas fa-thumbs-up"></i> Good result keep it up.'!!}--}}
-{{--                    </h3>--}}
+                    <div class="easypiechart"
+                         id="{{count(auth()->user()->courses) <= 5 ? 'easypiechart-red' : 'easypiechart-teal'}}"
+                         data-percent="{{count(auth()->user()->courses)}}">
+                            <span
+                                class="percent {{count(auth()->user()->courses) <= 3 ? 'text-danger' : 'text-success'}}">
+                                    {{count(auth()->user()->courses)}} Course
+                            </span>
+                    </div>
+                    <small>Total Lectures Courses</small>
                 </div>
             </div>
         </div>
         <div class="col-xs-6 col-md-3">
             <div class="panel panel-default">
+
                 <div class="panel-body easypiechart-panel">
-                        <?php $sum = 0; $avgCount = 0; $count = 0; $total = 1 ;?>
-                        @foreach($avgCounts as $key=> $avgCount)
-                            @if (auth()->user()->id === $avgCount->user_id)
-                                <?php
-                                $sum+= $avgCount->grades;
-                                ?>
-                            @endif
-                        @endforeach
-                        @foreach($counts as $count)
-                            @if (auth()->user()->id === $count->user_id)
-                                <?php   $total = $count->user_id; ?>
-                            @endif
-                        @endforeach
-                    <div class="easypiechart" id="{{round($sum/$total) <= 49 ? 'easypiechart-red' : 'easypiechart-teal'}}" data-percent="{{ round($sum/$total) }}" >
-                            <span class="percent {{round($sum/$total) <= 49 ? 'text-danger' : 'text-success'}}">
-                                {{ round($sum/$total) }}%
+                    @if ($avgCounts != 0)
+                    <div class="easypiechart"
+                         id="{{round($avgCounts/$counts) <= 49 ? 'easypiechart-red' : 'easypiechart-teal'}}"
+                         data-percent="{{ round($avgCounts/$counts) }}">
+                            <span class="percent {{round($avgCounts/$counts) <= 49 ? 'text-danger' : 'text-success'}}">
+                                {{ round($avgCounts/$counts) }}%
                             </span>
                     </div>
+                    @endif
+                        <div class="easypiechart"
+                             id="{{'easypiechart-red'}}"
+                             data-percent="{{ 0 }}">
+                            <span class="percent {{'text-danger'}}">
+                                {{ 0 }}%
+                            </span>
+                        </div>
                     <small>Total Average Score</small>
                 </div>
             </div>
@@ -165,16 +163,13 @@
         <div class="col-xs-6 col-md-3">
             <div class="panel panel-default">
                 <div class="panel-body easypiechart-panel">
-                    {{$grades = $maxCounts}}
-                    @foreach($maxCounts as $key=> $maxCount)
-                        @if (auth()->user()->id === $maxCount->user_id)
-                            <div class="easypiechart " id="{{$maxCount->enrollment_count <= 49 ? 'easypiechart-red' : 'easypiechart-blue'}}" data-percent="{{$maxCount->enrollment_count}}" >
-                                <span class="percent {{$maxCount->enrollment_count <= 49 ? 'text-danger' : 'text-success'}} ">{{$maxCount->enrollment_count}}%</span>
-                            </div>
-                            <small>Max Score</small>
-                        @endif
-                    @endforeach
-
+                    <div class="easypiechart "
+                         id="{{$maxCounts <= 49 ? 'easypiechart-red' : 'easypiechart-blue'}}"
+                         data-percent="{{$maxCounts}}">
+                        <span
+                            class="percent {{$maxCounts <= 49 ? 'text-danger' : 'text-success'}} "> {{$maxCounts ? $maxCounts : 0}}%</span>
+                    </div>
+                    <small>Max Score</small>
                 </div>
             </div>
         </div>

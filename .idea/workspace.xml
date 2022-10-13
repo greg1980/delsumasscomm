@@ -7,11 +7,17 @@
     <list default="true" id="c612f4c5-a3cd-4083-913e-5d2701704c70" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/layouts/pages.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/pages.blade.php" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/LecturerController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/LecturerController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/StudentController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/StudentController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/includes/lecdashboard.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/includes/lecdashboard.blade.php" afterDir="false" />
+>>>>>>> 8895aa5681086cd5003f79ada3d25d05d598251d
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -376,8 +382,16 @@
       <workItem from="1634206426068" duration="10809000" />
       <workItem from="1635163308878" duration="595000" />
       <workItem from="1650545983044" duration="5153000" />
+<<<<<<< HEAD
       <workItem from="1650883401679" duration="38389000" />
       <workItem from="1651102604469" duration="3056000" />
+=======
+      <workItem from="1650883401679" duration="38836000" />
+      <workItem from="1652349285103" duration="14598000" />
+      <workItem from="1664981689807" duration="11084000" />
+      <workItem from="1665180520450" duration="20269000" />
+      <workItem from="1665414245607" duration="8883000" />
+>>>>>>> 8895aa5681086cd5003f79ada3d25d05d598251d
     </task>
     <servers />
   </component>

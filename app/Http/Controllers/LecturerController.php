@@ -36,11 +36,9 @@ class LecturerController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @param Enrollment $enrollment
-     * @param Course $courses
      * @return Application|Factory|Response|View
      */
-    public function results(Enrollment $enrollment, Course $courses)
+    public function results()
     {
         if (auth()->user()->role_id !== 2) {
             abort(403);
@@ -54,19 +52,21 @@ class LecturerController extends Controller
                 , 'users.name', 'courses.course_name', 'courses.user_id')->get();
 
         /* returning the maximum scores obtained in the exams per user  */
+
         $maxCounts = DB::table('enrollments')
             ->join('courses', 'enrollments.course_id', '=', 'courses.id')
-            ->select(['courses.user_id', DB::raw('MAX(grades) as enrollment_count')])->where('grades', '>', 0)
-            ->groupBy('enrollments.id')->get();
+            ->join('users', 'enrollments.user_id', '=', 'users.id')
+            ->select('enrollments.*', 'enrollments.user_id', 'enrollments.course_id','users.name', 'courses.course_name', 'courses.user_id')
+            ->where([['courses.user_id','=',auth()->user()->id]])->max('grades');
+
 
         /* returning all the results per user which will be then manipulated to get the average score of the student  */
         $avgCounts = DB::table('enrollments')
             ->join('courses', 'enrollments.course_id', '=', 'courses.id')
             ->join('users', 'enrollments.user_id', '=', 'users.id')
-            ->join('levels', 'enrollments.level_id', '=', 'levels.id')
-            ->select('enrollments.*', 'enrollments.course_id', 'enrollments.id', 'enrollments.grades', 'users.id', 'courses.course_name', 'courses.user_id')
-            ->get();
-        //dd($avgCounts);
+            ->select('enrollments.*', 'enrollments.user_id', 'enrollments.course_id','users.name', 'courses.course_name', 'courses.user_id')
+            ->where([['courses.user_id','=',auth()->user()->id]])->sum('grades');
+
 
         /* returning the number of subjects passed  */
         $passCounts = DB::table('enrollments')
@@ -85,8 +85,10 @@ class LecturerController extends Controller
         /* returning the number of subjects enrolled  */
         $counts = DB::table('enrollments')
             ->join('courses', 'enrollments.course_id', '=', 'courses.id')
-            ->select(['courses.id', 'grades', 'courses.user_id', DB::raw('count(courses.id) As enrollment_count')])
-            ->groupBy('user_id', 'courses.id', 'grades', 'courses.user_id')->orderBy('courses.id', 'desc')->get();
+            ->join('users', 'enrollments.user_id', '=', 'users.id')
+            ->select('enrollments.*', 'enrollments.user_id', 'enrollments.course_id','users.name', 'courses.course_name', 'courses.user_id')
+            ->where([['courses.user_id','=',auth()->user()->id]])->count('enrollments.user_id');
+
 
         return view('admin.lecturer.results', compact('results', 'maxCounts', 'avgCounts', 'passCounts', 'failCounts', 'counts'));
     }
