@@ -129,10 +129,10 @@
                          data-percent="{{count(auth()->user()->courses)}}">
                             <span
                                 class="percent {{count(auth()->user()->courses) <= 3 ? 'text-danger' : 'text-success'}}">
-                                    {{count(auth()->user()->courses)}} Course
+                                    {{$counts}} Course
                             </span>
                     </div>
-                    <small>Total Lectures Courses</small>
+                    <small>Total Semesters Courses</small>
                 </div>
             </div>
         </div>
@@ -148,7 +148,7 @@
                                 {{ round($avgCounts/$counts) }}%
                             </span>
                     </div>
-                    @endif
+                    @elseif($avgCounts == 0)
                         <div class="easypiechart"
                              id="{{'easypiechart-red'}}"
                              data-percent="{{ 0 }}">
@@ -156,6 +156,7 @@
                                 {{ 0 }}%
                             </span>
                         </div>
+                    @endif
                     <small>Total Average Score</small>
                 </div>
             </div>
@@ -163,11 +164,12 @@
         <div class="col-xs-6 col-md-3">
             <div class="panel panel-default">
                 <div class="panel-body easypiechart-panel">
-                    <div class="easypiechart "
-                         id="{{$maxCounts <= 49 ? 'easypiechart-red' : 'easypiechart-blue'}}"
+                    <div class="easypiechart"
+                         id="{{$maxCounts <= 49 ? 'easypiechart-red' : 'easypiechart-teal'}}"
                          data-percent="{{$maxCounts}}">
-                        <span
-                            class="percent {{$maxCounts <= 49 ? 'text-danger' : 'text-success'}} "> {{$maxCounts ? $maxCounts : 0}}%</span>
+                            <span class="percent {{$maxCounts <= 49 ? 'text-danger' : 'text-success'}}">
+                                {{$maxCounts}}%
+                            </span>
                     </div>
                     <small>Max Score</small>
                 </div>

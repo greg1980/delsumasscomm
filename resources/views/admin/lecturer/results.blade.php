@@ -10,8 +10,8 @@
 
             <!-- Main Content -->
             <div id="content">
-            @include('includes.lecdashboard')
-            <!-- Page Heading -->
+                @include('includes.lecdashboard')
+                <!-- Page Heading -->
                 <div class="container-fluid">
                     <div class="d-sm-flex align-items-center justify-content-between mb-4 ">
                         <h1 class="h3 ml-4 mt-5 mb-0 text-gray-800">Result Sheets For Courses Lectured By <span

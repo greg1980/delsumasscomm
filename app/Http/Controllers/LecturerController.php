@@ -60,7 +60,7 @@ class LecturerController extends Controller
             ->where([['courses.user_id','=',auth()->user()->id]])->max('grades');
 
 
-        /* returning all the results per user which will be then manipulated to get the average score of the student  */
+        /* returning all the results per user which will then be manipulated to get the average score of the student  */
         $avgCounts = DB::table('enrollments')
             ->join('courses', 'enrollments.course_id', '=', 'courses.id')
             ->join('users', 'enrollments.user_id', '=', 'users.id')
