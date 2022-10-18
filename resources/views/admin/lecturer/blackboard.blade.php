@@ -31,6 +31,7 @@
                                     <form method="POST" action="/lecturer" enctype="multipart/form-data">
                                         @csrf
                                         <div class="form-group">
+                                            <input type="hidden" id="{{auth()->user()->id}}" name="author_id" value="{{auth()->user()->id}}">
                                             <label for="exampleFormControlInput1" class="font-weight-bold">Post
                                                 Title:</label>
                                             <input type="text" class="form-control" id="exampleFormControlInput1"

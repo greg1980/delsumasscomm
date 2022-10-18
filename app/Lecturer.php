@@ -25,7 +25,8 @@ class Lecturer extends Model
         'level_id',
         'course_code',
         'dead_line',
-        'created_at'
+        'created_at',
+        'author_id'
         ];
 
     public function course(){

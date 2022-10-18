@@ -183,13 +183,17 @@ class LecturerController extends Controller
             abort(403);
         }
 
+
         $message = Lecturer::create(request()->validate([
             'title' => 'required',
             'description' => 'required',
             'level_id' => 'required',
             'course_code' => 'required',
-            'dead_line' => 'required'
+            'dead_line' => 'required',
+            'author_id' => 'required'
         ]));
+
+
         Session::flash('message', 'The Student notes for ' . $message['title'] . ' was  successful created');
         return back();
     }
