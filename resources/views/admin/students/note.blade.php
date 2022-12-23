@@ -39,12 +39,14 @@
                       <div class="col-lg-3 col-xlg-3 col-md-5 col-md-3">
                           <div class="card shadow mb-4">
                             <form action="/uploadAssignment" method="Post" enctype="multipart/form-data">
+                                <input type="hidden" value="{{$notes->id}}" id="{{$notes->id}}">
                                 @csrf
                                 <div class="mr-4 ml-4 mb-4 mt-4">
                                     <label for="formFileLg" class="form-label mt-2 ml-3 card-title"><h4>Submit Your Assignment</h4></label>
                                     <div>
                                         <label for="formFileLg" class="form-label">Choose the correct file to upload</label>
                                         <input class="form-control form-control-lg" id="formFileLg" name="pdf" type="file">
+                                        <input type="hidden" name="course_code" value="{{$notes->course_code}}">
                                     </div>
                                         <button type="submit" class="btn btn-primary btn-block mt-4">Submit</button>
                                 </div>

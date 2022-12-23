@@ -247,12 +247,9 @@ class StudentController extends Controller
     /**
      * need to work on the loop here so as ro get the exact course  the user is viewing *
      */
-
-        foreach (Lecturer::all() as $course) {
-            if ($course->author_id != $lecturer->id) {
+    $course = DB::table('lecturers')->where('course_code', $request->course_code)->first();
 
                 $assignment = new Assignment();
-
                 $assignment->lecturer_id = $course->author_id;
                 $assignment->course_name = $course->title;
                 $assignment->course_code = $course->course_code;
@@ -261,8 +258,7 @@ class StudentController extends Controller
                 $assignment->user_id = auth()->user()->id;
                 $assignment->save();
 
-            }
-        }
+
         Session::flash('message','Your assignment '.$filename.' was  successful created');
 
         return back();
