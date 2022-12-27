@@ -237,29 +237,37 @@ class StudentController extends Controller
             abort(403);
         }
 
-
-        if ($request->hasFile('pdf')) {
+        /**
+         * need to work on the loop here so as ro get the exact course  the user is viewing *
+         */
+        $course = DB::table('lecturers')->where('course_code', $request->course_code)->first();
+        $courses = DB::table('assignments')->where('course_code', $request->course_code)->first();
+        if (!empty($courses) && $request->hasFile('pdf')) {
             $filename = time() . '.' . $request->pdf->getClientOriginalName();
             $request->pdf->storeAs('pdfs', $filename, 'public');
             auth()->user()->update(['file_name' => $filename]);
+            DB::table('assignments')->where('course_code', $request->course_code)->update(['file_name' => $filename, 'updated_at' => $updated_at ]);
+            Session::flash('message', 'Hey ' .Auth()->user()->name. 'Your file was successfully updated ');
         }
 
-    /**
-     * need to work on the loop here so as ro get the exact course  the user is viewing *
-     */
-    $course = DB::table('lecturers')->where('course_code', $request->course_code)->first();
+        elseif ($request->hasFile('pdf') && $course) {
+            $filename = time() . '.' . $request->pdf->getClientOriginalName();
+            $request->pdf->storeAs('pdfs', $filename, 'public');
+            auth()->user()->update(['file_name' => $filename]);
 
-                $assignment = new Assignment();
-                $assignment->lecturer_id = $course->author_id;
-                $assignment->course_name = $course->title;
-                $assignment->course_code = $course->course_code;
-                $assignment->file_name = $filename;
-                $assignment->level_id = auth()->user()->level_id;
-                $assignment->user_id = auth()->user()->id;
-                $assignment->save();
-
-
-        Session::flash('message','Your assignment '.$filename.' was  successful created');
+            $assignment = new Assignment();
+            $assignment->lecturer_id = $course->author_id;
+            $assignment->course_name = $course->title;
+            $assignment->course_code = $course->course_code;
+            $assignment->file_name = $filename;
+            $assignment->level_id = auth()->user()->level_id;
+            $assignment->user_id = auth()->user()->id;
+            $assignment->save();
+            Session::flash('message','Your assignment '.$filename.' was  successful created');
+        }else {
+            Session::flash('message', 'Hey ' .Auth()->user()->name. 'you need to upload a file ');
+            return back();
+        }
 
         return back();
     }

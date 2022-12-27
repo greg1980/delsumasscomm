@@ -45,7 +45,7 @@
                                     <label for="formFileLg" class="form-label mt-2 ml-3 card-title"><h4>Submit Your Assignment</h4></label>
                                     <div>
                                         <label for="formFileLg" class="form-label">Choose the correct file to upload</label>
-                                        <input class="form-control form-control-lg" id="formFileLg" name="pdf" type="file">
+                                        <input class="form-control form-control-lg" id="formFileLg" name="pdf" type="file" >
                                         <input type="hidden" name="course_code" value="{{$notes->course_code}}">
                                     </div>
                                         <button type="submit" class="btn btn-primary btn-block mt-4">Submit</button>
