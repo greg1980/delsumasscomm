@@ -232,11 +232,9 @@ class StudentController extends Controller
      */
     public function uploadAssignment(Request $request): RedirectResponse
     {
-
         if (!auth()->user()->role_id) {
             abort(403);
         }
-
         /**
          * need to work on the loop here so as ro get the exact course  the user is viewing *
          */
@@ -246,7 +244,7 @@ class StudentController extends Controller
             $filename = time() . '.' . $request->pdf->getClientOriginalName();
             $request->pdf->storeAs('pdfs', $filename, 'public');
             auth()->user()->update(['file_name' => $filename]);
-            DB::table('assignments')->where('course_code', $request->course_code)->update(['file_name' => $filename, 'updated_at' => $updated_at ]);
+            DB::table('assignments')->where('course_code', $request->course_code)->update(['file_name' => $filename ]);
             Session::flash('message', 'Hey ' .Auth()->user()->name. 'Your file was successfully updated ');
         }
 
